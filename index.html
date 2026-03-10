@@ -675,6 +675,85 @@ footer p{font-size:.8rem;color:var(--text-m)}
 .modal-body ul li::before{content:'→';position:absolute;left:0;color:var(--g-acc);font-size:.75rem;top:.1rem}
 .modal-tag{display:inline-block;font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.2);border-radius:6px;padding:.2rem .6rem;margin-bottom:1.2rem}
 .modal-divider{height:1px;background:var(--border);margin:1.4rem 0}
+
+/* ── HOW IT WORKS ────────────────────────────────── */
+#como-funciona{padding:7rem 3rem;background:var(--surface)}
+.hw-steps{display:flex;flex-direction:column;gap:5rem;max-width:1100px;margin:0 auto}
+.hw-step{position:relative}
+.hw-num{position:absolute;top:-1.5rem;left:0;font-family:'Fraunces',serif;font-size:7rem;font-weight:900;color:rgba(46,192,106,.06);line-height:1;pointer-events:none;user-select:none}
+.hw-content{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center}
+.hw-content-flip{direction:rtl}.hw-content-flip>*{direction:ltr}
+/* Step text */
+.hw-steplabel{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:.6rem}
+.hw-text h3{font-family:'Fraunces',serif;font-size:1.7rem;font-weight:700;color:var(--cream);line-height:1.25;margin-bottom:.9rem;letter-spacing:-.03em}
+.hw-text p{font-size:.9rem;color:var(--text-m);line-height:1.8;margin-bottom:1.2rem}
+.hw-chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.hw-chips span{font-size:.72rem;background:rgba(46,192,106,.08);border:1px solid rgba(46,192,106,.18);border-radius:100px;padding:.28rem .75rem;color:var(--g-acc);font-family:'Space Mono',monospace}
+/* Mock screens */
+.hw-screen{background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.5)}
+.hw-screen-bar{background:var(--surface2);padding:.65rem 1rem;display:flex;align-items:center;gap:.6rem;border-bottom:1px solid var(--border)}
+.hw-dots{display:flex;gap:.35rem}
+.hw-dots span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.12)}
+.hw-dots span:nth-child(1){background:#ff5f57}
+.hw-dots span:nth-child(2){background:#febc2e}
+.hw-dots span:nth-child(3){background:#28c840}
+.hw-url{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--text-m);margin-left:.2rem}
+.hw-screen-body{padding:1.3rem}
+/* Profile grid */
+.hw-profile-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}
+.hw-pet-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:.9rem .7rem;text-align:center;transition:border-color .2s}
+.hw-pet-card.active-pet{border-color:rgba(46,192,106,.4);background:rgba(46,192,106,.05)}
+.hw-pet-card.add-pet{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;min-height:90px;border-style:dashed}
+.hw-pet-emoji{font-size:1.8rem;display:block;margin-bottom:.3rem}
+.hw-pet-name{font-weight:600;font-size:.8rem;color:var(--cream);margin-bottom:.1rem}
+.hw-pet-species{font-size:.67rem;color:var(--text-m);margin-bottom:.3rem}
+.hw-pet-status{font-size:.65rem;font-family:'Space Mono',monospace}
+.hw-pet-status.ok{color:var(--g-acc)}
+.hw-pet-status.warn{color:var(--amber)}
+/* Chat mock */
+.hw-chat{display:flex;flex-direction:column;gap:.8rem;min-height:220px}
+.hw-msg{font-size:.8rem;line-height:1.6;padding:.7rem .9rem;border-radius:12px;max-width:88%}
+.hw-msg.user{background:rgba(46,192,106,.1);border:1px solid rgba(46,192,106,.2);color:var(--text);align-self:flex-end;border-radius:12px 12px 2px 12px}
+.hw-msg.ai{background:var(--surface2);border:1px solid var(--border);color:var(--text-m);align-self:flex-start;border-radius:2px 12px 12px 12px}
+.hw-ai-badge{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--g-acc);margin-bottom:.4rem;letter-spacing:.05em}
+.hw-urgency-pill{font-size:.65rem;font-family:'Space Mono',monospace;padding:.2rem .6rem;border-radius:100px;display:inline-block;margin-bottom:.5rem}
+.hw-urgency-pill.amber{background:rgba(245,166,35,.12);border:1px solid rgba(245,166,35,.25);color:var(--amber)}
+.hw-msg.ai p{color:var(--text-m);font-size:.78rem;margin:0}
+.hw-msg.ai p strong{color:var(--text)}
+.hw-msg.typing{display:flex;align-items:center;gap:.3rem;padding:.8rem 1rem;width:60px}
+.hw-msg.typing span{width:7px;height:7px;border-radius:50%;background:var(--text-m);animation:typingdot 1.2s infinite}
+.hw-msg.typing span:nth-child(2){animation-delay:.2s}
+.hw-msg.typing span:nth-child(3){animation-delay:.4s}
+@keyframes typingdot{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-5px);opacity:1}}
+/* Plan mock */
+.hw-plan{display:flex;flex-direction:column;gap:.7rem}
+.hw-plan-header{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--text-m);letter-spacing:.06em;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
+.hw-action-item{display:flex;align-items:flex-start;gap:.8rem;padding:.7rem;border-radius:10px;background:var(--surface2);border:1px solid var(--border)}
+.hw-action-item.done{border-color:rgba(46,192,106,.2);background:rgba(46,192,106,.05)}
+.hw-action-item.urgent{border-color:rgba(245,166,35,.2);background:rgba(245,166,35,.04)}
+.hw-act-icon{font-size:.8rem;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem;font-family:'Space Mono',monospace;font-weight:700}
+.hw-action-item.done .hw-act-icon{background:rgba(46,192,106,.15);color:var(--g-acc)}
+.hw-action-item:not(.done):not(.urgent) .hw-act-icon{background:rgba(255,255,255,.06);color:var(--text-m)}
+.hw-action-item.urgent .hw-act-icon{background:rgba(245,166,35,.15);color:var(--amber)}
+.hw-act-title{font-size:.78rem;color:var(--text);font-weight:500;margin-bottom:.1rem}
+.hw-act-sub{font-size:.68rem;color:var(--text-m)}
+.hw-reminder{font-size:.68rem;font-family:'Space Mono',monospace;color:var(--teal);background:rgba(0,212,196,.06);border:1px solid rgba(0,212,196,.15);border-radius:8px;padding:.5rem .7rem;text-align:center}
+/* Guarantee banner */
+.hw-guarantee{margin-top:5rem;background:linear-gradient(135deg,rgba(46,192,106,.08),rgba(0,212,196,.05));border:1px solid rgba(46,192,106,.2);border-radius:24px;padding:2.2rem 2.5rem;display:flex;align-items:center;gap:2rem;max-width:1100px;margin-left:auto;margin-right:auto}
+.hw-g-left{display:flex;align-items:center;gap:1.5rem;flex:1}
+.hw-g-icon{font-size:2.8rem;flex-shrink:0}
+.hw-g-title{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--cream);margin-bottom:.3rem}
+.hw-g-sub{font-size:.85rem;color:var(--text-m);line-height:1.6}
+@media(max-width:900px){
+  #como-funciona{padding:4rem 1.5rem}
+  .hw-content,.hw-content-flip{grid-template-columns:1fr;direction:ltr}
+  .hw-content-flip>*{direction:ltr}
+  .hw-num{font-size:4rem;top:-.8rem}
+  .hw-profile-grid{grid-template-columns:repeat(3,1fr)}
+  .hw-guarantee{flex-direction:column;text-align:center}
+  .hw-g-left{flex-direction:column;text-align:center}
+}
+.pguarantee{text-align:center;font-size:.72rem;color:var(--text-m);font-family:"Space Mono",monospace;margin-top:.6rem;opacity:.7}
 </style>
 </head>
 <body>
@@ -698,7 +777,7 @@ footer p{font-size:.8rem;color:var(--text-m)}
     <li><a href="#features" data-i18n="nav.features">Funciones</a></li>
     <li><a href="#pricing" data-i18n="nav.pricing">Precios</a></li>
     <li><a href="#testimonials" data-i18n="nav.community">Comunidad</a></li>
-    <li><a href="#cta" class="nav-cta" data-i18n="nav.cta">Proteger mi Mascota</a></li>
+    <li><a href="#pricing" class="nav-cta" data-i18n="nav.cta">Ver Planes</a></li>
   </ul>
   <div class="lang-switcher" id="langSwitcher">
     <button class="lang-btn" onclick="toggleLangMenu()" aria-label="Select language">
@@ -734,8 +813,8 @@ footer p{font-size:.8rem;color:var(--text-m)}
     <h1><span class="l1" data-i18n="hero.l1">Tu veterinario</span><span class="l2" data-i18n="hero.l2">inteligente</span><span class="l3" data-i18n="hero.l3">disponible 24/7</span></h1>
     <p class="hdesc"><span data-i18n="hero.desc">La primera IA del mundo diseñada <strong>exclusivamente</strong> para reptiles, aves, roedores y exóticos. Diagnóstico en tiempo real cuando el vet local simplemente no sabe.</span></p>
     <div class="hacts">
-      <a href="#cta" class="btn-p">🦎 <span data-i18n="hero.btn1">Consultar Ahora</span> <span>→</span></a>
-      <a href="#features" class="btn-s" data-i18n="hero.btn2">Ver cómo funciona</a>
+      <a href="#pricing" class="btn-p">🛡️ <span data-i18n="hero.btn1">Elegir mi Plan</span> <span>→</span></a>
+      <a href="#como-funciona" class="btn-s" data-i18n="hero.btn2">¿Cómo funciona?</a>
     </div>
     <div class="hstats">
       <div><div class="sn" itemprop="value">46M+</div><div class="sl" data-i18n="hstat1">Mascotas exóticas<br>en EE.UU.</div></div>
@@ -893,127 +972,156 @@ footer p{font-size:.8rem;color:var(--text-m)}
   </div>
 </section>
 
-<!-- DEMO INTERACTIVO -->
-<section id="demo" aria-label="Demo interactivo de diagnóstico">
-  <div style="text-align:center;margin-bottom:3rem" class="rev">
-    <div class="stag" data-i18n="demo.tag">// Demo en Vivo · Sin Registro</div>
-    <h2 class="stitle"><span data-i18n="demo.title">Consulta</span> <em data-i18n="demo.titleem">en segundos</em></h2>
-    <p style="color:var(--text-m);max-width:500px;margin:.8rem auto 0;font-size:.95rem;line-height:1.7" data-i18n="demo.desc">Selecciona tu mascota y síntomas. La IA te da un análisis inmediato.</p>
+<!-- CÓMO FUNCIONA -->
+<section id="como-funciona" aria-label="Cómo funciona ExoVet AI">
+  <div style="text-align:center;margin-bottom:4rem" class="rev">
+    <div class="stag" data-i18n="how.tag">// Diseñado para ser Inmediato</div>
+    <h2 class="stitle"><span data-i18n="how.title">Tres pasos.</span><br><em data-i18n="how.titleem">Diagnóstico en segundos.</em></h2>
+    <p style="color:var(--text-m);max-width:520px;margin:.8rem auto 0;font-size:.95rem;line-height:1.7" data-i18n="how.desc">Así funciona ExoVet AI para los miembros. Sin tiempos de espera, sin citas, sin veterinarios generalistas que no conocen tu mascota.</p>
   </div>
 
-  <div class="demo-wrap rev rd1">
+  <div class="hw-steps">
 
-    <!-- LEFT: INPUTS -->
-    <div class="demo-left">
-      <div class="demo-left-top">
-        <div class="sstep" data-i18n="demo.step1">PASO 1 — Selecciona tu mascota</div>
-        <div class="ssel">
-          <button class="sbtn active" onclick="selSp(this)" data-sp="reptil" data-i18n-btn="sp.reptil">🦎 Reptil</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="camaleón" data-i18n-btn="sp.camaleón">🦎 Camaleón</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="serpiente" data-i18n-btn="sp.serpiente">🐍 Serpiente</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="tortuga" data-i18n-btn="sp.tortuga">🐢 Tortuga</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="monitor" data-i18n-btn="sp.monitor">🦖 Monitor</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="anfibio" data-i18n-btn="sp.anfibio">🐸 Anfibio</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="ave" data-i18n-btn="sp.ave">🐦 Ave pequeña</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="loro" data-i18n-btn="sp.loro">🦜 Loro</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="rapaz" data-i18n-btn="sp.rapaz">🦅 Rapaz</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="conejo" data-i18n-btn="sp.conejo">🐇 Conejo</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="hamster" data-i18n-btn="sp.hamster">🐹 Hámster</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="rata" data-i18n-btn="sp.rata">🐀 Rata</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="cobaya" data-i18n-btn="sp.cobaya">🐾 Cobaya</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="chinchilla" data-i18n-btn="sp.chinchilla">🦫 Chinchilla</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="huron" data-i18n-btn="sp.huron">🦦 Hurón</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="erizo" data-i18n-btn="sp.erizo">🦔 Erizo</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="sugar" data-i18n-btn="sp.sugar">🦘 Sugar Glider</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="pez-dulce" data-i18n-btn="sp.pezdulce">🐟 Pez dulce</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="pez-salado" data-i18n-btn="sp.pezsalado">🐡 Pez marino</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="invertebrado-acuatico" data-i18n-btn="sp.invert">🦐 Invertebrado</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="tarantula" data-i18n-btn="sp.tarantula">🕷️ Tarántula</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="escorpion" data-i18n-btn="sp.escorpion">🦂 Escorpión</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="insecto" data-i18n-btn="sp.insecto">🦗 Insecto</button>
-          <button class="sbtn" onclick="selSp(this)" data-sp="cangrejo" data-i18n-btn="sp.cangrejo">🦀 Cangrejo</button>
-        </div>
-      </div>
-
-      <div class="demo-divider"></div>
-
-      <div class="symgrid">
-        <div class="sstep" style="grid-column:1/-1;margin-bottom:.2rem" data-i18n="demo.step2">PASO 2 — ¿Qué síntomas observas?</div>
-        <button class="sybtn" onclick="togSy(this)"><span class="syico">😴</span><span>Letargo</span></button>
-        <button class="sybtn" onclick="togSy(this)"><span class="syico">🍽️</span><span>No come</span></button>
-        <button class="sybtn" onclick="togSy(this)"><span class="syico">👁️</span><span>Ojos cerrados</span></button>
-        <button class="sybtn" onclick="togSy(this)"><span class="syico">🌡️</span><span>Cambio de color</span></button>
-        <button class="sybtn" onclick="togSy(this)"><span class="syico">💧</span><span>Secreciones</span></button>
-        <button class="sybtn" onclick="togSy(this)"><span class="syico">🔄</span><span>Mov. anormales</span></button>
-      </div>
-
-      <button class="dbtn" id="demoBtn" onclick="runDx()">
-        <span id="dbtnIcon">🔬</span>
-        <span data-i18n="demo.analyze" id="dbtnTxt">Analizar con ExoVet AI</span>
-      </button>
-    </div>
-
-    <!-- RIGHT: AI TERMINAL -->
-    <div class="demo-right">
-      <div class="dr-header">
-        <div class="dr-dots">
-          <div class="dr-dot dr-dot-r"></div>
-          <div class="dr-dot dr-dot-y"></div>
-          <div class="dr-dot dr-dot-g"></div>
-        </div>
-        <span class="dr-title">exovet-ai · diagnostic-engine v2.4</span>
-        <div class="dr-status">
-          <div class="dr-live"></div>
-          <span>LIVE</span>
-        </div>
-      </div>
-
-      <div class="dr-body">
-        <!-- IDLE -->
-        <div class="dr-idle" id="drIdle">
-          <div class="dr-idle-icon">🧬</div>
-          <p>Selecciona tu mascota y al menos un síntoma para iniciar el análisis</p>
-        </div>
-
-        <!-- SCANNING -->
-        <div class="dr-scan" id="drScan">
-          <div class="scan-bar-wrap"><div class="scan-bar" id="scanBar"></div></div>
-          <div class="scan-steps">
-            <div class="scan-step" id="ss1">Identificando especie y perfil</div>
-            <div class="scan-step" id="ss2">Procesando síntomas reportados</div>
-            <div class="scan-step" id="ss3">Cruzando base de datos veterinaria</div>
-            <div class="scan-step" id="ss4">Evaluando nivel de urgencia</div>
-            <div class="scan-step" id="ss5">Generando recomendaciones</div>
+    <!-- STEP 1 -->
+    <div class="hw-step rev">
+      <div class="hw-num">01</div>
+      <div class="hw-content">
+        <div class="hw-screen">
+          <div class="hw-screen-bar">
+            <div class="hw-dots"><span></span><span></span><span></span></div>
+            <span class="hw-url">exovetai.com · Mi Perfil</span>
           </div>
-        </div>
-
-        <!-- RESULT -->
-        <div class="dr-result" id="drResult">
-          <div class="dr-species-tag" id="drSpeciesTag">🦎 Reptil / Lagarto</div>
-          <div class="urgency-bar ul" id="drUrgency">
-            <div class="urg-icon" id="urgIcon">✅</div>
-            <div>
-              <div class="urg-label">Nivel de urgencia</div>
-              <div class="urg-value" id="urgValue">Puede esperar</div>
+          <div class="hw-screen-body">
+            <div class="hw-profile-grid">
+              <div class="hw-pet-card active-pet">
+                <span class="hw-pet-emoji">🦎</span>
+                <div class="hw-pet-name">Spike</div>
+                <div class="hw-pet-species">Iguana verde · 3 años</div>
+                <div class="hw-pet-status ok">● Saludable</div>
+              </div>
+              <div class="hw-pet-card">
+                <span class="hw-pet-emoji">🐍</span>
+                <div class="hw-pet-name">Luna</div>
+                <div class="hw-pet-species">Ball Python · 1 año</div>
+                <div class="hw-pet-status warn">● Revisión pendiente</div>
+              </div>
+              <div class="hw-pet-card add-pet">
+                <span style="font-size:1.5rem;color:var(--text-m)">＋</span>
+                <div style="font-size:.72rem;color:var(--text-m)">Añadir mascota</div>
+              </div>
             </div>
           </div>
-          <div class="dr-diagnosis">
-            <div class="dr-diag-label">Análisis preliminar</div>
-            <p class="dr-diag-text" id="rtxt"></p>
+        </div>
+        <div class="hw-text">
+          <div class="hw-steplabel" data-i18n="how.s1.label">Paso 1</div>
+          <h3 data-i18n="how.s1.title">Crea el perfil de tu mascota</h3>
+          <p data-i18n="how.s1.desc">Registra especie, edad, peso y dieta. ExoVet AI aprende el perfil único de tu animal — cada diagnóstico futuro tiene en cuenta su historial completo, no empieza de cero.</p>
+          <div class="hw-chips">
+            <span>🧬 Perfil por especie</span>
+            <span>📋 Historial médico</span>
+            <span>🐾 Mascotas ilimitadas</span>
           </div>
-          <div class="conf-wrap">
-            <div class="conf-label">
-              <span>Confianza del modelo</span>
-              <span id="confPct">—</span>
-            </div>
-            <div class="conf-track"><div class="conf-fill" id="confFill"></div></div>
-          </div>
-          <div class="dr-footer" id="drFooter">ExoVet AI · Análisis preliminar — no sustituye consulta veterinaria</div>
         </div>
       </div>
     </div>
 
+    <!-- STEP 2 -->
+    <div class="hw-step rev rd1">
+      <div class="hw-num">02</div>
+      <div class="hw-content hw-content-flip">
+        <div class="hw-text">
+          <div class="hw-steplabel" data-i18n="how.s2.label">Paso 2</div>
+          <h3 data-i18n="how.s2.title">Describe los síntomas en lenguaje natural</h3>
+          <p data-i18n="how.s2.desc">Escribe exactamente lo que ves — "lleva 3 días sin comer y tiene los ojos entrecerrados". La IA analiza el texto, la especie y el historial para generar un diagnóstico diferencial con nivel de urgencia preciso.</p>
+          <div class="hw-chips">
+            <span>💬 Lenguaje natural</span>
+            <span>🚨 Nivel de urgencia</span>
+            <span>🔄 Seguimiento activo</span>
+          </div>
+        </div>
+        <div class="hw-screen">
+          <div class="hw-screen-bar">
+            <div class="hw-dots"><span></span><span></span><span></span></div>
+            <span class="hw-url">exovetai.com · Consulta</span>
+          </div>
+          <div class="hw-screen-body hw-chat">
+            <div class="hw-msg user">Spike lleva 3 días sin comer y tiene los ojos entrecerrados 😟</div>
+            <div class="hw-msg ai">
+              <div class="hw-ai-badge">🔬 ExoVet AI</div>
+              <div class="hw-urgency-pill amber">⚠️ URGENCIA MEDIA</div>
+              <p>En iguanas verdes, la combinación de anorexia + ojos entrecerrados puede indicar <strong>infección respiratoria</strong> o déficit de vitamina A. Temperatura del terrario: ¿supera los 32°C en la zona cálida?</p>
+            </div>
+            <div class="hw-msg user">Sí, creo que está a 28°C</div>
+            <div class="hw-msg ai typing">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="hw-step rev rd2">
+      <div class="hw-num">03</div>
+      <div class="hw-content">
+        <div class="hw-screen">
+          <div class="hw-screen-bar">
+            <div class="hw-dots"><span></span><span></span><span></span></div>
+            <span class="hw-url">exovetai.com · Plan de Acción</span>
+          </div>
+          <div class="hw-screen-body hw-plan">
+            <div class="hw-plan-header">📋 Plan para Spike · Iguana verde</div>
+            <div class="hw-action-item done">
+              <span class="hw-act-icon">✓</span>
+              <div>
+                <div class="hw-act-title">Subir temperatura terrario a 32-34°C</div>
+                <div class="hw-act-sub">Zona cálida insuficiente — causa probable</div>
+              </div>
+            </div>
+            <div class="hw-action-item">
+              <span class="hw-act-icon">→</span>
+              <div>
+                <div class="hw-act-title">Suplementar Vitamina A esta semana</div>
+                <div class="hw-act-sub">Dosis: 1 gota en alimento cada 3 días</div>
+              </div>
+            </div>
+            <div class="hw-action-item urgent">
+              <span class="hw-act-icon">!</span>
+              <div>
+                <div class="hw-act-title">Consulta veterinaria si no mejora en 48h</div>
+                <div class="hw-act-sub">3 vets especializados cerca de ti →</div>
+              </div>
+            </div>
+            <div class="hw-reminder">⏰ Recordatorio activo: revisar en 48 horas</div>
+          </div>
+        </div>
+        <div class="hw-text">
+          <div class="hw-steplabel" data-i18n="how.s3.label">Paso 3</div>
+          <h3 data-i18n="how.s3.title">Recibe un plan de acción concreto</h3>
+          <p data-i18n="how.s3.desc">No solo un diagnóstico — un protocolo paso a paso, recordatorios automáticos de seguimiento y, si es necesario, conexión directa con veterinarios especializados en exóticos cerca de ti.</p>
+          <div class="hw-chips">
+            <span>📍 Vets especializados</span>
+            <span>⏰ Recordatorios auto</span>
+            <span>📊 Seguimiento 24/7</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
+
+  <!-- GUARANTEE BANNER -->
+  <div class="hw-guarantee rev rd3">
+    <div class="hw-g-left">
+      <div class="hw-g-icon">🛡️</div>
+      <div>
+        <div class="hw-g-title" data-i18n="how.gtitle">Garantía de 7 días — sin preguntas</div>
+        <div class="hw-g-sub" data-i18n="how.gsub">Si en los primeros 7 días no estás completamente satisfecho, te devolvemos el 100% del pago. Sin formularios, sin esperas, sin excusas.</div>
+      </div>
+    </div>
+    <a href="#pricing" class="btn-p" style="white-space:nowrap;flex-shrink:0" data-i18n="how.gcta">Ver los planes →</a>
+  </div>
+
 </section>
 
 <!-- PRICING -->
@@ -1036,6 +1144,7 @@ footer p{font-size:.8rem;color:var(--text-m)}
         <li><span class="chk">✓</span><span data-i18n="p1.f5">Historial médico completo</span></li>
       </ul>
       <a href="#cta" class="pbtn pbo" data-i18n="p1.btn">Comenzar Ahora →</a>
+    <div class="pguarantee" data-i18n="plan.guarantee">🛡️ 7 días de garantía</div>
     </div>
     <div class="pcard hl rev rd1">
       <div class="ptag" data-i18n="plan.popular">★ Popular</div>
@@ -1051,6 +1160,7 @@ footer p{font-size:.8rem;color:var(--text-m)}
         <li><span class="chk">✓</span><span data-i18n="p2.f5">Comunidad privada exclusiva</span></li>
       </ul>
       <a href="#cta" class="pbtn pbg" data-i18n="p2.btn">Elegir Experto →</a>
+    <div class="pguarantee" data-i18n="plan.guarantee">🛡️ 7 días de garantía</div>
     </div>
     <div class="pcard rev rd2">
       <div class="pico">🏆</div>
@@ -1065,6 +1175,7 @@ footer p{font-size:.8rem;color:var(--text-m)}
         <li><span class="chk">✓</span><span data-i18n="p3.f5">Compliance CITES y regulaciones</span></li>
       </ul>
       <a href="#cta" class="pbtn pbo" data-i18n="p3.btn">Elegir Criador</a>
+    <div class="pguarantee" data-i18n="plan.guarantee">🛡️ 7 días de garantía</div>
     </div>
   </div>
 </section>
@@ -1112,14 +1223,14 @@ footer p{font-size:.8rem;color:var(--text-m)}
 <section id="cta" aria-label="Registro">
   <div class="cgl"></div>
   <div class="ccon rev">
-    <div class="stag" data-i18n="cta.tag">// Empieza Hoy</div>
-    <h2 class="ctitle"><span data-i18n="cta.title">Tu mascota exótica merece</span><br><em data-i18n="cta.titleem">cuidado especializado</em></h2>
+    <div class="stag" data-i18n="cta.tag">// Empieza con Total Confianza</div>
+    <h2 class="ctitle"><span data-i18n="cta.title">7 días de garantía.</span><br><em data-i18n="cta.titleem">O te devolvemos el dinero.</em></h2>
     <p class="csub" data-i18n="cta.sub">Tu mascota no puede decirte cuándo algo va mal. Tú sí puedes actuar. Únete en 30 segundos y ponle nombre a cada síntoma antes de que sea tarde.</p>
     <div class="cform">
       <input type="email" class="cinp" id="ctaEmail" placeholder="tu@email.com" data-i18n-ph="cta.placeholder"/>
-      <a href="#" class="btn-p" style="white-space:nowrap;font-size:.9rem" data-i18n="cta.btn">Suscribirme →</a>
+      <a href="#pricing" class="btn-p" style="white-space:nowrap;font-size:.9rem" data-i18n="cta.btn">Ver los Planes →</a>
     </div>
-    <p class="cgu" data-i18n="cta.guarantee">🔒 Sin permanencia · Cancela cuando quieras · Soporte prioritario</p>
+    <p class="cgu" data-i18n="cta.guarantee">🛡️ Garantía total 7 días · Sin permanencia · Cancela cuando quieras</p>
   </div>
 </section>
 
@@ -1402,12 +1513,12 @@ const LANGS = {
     flag:'🇪🇸', code:'ES',
     // NAV
     'nav.problem':'El Problema','nav.features':'Funciones','nav.pricing':'Precios',
-    'nav.community':'Comunidad','nav.cta':'Proteger mi Mascota',
+    'nav.community':'Comunidad','nav.cta':'Ver Planes',
     // HERO
     'hero.badge':'IA Especializada · Solo Para Exóticos',
     'hero.l1':'Tu veterinario','hero.l2':'inteligente','hero.l3':'disponible 24/7',
     'hero.desc':'La primera IA del mundo diseñada <strong>exclusivamente</strong> para reptiles, aves, roedores y exóticos. Diagnóstico en tiempo real cuando el vet local simplemente no sabe.',
-    'hero.btn1':'Consultar Ahora','hero.btn2':'Ver cómo funciona',
+    'hero.btn1':'Elegir mi Plan','hero.btn2':'¿Cómo funciona?',
     'hstat1':'Mascotas exóticas<br>en EE.UU.','hstat2':'IAs específicas<br>para exóticos','hstat3':'Vets entrenados<br>en exóticos',
     'fc1.label':'Diagnóstico en tiempo real','fc1.value':'Analizando síntomas...','fc2.label':'Nivel de urgencia','fc2.value':'✅ Puede esperar 24–48h',
     // SPECIES
@@ -1431,11 +1542,16 @@ const LANGS = {
     'f5.tag':'Recordatorios','f5.title':'Alertas de Vitaminas y Tratamientos','f5.desc':'Nunca olvides el calcio, la calibración del UVB o el antiparasitario. Programado automáticamente según la especie y el historial de tu mascota.',
     'chat.user':'Mi bearded dragon no ha comido en 5 días y tiene los ojos semicerrados 😟',
     'chat.ai':'Síntomas apuntan a <strong style="color:var(--amber)">posible brumación estacional o hipovitaminosis A</strong>. Urgencia: <strong style="color:var(--g-acc)">MEDIA</strong> — no emergencia inmediata. Verifica temperatura del punto caliente (35–40°C)...',
-    // DEMO
-    'demo.tag':'// Demo en Vivo · Sin Registro','demo.title':'Consulta','demo.titleem':'en segundos',
-    'demo.desc':'Selecciona tu mascota y síntomas. La IA te da un análisis inmediato.',
-    'demo.step1':'PASO 1 — Selecciona tu mascota','demo.step2':'PASO 2 — ¿Qué síntomas observas?',
-    'demo.analyze':'Analizar con ExoVet AI','demo.result.header':'Análisis Preliminar de ExoVet AI',
+    // CÓMO FUNCIONA
+    'how.tag':'// Diseñado para ser Inmediato','how.title':'Tres pasos.','how.titleem':'Diagnóstico en segundos.',
+    'how.desc':'Así funciona ExoVet AI para los miembros. Sin tiempos de espera, sin citas.','how.s1.label':'Paso 1',
+    'how.s1.title':'Crea el perfil de tu mascota','how.s1.desc':'Registra especie, edad, peso y dieta. ExoVet AI aprende el perfil único de tu animal.',
+    'how.s2.label':'Paso 2','how.s2.title':'Describe los síntomas en lenguaje natural',
+    'how.s2.desc':'Escribe exactamente lo que ves. La IA genera un diagnóstico diferencial con nivel de urgencia preciso.',
+    'how.s3.label':'Paso 3','how.s3.title':'Recibe un plan de acción concreto',
+    'how.s3.desc':'Un protocolo paso a paso, recordatorios automáticos y conexión directa con veterinarios especializados.',
+    'how.gtitle':'Garantía de 7 días — sin preguntas','how.gsub':'Si en los primeros 7 días no estás satisfecho, te devolvemos el 100%. Sin formularios, sin excusas.',
+    'how.gcta':'Ver los planes →',
     'sp.reptil':'🦎 Reptil / Lagarto','sp.camaleón':'🦎 Camaleón','sp.serpiente':'🐍 Serpiente','sp.tortuga':'🐢 Tortuga','sp.monitor':'🦖 Monitor / Tegú','sp.anfibio':'🐸 Anfibio / Axolotl',
     'sp.ave':'🐦 Ave pequeña','sp.loro':'🦜 Loro / Guacamaya','sp.rapaz':'🦅 Rapaz / Búho','sp.conejo':'🐇 Conejo','sp.hamster':'🐹 Hámster','sp.rata':'🐀 Rata / Ratón',
     'sp.cobaya':'🐾 Cobaya','sp.chinchilla':'🦫 Chinchilla','sp.huron':'🦦 Hurón','sp.erizo':'🦔 Erizo','sp.sugar':'🦘 Sugar Glider',
@@ -1443,7 +1559,7 @@ const LANGS = {
     'sp.tarantula':'🕷️ Tarántula','sp.escorpion':'🦂 Escorpión','sp.insecto':'🦗 Insecto / Mantis','sp.cangrejo':'🦀 Cangrejo ermitaño',
     // PRICING
     'price.tag':'// Elige tu Plan','price.title':'Planes premium.','price.titleem':'Sin compromiso de permanencia.',
-    'plan.popular':'★ Popular','ppm':'por mes',
+    'plan.popular':'★ Popular','plan.guarantee':'🛡️ 7 días de garantía','ppm':'por mes',
     'p1.name':'Cuidador','p1.desc':'Para el dueño comprometido con la salud de su mascota.',
     'p1.f1':'Consultas ilimitadas','p1.f2':'Diagnóstico con nivel de urgencia','p1.f3':'Dieta personalizada por especie','p1.f4':'Recordatorios de vitaminas','p1.f5':'Historial médico completo','p1.btn':'Comenzar Ahora →',
     'p2.name':'Experto','p2.desc':'Para coleccionistas con múltiples mascotas.',
@@ -1460,10 +1576,10 @@ const LANGS = {
     'r3.sub':'Ball python keeper · Los Angeles, CA',
     'cs1':'miembros en comunidades de exóticos','cs2':'especies cubiertas en la base de datos','cs3':'precisión en diagnósticos evaluados por vets',
     // CTA
-    'cta.tag':'// Empieza Hoy','cta.title':'Tu mascota exótica merece','cta.titleem':'cuidado especializado',
+    'cta.tag':'// Empieza con Total Confianza','cta.title':'7 días de garantía.','cta.titleem':'O te devolvemos el dinero.',
     'cta.sub':'Tu mascota no puede decirte cuándo algo va mal. Tú sí puedes actuar. Únete en 30 segundos y ponle nombre a cada síntoma antes de que sea tarde.',
-    'cta.guarantee':'🔒 Sin permanencia · Cancela cuando quieras · Soporte prioritario',
-    'cta.placeholder':'tu@email.com','cta.btn':'Suscribirme →',
+    'cta.guarantee':'🛡️ Garantía total 7 días · Sin permanencia · Cancela cuando quieras',
+    'cta.placeholder':'tu@email.com','cta.btn':'Ver los Planes →',
     // FOOTER
     'footer.copy':'© 2026 ExoVet AI — Construido para los amantes de los exóticos.',
     'footer.privacy':'Privacidad','footer.terms':'Términos','footer.contact':'Contacto',
@@ -1492,11 +1608,11 @@ const LANGS = {
   en: {
     flag:'🇺🇸', code:'EN',
     'nav.problem':'The Problem','nav.features':'Features','nav.pricing':'Pricing',
-    'nav.community':'Community','nav.cta':'Protect My Pet',
+    'nav.community':'Community','nav.cta':'See Plans',
     'hero.badge':'AI Specialized · Exotic Pets Only',
     'hero.l1':'Your intelligent','hero.l2':'veterinarian','hero.l3':'available 24/7',
     'hero.desc':'The world\'s first AI designed <strong>exclusively</strong> for reptiles, birds, rodents and exotic pets. Real-time diagnosis when your local vet simply doesn\'t know.',
-    'hero.btn1':'Consult Now','hero.btn2':'See how it works',
+    'hero.btn1':'Choose My Plan','hero.btn2':'How does it work?',
     'hstat1':'Exotic pets<br>in the US','hstat2':'AIs specific<br>for exotics','hstat3':'Vets trained<br>in exotics',
     'fc1.label':'Real-time diagnosis','fc1.value':'Analyzing symptoms...','fc2.label':'Urgency level','fc2.value':'✅ Can wait 24–48h',
     'species.tag':'// 35+ Categories · 400+ Species Covered',
@@ -1517,17 +1633,14 @@ const LANGS = {
     'f5.tag':'Reminders','f5.title':'Vitamin & Treatment Alerts','f5.desc':'Never forget calcium, UVB calibration or deworming. Automatically scheduled based on your pet\'s species and medical history.',
     'chat.user':'My bearded dragon hasn\'t eaten in 5 days and has half-closed eyes 😟',
     'chat.ai':'Symptoms point to <strong style="color:var(--amber)">possible seasonal brumation or hypovitaminosis A</strong>. Urgency: <strong style="color:var(--g-acc)">MEDIUM</strong> — not immediate emergency. Check basking spot temperature (35–40°C)...',
-    'demo.tag':'// Live Demo · No Registration Needed','demo.title':'Get a diagnosis','demo.titleem':'in seconds',
-    'demo.desc':'Select your pet and symptoms. The AI gives you an analysis in seconds.',
-    'demo.step1':'STEP 1 — Select your pet','demo.step2':'STEP 2 — What symptoms do you see?',
-    'demo.analyze':'Analyze with ExoVet AI','demo.result.header':'Preliminary ExoVet AI Analysis',
+    'how.tag':'// Built to Be Instant','how.title':'Three steps.','how.titleem':'Diagnosis in seconds.','how.desc':'How ExoVet AI works for members. No waiting, no appointments.','how.s1.label':'Step 1','how.s1.title':'Create your pet profile','how.s1.desc':'Register species, age, weight and diet. The AI learns your animal unique profile.','how.s2.label':'Step 2','how.s2.title':'Describe symptoms in plain language','how.s2.desc':'Write exactly what you see. The AI generates a differential diagnosis with precise urgency level.','how.s3.label':'Step 3','how.s3.title':'Get a concrete action plan','how.s3.desc':'A step-by-step protocol, automatic reminders and direct connection to specialized exotic vets.','how.gtitle':'7-day guarantee — no questions asked','how.gsub':'If within 7 days you are not satisfied, we refund 100%. No forms, no excuses.','how.gcta':'See plans →',
     'sp.reptil':'🦎 Reptile / Lizard','sp.camaleón':'🦎 Chameleon','sp.serpiente':'🐍 Snake','sp.tortuga':'🐢 Turtle / Tortoise','sp.monitor':'🦖 Monitor / Tegu','sp.anfibio':'🐸 Amphibian / Axolotl',
     'sp.ave':'🐦 Small Bird','sp.loro':'🦜 Parrot / Macaw','sp.rapaz':'🦅 Raptor / Owl','sp.conejo':'🐇 Rabbit','sp.hamster':'🐹 Hamster','sp.rata':'🐀 Rat / Mouse',
     'sp.cobaya':'🐾 Guinea Pig','sp.chinchilla':'🦫 Chinchilla','sp.huron':'🦦 Ferret','sp.erizo':'🦔 Hedgehog','sp.sugar':'🦘 Sugar Glider',
     'sp.pezdulce':'🐟 Freshwater Fish','sp.pezsalado':'🐡 Saltwater Fish','sp.invert':'🦐 Aquatic Invertebrate',
     'sp.tarantula':'🕷️ Tarantula','sp.escorpion':'🦂 Scorpion','sp.insecto':'🦗 Insect / Mantis','sp.cangrejo':'🦀 Hermit Crab',
     'price.tag':'// Choose Your Plan','price.title':'Premium plans.','price.titleem':'No long-term commitment.',
-    'plan.popular':'★ Popular','ppm':'per month',
+    'plan.popular':'★ Popular','plan.guarantee':'🛡️ 7-day guarantee','ppm':'per month',
     'p1.name':'Caretaker','p1.desc':'For the owner committed to their pet\'s health.',
     'p1.f1':'Unlimited consultations','p1.f2':'Diagnosis with urgency level','p1.f3':'Personalized diet by species','p1.f4':'Vitamin reminders','p1.f5':'Full medical history','p1.btn':'Start Now →',
     'p2.name':'Expert','p2.desc':'For collectors with multiple exotic pets.',
@@ -1542,10 +1655,10 @@ const LANGS = {
     'r3.text':'"My ball python wasn\'t shedding properly. The AI guided me step by step with the right humidity. The r/reptiles subreddits should pin this tool. Incredible."',
     'r3.sub':'Ball python keeper · Los Angeles, CA',
     'cs1':'members in exotic pet communities','cs2':'species covered in the database','cs3':'accuracy in vet-evaluated diagnoses',
-    'cta.tag':'// Start Today','cta.title':'Your exotic pet deserves','cta.titleem':'specialized care',
+    'cta.tag':'// Start with Total Confidence','cta.title':'7-day guarantee.','cta.titleem':'Or your money back.',
     'cta.sub':'Your pet can\'t tell you when something\'s wrong. You can. Join in 30 seconds and put a name to every symptom before it\'s too late.',
-    'cta.guarantee':'🔒 No commitment · Cancel anytime · Priority support',
-    'cta.placeholder':'your@email.com','cta.btn':'Subscribe →',
+    'cta.guarantee':'🛡️ Full 7-day guarantee · No commitment · Cancel anytime',
+    'cta.placeholder':'your@email.com','cta.btn':'See the Plans →',
     'footer.copy':'© 2026 ExoVet AI — Built for exotic pet lovers.',
     'footer.privacy':'Privacy','footer.terms':'Terms','footer.contact':'Contact',
     spCards:[
@@ -1572,11 +1685,11 @@ const LANGS = {
   pt: {
     flag:'🇧🇷', code:'PT',
     'nav.problem':'O Problema','nav.features':'Funções','nav.pricing':'Preços',
-    'nav.community':'Comunidade','nav.cta':'Proteger meu Animal',
+    'nav.community':'Comunidade','nav.cta':'Ver Planos',
     'hero.badge':'IA Especializada · Só Para Exóticos',
     'hero.l1':'Seu veterinário','hero.l2':'inteligente','hero.l3':'disponível 24/7',
     'hero.desc':'A primeira IA do mundo projetada <strong>exclusivamente</strong> para répteis, aves, roedores e animais exóticos. Diagnóstico em tempo real quando o vet local simplesmente não sabe.',
-    'hero.btn1':'Consultar Agora','hero.btn2':'Ver como funciona',
+    'hero.btn1':'Escolher meu Plano','hero.btn2':'Como funciona?',
     'hstat1':'Animais exóticos<br>nos EUA','hstat2':'IAs específicas<br>para exóticos','hstat3':'Vets treinados<br>em exóticos',
     'fc1.label':'Diagnóstico em tempo real','fc1.value':'Analisando sintomas...','fc2.label':'Nível de urgência','fc2.value':'✅ Pode esperar 24–48h',
     'species.tag':'// 35+ Categorias · Mais de 400 Espécies',
@@ -1597,17 +1710,14 @@ const LANGS = {
     'f5.tag':'Lembretes','f5.title':'Alertas de Vitaminas e Tratamentos','f5.desc':'Nunca esqueça o cálcio, a calibração do UVB ou o antiparasitário. Programado automaticamente com base na espécie e histórico do seu animal.',
     'chat.user':'Meu bearded dragon não come há 5 dias e tem os olhos semicerrados 😟',
     'chat.ai':'Sintomas apontam para <strong style="color:var(--amber)">possível brumação sazonal ou hipovitaminose A</strong>. Urgência: <strong style="color:var(--g-acc)">MÉDIA</strong> — não é emergência imediata. Verifique temperatura do ponto quente (35–40°C)...',
-    'demo.tag':'// Demo ao Vivo · Sem Cadastro','demo.title':'Consulta','demo.titleem':'em segundos',
-    'demo.desc':'Selecione seu animal e sintomas. A IA dá uma análise imediata.',
-    'demo.step1':'PASSO 1 — Selecione seu animal','demo.step2':'PASSO 2 — Quais sintomas você observa?',
-    'demo.analyze':'Analisar com ExoVet AI','demo.result.header':'Análise Preliminar do ExoVet AI',
+    'how.tag':'// Projetado para ser Imediato','how.title':'Três passos.','how.titleem':'Diagnóstico em segundos.','how.desc':'Como o ExoVet AI funciona para membros. Sem esperas, sem consultas.','how.s1.label':'Passo 1','how.s1.title':'Crie o perfil do seu animal','how.s1.desc':'Cadastre espécie, idade e dieta. O ExoVet AI aprende o perfil único do seu animal.','how.s2.label':'Passo 2','how.s2.title':'Descreva os sintomas em linguagem natural','how.s2.desc':'Escreva exatamente o que você vê. A IA gera um diagnóstico diferencial com nível de urgência preciso.','how.s3.label':'Passo 3','how.s3.title':'Receba um plano de ação concreto','how.s3.desc':'Um protocolo passo a passo, lembretes automáticos e conexão direta com veterinários especializados.','how.gtitle':'Garantia de 7 dias — sem perguntas','how.gsub':'Se nos primeiros 7 dias não estiver satisfeito, devolvemos 100%. Sem formulários, sem desculpas.','how.gcta':'Ver os planos →',
     'sp.reptil':'🦎 Réptil / Lagarto','sp.camaleón':'🦎 Camaleão','sp.serpiente':'🐍 Serpente','sp.tortuga':'🐢 Tartaruga','sp.monitor':'🦖 Varano / Tegu','sp.anfibio':'🐸 Anfíbio / Axolotl',
     'sp.ave':'🐦 Ave pequena','sp.loro':'🦜 Papagaio / Arara','sp.rapaz':'🦅 Rapinante / Coruja','sp.conejo':'🐇 Coelho','sp.hamster':'🐹 Hamster','sp.rata':'🐀 Rato / Camundongo',
     'sp.cobaya':'🐾 Porquinho-da-índia','sp.chinchilla':'🦫 Chinchila','sp.huron':'🦦 Furão','sp.erizo':'🦔 Ouriço','sp.sugar':'🦘 Sugar Glider',
     'sp.pezdulce':'🐟 Peixe água doce','sp.pezsalado':'🐡 Peixe água salgada','sp.invert':'🦐 Invertebrado aquático',
     'sp.tarantula':'🕷️ Tarântula','sp.escorpion':'🦂 Escorpião','sp.insecto':'🦗 Inseto / Louva-deus','sp.cangrejo':'🦀 Ermitão',
     'price.tag':'// Escolha seu Plano','price.title':'Planos premium.','price.titleem':'Sem fidelidade.',
-    'plan.popular':'★ Popular','ppm':'por mês',
+    'plan.popular':'★ Popular','plan.guarantee':'🛡️ 7 dias de garantia','ppm':'por mês',
     'p1.name':'Cuidador','p1.desc':'Para o dono comprometido com a saúde do seu animal.',
     'p1.f1':'Consultas ilimitadas','p1.f2':'Diagnóstico com nível de urgência','p1.f3':'Dieta personalizada por espécie','p1.f4':'Lembretes de vitaminas','p1.f5':'Histórico médico completo','p1.btn':'Começar Agora →',
     'p2.name':'Especialista','p2.desc':'Para colecionadores com múltiplos animais.',
@@ -1622,10 +1732,10 @@ const LANGS = {
     'r3.text':'"Minha ball python não mudava bem. A IA me guiou passo a passo com a umidade correta. Os subreddits de r/reptiles deveriam fixar essa ferramenta. Incrível."',
     'r3.sub':'Ball python keeper · Los Angeles, CA',
     'cs1':'membros em comunidades de exóticos','cs2':'espécies cobertas no banco de dados','cs3':'precisão em diagnósticos avaliados por vets',
-    'cta.tag':'// Comece Hoje','cta.title':'Seu animal exótico merece','cta.titleem':'cuidado especializado',
+    'cta.tag':'// Comece com Total Confiança','cta.title':'7 dias de garantia.','cta.titleem':'Ou devolvemos seu dinheiro.',
     'cta.sub':'Seu animal não consegue te dizer quando algo está errado. Você pode agir. Entre em 30 segundos e dê nome a cada sintoma antes que seja tarde demais.',
-    'cta.guarantee':'🔒 Sem fidelidade · Cancele quando quiser · Suporte prioritário',
-    'cta.placeholder':'seu@email.com','cta.btn':'Assinar →',
+    'cta.guarantee':'🛡️ Garantia total 7 dias · Sem fidelidade · Cancele quando quiser',
+    'cta.placeholder':'seu@email.com','cta.btn':'Ver os Planos →',
     'footer.copy':'© 2026 ExoVet AI — Criado para os amantes de animais exóticos.',
     'footer.privacy':'Privacidade','footer.terms':'Termos','footer.contact':'Contato',
     spCards:[
@@ -1652,11 +1762,11 @@ const LANGS = {
   fr: {
     flag:'🇫🇷', code:'FR',
     'nav.problem':'Le Problème','nav.features':'Fonctions','nav.pricing':'Tarifs',
-    'nav.community':'Communauté','nav.cta':'Protéger mon Animal',
+    'nav.community':'Communauté','nav.cta':'Voir les Plans',
     'hero.badge':'IA Spécialisée · Animaux Exotiques Seulement',
     'hero.l1':'Votre vétérinaire','hero.l2':'intelligent','hero.l3':'disponible 24h/24',
     'hero.desc':'La première IA au monde conçue <strong>exclusivement</strong> pour les reptiles, oiseaux, rongeurs et animaux exotiques. Diagnostic en temps réel quand votre vétérinaire local ne sait pas.',
-    'hero.btn1':'Consulter Maintenant','hero.btn2':'Voir comment ça marche',
+    'hero.btn1':'Choisir mon Plan','hero.btn2':'Comment ça marche ?',
     'hstat1':'Animaux exotiques<br>aux États-Unis','hstat2':'IAs spécifiques<br>aux exotiques','hstat3':'Vétérinaires formés<br>en exotiques',
     'fc1.label':'Diagnostic en temps réel','fc1.value':'Analyse des symptômes...','fc2.label':'Niveau d\'urgence','fc2.value':'✅ Peut attendre 24–48h',
     'species.tag':'// 35+ Catégories · Plus de 400 Espèces',
@@ -1677,17 +1787,14 @@ const LANGS = {
     'f5.tag':'Rappels','f5.title':'Alertes Vitamines et Traitements','f5.desc':'N\'oubliez jamais le calcium, l\'étalonnage UVB ou l\'antiparasitaire. Programmé automatiquement selon l\'espèce et l\'historique de votre animal.',
     'chat.user':'Mon bearded dragon n\'a pas mangé depuis 5 jours et a les yeux mi-fermés 😟',
     'chat.ai':'Symptômes indiquent <strong style="color:var(--amber)">possible brumation saisonnière ou hypovitaminose A</strong>. Urgence : <strong style="color:var(--g-acc)">MOYENNE</strong> — pas d\'urgence immédiate. Vérifiez la température du point chaud (35–40°C)...',
-    'demo.tag':'// Démo en Direct · Sans Inscription','demo.title':'Consultez','demo.titleem':'en quelques secondes',
-    'demo.desc':'Sélectionnez votre animal et les symptômes. L\'IA vous donne une analyse immédiate.',
-    'demo.step1':'ÉTAPE 1 — Sélectionnez votre animal','demo.step2':'ÉTAPE 2 — Quels symptômes observez-vous ?',
-    'demo.analyze':'Analyser avec ExoVet AI','demo.result.header':'Analyse Préliminaire ExoVet AI',
+    'how.tag':'// Conçu pour être Instantané','how.title':'Trois étapes.','how.titleem':'Diagnostic en secondes.','how.desc':'Comment ExoVet AI fonctionne pour les membres. Sans attente, sans rendez-vous.','how.s1.label':'Étape 1','how.s1.title':'Créez le profil de votre animal','how.s1.desc':'Enregistrez espèce, âge et régime. ExoVet AI apprend le profil unique de votre animal.','how.s2.label':'Étape 2','how.s2.title':'Décrivez les symptômes en langage naturel','how.s2.desc':'Écrivez ce que vous voyez. L\'IA génère un diagnostic différentiel avec niveau d\'urgence précis.','how.s3.label':'Étape 3','how.s3.title':'Recevez un plan d\'action concret','how.s3.desc':'Un protocole étape par étape, des rappels et une connexion directe aux vétérinaires spécialisés.','how.gtitle':'Garantie 7 jours — sans questions','how.gsub':'Si dans les 7 jours vous n\'êtes pas satisfait, nous remboursons 100%. Sans formulaires, sans excuses.','how.gcta':'Voir les plans →',
     'sp.reptil':'🦎 Reptile / Lézard','sp.camaleón':'🦎 Caméléon','sp.serpiente':'🐍 Serpent','sp.tortuga':'🐢 Tortue','sp.monitor':'🦖 Varan / Tégu','sp.anfibio':'🐸 Amphibien / Axolotl',
     'sp.ave':'🐦 Petit Oiseau','sp.loro':'🦜 Perroquet / Ara','sp.rapaz':'🦅 Rapace / Chouette','sp.conejo':'🐇 Lapin','sp.hamster':'🐹 Hamster','sp.rata':'🐀 Rat / Souris',
     'sp.cobaya':'🐾 Cochon d\'Inde','sp.chinchilla':'🦫 Chinchilla','sp.huron':'🦦 Furet','sp.erizo':'🦔 Hérisson','sp.sugar':'🦘 Sugar Glider',
     'sp.pezdulce':'🐟 Poisson eau douce','sp.pezsalado':'🐡 Poisson eau salée','sp.invert':'🦐 Invertébré aquatique',
     'sp.tarantula':'🕷️ Tarentule','sp.escorpion':'🦂 Scorpion','sp.insecto':'🦗 Insecte / Mante','sp.cangrejo':'🦀 Bernard-l\'ermite',
     'price.tag':'// Choisissez votre Plan','price.title':'Plans premium.','price.titleem':'Sans engagement de durée.',
-    'plan.popular':'★ Populaire','ppm':'par mois',
+    'plan.popular':'★ Populaire','plan.guarantee':'🛡️ Garantie 7 jours','ppm':'par mois',
     'p1.name':'Soignant','p1.desc':'Pour le propriétaire engagé dans la santé de son animal.',
     'p1.f1':'Consultations illimitées','p1.f2':'Diagnostic avec niveau d\'urgence','p1.f3':'Régime personnalisé par espèce','p1.f4':'Rappels vitamines','p1.f5':'Historique médical complet','p1.btn':'Commencer Maintenant →',
     'p2.name':'Expert','p2.desc':'Pour les collectionneurs avec plusieurs animaux.',
@@ -1702,10 +1809,10 @@ const LANGS = {
     'r3.text':'"Mon ball python ne muait pas bien. L\'IA m\'a guidé étape par étape avec la bonne humidité. Les subreddits r/reptiles devraient épingler cet outil. Incroyable."',
     'r3.sub':'Ball python keeper · Los Angeles, CA',
     'cs1':'membres dans les communautés d\'exotiques','cs2':'espèces couvertes dans la base de données','cs3':'précision dans les diagnostics évalués par des vétérinaires',
-    'cta.tag':'// Commencez Aujourd\'hui','cta.title':'Votre animal exotique mérite','cta.titleem':'des soins spécialisés',
+    'cta.tag':'// Commencez en Toute Confiance','cta.title':'Garantie 7 jours.','cta.titleem':'Ou remboursement complet.',
     'cta.sub':'Votre animal ne peut pas vous dire quand quelque chose ne va pas. Vous pouvez agir. Rejoignez-nous en 30 secondes et donnez un nom à chaque symptôme avant qu\'il soit trop tard.',
-    'cta.guarantee':'🔒 Sans engagement · Annulez à tout moment · Support prioritaire',
-    'cta.placeholder':'votre@email.com','cta.btn':'S\'abonner →',
+    'cta.guarantee':'🛡️ Garantie totale 7 jours · Sans engagement · Annulez à tout moment',
+    'cta.placeholder':'votre@email.com','cta.btn':'Voir les Plans →',
     'footer.copy':'© 2026 ExoVet AI — Créé pour les amoureux des animaux exotiques.',
     'footer.privacy':'Confidentialité','footer.terms':'Conditions','footer.contact':'Contact',
     spCards:[
@@ -1732,11 +1839,11 @@ const LANGS = {
   de: {
     flag:'🇩🇪', code:'DE',
     'nav.problem':'Das Problem','nav.features':'Funktionen','nav.pricing':'Preise',
-    'nav.community':'Community','nav.cta':'Mein Tier schützen',
+    'nav.community':'Community','nav.cta':'Pläne ansehen',
     'hero.badge':'KI Spezialisiert · Nur Exotische Tiere',
     'hero.l1':'Ihr intelligenter','hero.l2':'Tierarzt','hero.l3':'verfügbar 24/7',
     'hero.desc':'Die weltweit erste KI, die <strong>ausschließlich</strong> für Reptilien, Vögel, Nagetiere und exotische Tiere entwickelt wurde. Echtzeit-Diagnose, wenn Ihr lokaler Tierarzt es nicht weiß.',
-    'hero.btn1':'Jetzt beraten','hero.btn2':'So funktioniert es',
+    'hero.btn1':'Meinen Plan wählen','hero.btn2':'Wie funktioniert es?',
     'hstat1':'Exotische Haustiere<br>in den USA','hstat2':'KIs speziell<br>für Exoten','hstat3':'Tierärzte mit<br>Exoten-Ausbildung',
     'fc1.label':'Echtzeit-Diagnose','fc1.value':'Symptome werden analysiert...','fc2.label':'Dringlichkeitsstufe','fc2.value':'✅ Kann 24–48h warten',
     'species.tag':'// 35+ Kategorien · Über 400 Arten',
@@ -1757,17 +1864,14 @@ const LANGS = {
     'f5.tag':'Erinnerungen','f5.title':'Vitamin- & Behandlungsalarme','f5.desc':'Vergessen Sie nie Calcium, UVB-Kalibrierung oder Entwurmung. Automatisch geplant basierend auf Art und Krankheitsgeschichte Ihres Tieres.',
     'chat.user':'Mein Bartagame hat seit 5 Tagen nicht gefressen und hat halb geschlossene Augen 😟',
     'chat.ai':'Symptome deuten auf <strong style="color:var(--amber)">mögliche Saisonbrumation oder Hypovitaminose A</strong> hin. Dringlichkeit: <strong style="color:var(--g-acc)">MITTEL</strong> — kein sofortiger Notfall. Überprüfen Sie die Basking-Spot-Temperatur (35–40°C)...',
-    'demo.tag':'// Live-Demo · Keine Registrierung','demo.title':'Diagnose','demo.titleem':'in Sekunden',
-    'demo.desc':'Wählen Sie Ihr Tier und die Symptome aus. Die KI gibt Ihnen sofort eine Analyse.',
-    'demo.step1':'SCHRITT 1 — Wählen Sie Ihr Tier','demo.step2':'SCHRITT 2 — Welche Symptome beobachten Sie?',
-    'demo.analyze':'Mit ExoVet AI analysieren','demo.result.header':'Vorläufige ExoVet AI Analyse',
+    'how.tag':'// Für Sofortige Ergebnisse','how.title':'Drei Schritte.','how.titleem':'Diagnose in Sekunden.','how.desc':'So funktioniert ExoVet AI für Mitglieder. Keine Wartezeiten, keine Termine.','how.s1.label':'Schritt 1','how.s1.title':'Profil Ihres Tieres erstellen','how.s1.desc':'Art, Alter und Ernährung registrieren. ExoVet AI lernt das einzigartige Profil Ihres Tieres.','how.s2.label':'Schritt 2','how.s2.title':'Symptome in natürlicher Sprache beschreiben','how.s2.desc':'Schreiben Sie, was Sie sehen. Die KI erstellt eine Differentialdiagnose mit Dringlichkeitsniveau.','how.s3.label':'Schritt 3','how.s3.title':'Konkreten Aktionsplan erhalten','how.s3.desc':'Ein Protokoll, automatische Erinnerungen und Verbindung zu spezialisierten Tierärzten.','how.gtitle':'7-Tage-Garantie — keine Fragen','how.gsub':'Wenn Sie in 7 Tagen nicht zufrieden sind, erstatten wir 100%. Keine Formulare, keine Ausreden.','how.gcta':'Pläne ansehen →',
     'sp.reptil':'🦎 Reptil / Eidechse','sp.camaleón':'🦎 Chamäleon','sp.serpiente':'🐍 Schlange','sp.tortuga':'🐢 Schildkröte','sp.monitor':'🦖 Waran / Tegu','sp.anfibio':'🐸 Amphibie / Axolotl',
     'sp.ave':'🐦 Kleiner Vogel','sp.loro':'🦜 Papagei / Ara','sp.rapaz':'🦅 Greifvogel / Eule','sp.conejo':'🐇 Kaninchen','sp.hamster':'🐹 Hamster','sp.rata':'🐀 Ratte / Maus',
     'sp.cobaya':'🐾 Meerschweinchen','sp.chinchilla':'🦫 Chinchilla','sp.huron':'🦦 Frettchen','sp.erizo':'🦔 Igel','sp.sugar':'🦘 Sugar Glider',
     'sp.pezdulce':'🐟 Süßwasserfisch','sp.pezsalado':'🐡 Salzwasserfisch','sp.invert':'🦐 Wasserinvertebrat',
     'sp.tarantula':'🕷️ Vogelspinne','sp.escorpion':'🦂 Skorpion','sp.insecto':'🦗 Insekt / Gottesanbeterin','sp.cangrejo':'🦀 Einsiedlerkrebs',
     'price.tag':'// Wählen Sie Ihren Plan','price.title':'Premium-Pläne.','price.titleem':'Keine Mindestlaufzeit.',
-    'plan.popular':'★ Beliebt','ppm':'pro Monat',
+    'plan.popular':'★ Beliebt','plan.guarantee':'🛡️ 7-Tage-Garantie','ppm':'pro Monat',
     'p1.name':'Pfleger','p1.desc':'Für den Besitzer, der der Gesundheit seines Tieres verpflichtet ist.',
     'p1.f1':'Unbegrenzte Beratungen','p1.f2':'Diagnose mit Dringlichkeitsstufe','p1.f3':'Personalisierte Diät nach Art','p1.f4':'Vitaminerinnerungen','p1.f5':'Vollständige Krankengeschichte','p1.btn':'Jetzt starten →',
     'p2.name':'Experte','p2.desc':'Für Sammler mit mehreren exotischen Tieren.',
@@ -1782,10 +1886,10 @@ const LANGS = {
     'r3.text':'"Meine Ball Python häutete sich nicht richtig. Die KI führte mich Schritt für Schritt mit der richtigen Luftfeuchtigkeit. Die r/reptiles-Subreddits sollten dieses Tool anpinnen. Unglaublich."',
     'r3.sub':'Ball Python Keeper · Los Angeles, CA',
     'cs1':'Mitglieder in Exoten-Communities','cs2':'Arten in der Datenbank abgedeckt','cs3':'Genauigkeit bei von Tierärzten bewerteten Diagnosen',
-    'cta.tag':'// Starten Sie Heute','cta.title':'Ihr exotisches Tier verdient','cta.titleem':'spezialisierte Pflege',
+    'cta.tag':'// Starten Sie mit vollem Vertrauen','cta.title':'7-Tage-Garantie.','cta.titleem':'Oder Ihr Geld zurück.',
     'cta.sub':'Ihr Tier kann Ihnen nicht sagen, wenn etwas nicht stimmt. Sie schon. Treten Sie in 30 Sekunden bei und benennen Sie jeden Symptom, bevor es zu spät ist.',
-    'cta.guarantee':'🔒 Keine Mindestlaufzeit · Jederzeit kündigen · Prioritätssupport',
-    'cta.placeholder':'ihre@email.com','cta.btn':'Abonnieren →',
+    'cta.guarantee':'🛡️ Volle 7-Tage-Garantie · Keine Mindestlaufzeit · Jederzeit kündigen',
+    'cta.placeholder':'ihre@email.com','cta.btn':'Pläne ansehen →',
     'footer.copy':'© 2026 ExoVet AI — Entwickelt für Liebhaber exotischer Tiere.',
     'footer.privacy':'Datenschutz','footer.terms':'Nutzungsbedingungen','footer.contact':'Kontakt',
     spCards:[
