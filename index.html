@@ -143,22 +143,8 @@
   "offers": [
     {
       "@type": "Offer",
-      "name": "Cuidador",
-      "price": "25.00",
-      "priceCurrency": "USD",
-      "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" }
-    },
-    {
-      "@type": "Offer",
-      "name": "Experto",
-      "price": "55.00",
-      "priceCurrency": "USD",
-      "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" }
-    },
-    {
-      "@type": "Offer",
-      "name": "Criador Pro",
-      "price": "95.00",
+      "name": "ExoVet Premium",
+      "price": "75.00",
       "priceCurrency": "USD",
       "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" }
     }
@@ -676,6 +662,57 @@ footer p{font-size:.8rem;color:var(--text-m)}
 .modal-tag{display:inline-block;font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.2);border-radius:6px;padding:.2rem .6rem;margin-bottom:1.2rem}
 .modal-divider{height:1px;background:var(--border);margin:1.4rem 0}
 
+/* ── PETS PANEL ──────────────────────────────── */
+.pets-overlay{position:fixed;inset:0;background:rgba(0,0,0,.9);backdrop-filter:blur(12px);z-index:2500;opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:center;justify-content:center;padding:1.5rem}
+.pets-overlay.open{opacity:1;pointer-events:all}
+.pets-panel{background:var(--surface2);border:1px solid var(--border);border-radius:28px;width:100%;max-width:700px;max-height:90vh;display:flex;flex-direction:column;transform:translateY(24px);transition:transform .3s;overflow:hidden}
+.pets-overlay.open .pets-panel{transform:translateY(0)}
+.pets-head{padding:1.6rem 2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.pets-head-left{display:flex;align-items:center;gap:.8rem}
+.pets-head-title{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:var(--cream)}
+.pets-head-count{font-size:.72rem;font-family:'Space Mono',monospace;color:var(--text-m);background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:100px;padding:.2rem .6rem}
+.pets-close{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--text-m);font-size:1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s}
+.pets-close:hover{background:rgba(255,100,71,.15);border-color:var(--coral);color:var(--coral)}
+.pets-body{overflow-y:auto;padding:1.5rem 2rem;flex:1;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+/* Pet grid */
+.pets-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1rem;margin-bottom:1.5rem}
+.pet-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:1.2rem;text-align:center;cursor:pointer;transition:all .2s;position:relative}
+.pet-card:hover{border-color:rgba(46,192,106,.3);transform:translateY(-2px)}
+.pet-card-emoji{font-size:2.4rem;display:block;margin-bottom:.5rem}
+.pet-card-name{font-weight:700;font-size:.88rem;color:var(--cream);margin-bottom:.2rem}
+.pet-card-species{font-size:.72rem;color:var(--text-m)}
+.pet-card-age{font-size:.68rem;font-family:'Space Mono',monospace;color:var(--g-acc);margin-top:.3rem}
+.pet-card-del{position:absolute;top:.5rem;right:.5rem;width:22px;height:22px;border-radius:50%;background:rgba(255,107,71,.1);border:1px solid rgba(255,107,71,.2);color:var(--coral);font-size:.7rem;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;cursor:pointer}
+.pet-card:hover .pet-card-del{opacity:1}
+.pet-add-card{background:transparent;border:1px dashed rgba(46,192,106,.3);border-radius:16px;padding:1.2rem;text-align:center;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;min-height:130px}
+.pet-add-card:hover{border-color:var(--g-acc);background:rgba(46,192,106,.04)}
+.pet-add-icon{font-size:1.8rem;color:var(--g-acc)}
+.pet-add-text{font-size:.78rem;color:var(--text-m)}
+.pets-empty{text-align:center;padding:3rem 1rem;color:var(--text-m)}
+.pets-empty-icon{font-size:3rem;display:block;margin-bottom:1rem}
+/* Pet form */
+.pet-form{display:none}
+.pet-form.active{display:block}
+.pet-form-title{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;color:var(--cream);margin-bottom:1.2rem;display:flex;align-items:center;gap:.6rem}
+.pet-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.pet-field{display:flex;flex-direction:column;gap:.4rem}
+.pet-field.full{grid-column:span 2}
+.pet-field label{font-size:.75rem;color:var(--text-m);font-weight:500}
+.pet-field input,.pet-field select,.pet-field textarea{padding:.75rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:12px;color:var(--text);font-size:.88rem;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s}
+.pet-field input:focus,.pet-field select:focus,.pet-field textarea:focus{border-color:var(--g-acc)}
+.pet-field select option{background:var(--surface2)}
+.pet-field textarea{resize:vertical;min-height:80px}
+.pet-form-actions{display:flex;gap:.8rem;justify-content:flex-end;margin-top:1.2rem}
+.pet-btn-cancel{padding:.7rem 1.4rem;background:transparent;border:1px solid var(--border);border-radius:12px;color:var(--text-m);font-family:'DM Sans',sans-serif;font-size:.88rem;cursor:pointer;transition:all .2s}
+.pet-btn-cancel:hover{border-color:var(--coral);color:var(--coral)}
+.pet-btn-save{padding:.7rem 1.6rem;background:linear-gradient(135deg,var(--g-acc),#1da855);border:none;border-radius:12px;color:#000;font-weight:700;font-size:.88rem;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s}
+.pet-btn-save:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(46,192,106,.4)}
+.pet-btn-save:disabled{opacity:.6;transform:none;cursor:not-allowed}
+.species-emoji-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
+.sp-emoji-btn{width:36px;height:36px;border-radius:8px;background:var(--bg);border:1px solid var(--border);font-size:1.2rem;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center}
+.sp-emoji-btn:hover,.sp-emoji-btn.sel{border-color:var(--g-acc);background:rgba(46,192,106,.08)}
+
+
 /* ── HOW IT WORKS ────────────────────────────────── */
 #como-funciona{padding:7rem 3rem;background:var(--surface)}
 .hw-steps{display:flex;flex-direction:column;gap:5rem;max-width:1100px;margin:0 auto}
@@ -819,6 +856,36 @@ footer p{font-size:.8rem;color:var(--text-m)}
 .ud-btn:hover{background:rgba(255,255,255,.05);color:var(--text)}
 .ud-btn.danger:hover{background:rgba(255,107,71,.08);color:var(--coral)}
 .nav-user-wrap{position:relative}
+
+/* ── PAYWALL ─────────────────────────────── */
+.paywall-overlay{position:fixed;inset:0;background:rgba(0,0,0,.92);backdrop-filter:blur(12px);z-index:3000;opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:center;justify-content:center;padding:1.5rem}
+.paywall-overlay.open{opacity:1;pointer-events:all}
+.paywall-box{background:var(--surface2);border:1px solid rgba(46,192,106,.25);border-radius:28px;width:100%;max-width:480px;padding:2.5rem 2rem;text-align:center;transform:translateY(28px) scale(.97);transition:transform .3s;position:relative}
+.paywall-overlay.open .paywall-box{transform:translateY(0) scale(1)}
+.paywall-icon{font-size:3.5rem;margin-bottom:1rem;display:block}
+.paywall-title{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:900;color:var(--cream);margin-bottom:.6rem;letter-spacing:-.02em}
+.paywall-sub{font-size:.88rem;color:var(--text-m);line-height:1.7;margin-bottom:1.8rem}
+.paywall-plans{display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.5rem}
+.paywall-plan{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.2rem;background:var(--bg);border:1px solid var(--border);border-radius:14px;cursor:pointer;transition:all .2s}
+.paywall-plan:hover{border-color:var(--g-acc);background:rgba(46,192,106,.05)}
+.paywall-plan.featured{border-color:var(--g-acc);background:rgba(46,192,106,.08)}
+.pp-left{display:flex;align-items:center;gap:.8rem}
+.pp-ico{font-size:1.4rem}
+.pp-name{font-weight:700;font-size:.9rem;color:var(--text)}
+.pp-desc{font-size:.73rem;color:var(--text-m)}
+.pp-price{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:900;color:var(--g-acc)}
+.paywall-close{position:absolute;top:1rem;right:1rem;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--text-m);font-size:.9rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s}
+.paywall-close:hover{background:rgba(255,100,71,.15);border-color:var(--coral);color:var(--coral)}
+.paywall-note{font-size:.72rem;color:var(--text-m);opacity:.7}
+
+/* Lock overlay on demo */
+.demo-lock{position:absolute;inset:0;background:rgba(10,12,16,.75);backdrop-filter:blur(6px);z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;border-radius:24px;cursor:pointer;transition:all .2s}
+.demo-lock:hover{background:rgba(10,12,16,.85)}
+.demo-lock-icon{font-size:2.5rem}
+.demo-lock-text{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;color:var(--cream)}
+.demo-lock-sub{font-size:.8rem;color:var(--text-m)}
+.demo-lock-btn{background:var(--g-acc);color:#000;border:none;padding:.7rem 1.6rem;border-radius:100px;font-weight:700;font-size:.85rem;cursor:pointer;font-family:'DM Sans',sans-serif}
+.demo-wrap{position:relative}
 </style>
 </head>
 <body>
@@ -840,9 +907,8 @@ footer p{font-size:.8rem;color:var(--text-m)}
   <ul>
     <li><a href="#problema" data-i18n="nav.problem">El Problema</a></li>
     <li><a href="#features" data-i18n="nav.features">Funciones</a></li>
-    <li><a href="#pricing" data-i18n="nav.pricing">Precios</a></li>
     <li><a href="#testimonials" data-i18n="nav.community">Comunidad</a></li>
-    <li><a href="#pricing" class="nav-cta" data-i18n="nav.cta">Ver Planes</a></li>
+    <li><a href="#pricing" class="nav-cta" data-i18n="nav.cta">Obtener Premium</a></li>
     <li class="nav-user-wrap" id="navUserWrap" style="display:none">
       <button class="nav-user-btn" onclick="toggleUserMenu()" id="navUserBtn">
         <span class="nav-user-dot"></span>
@@ -851,9 +917,9 @@ footer p{font-size:.8rem;color:var(--text-m)}
       </button>
       <div class="user-dropdown" id="userDropdown">
         <div class="ud-email" id="udEmail">—</div>
-        <button class="ud-btn" onclick="openDashboard()">🦎 Mis Mascotas</button>
-        <button class="ud-btn" onclick="openDashboard()">📋 Mis Consultas</button>
-        <button class="ud-btn" onclick="openDashboard()">💳 Mi Suscripción</button>
+        <button class="ud-btn" onclick="openDashboardSection('Mis Mascotas')">🦎 Mis Mascotas</button>
+        <button class="ud-btn" onclick="openDashboardSection('Mis Consultas')">📋 Mis Consultas</button>
+        <button class="ud-btn" onclick="openDashboardSection('Mi Suscripción')">💳 Mi Suscripción</button>
         <button class="ud-btn danger" onclick="signOut()">← Cerrar sesión</button>
       </div>
     </li>
@@ -895,7 +961,6 @@ footer p{font-size:.8rem;color:var(--text-m)}
     <h1><span class="l1" data-i18n="hero.l1">Tu veterinario</span><span class="l2" data-i18n="hero.l2">inteligente</span><span class="l3" data-i18n="hero.l3">disponible 24/7</span></h1>
     <p class="hdesc"><span data-i18n="hero.desc">La primera IA del mundo diseñada <strong>exclusivamente</strong> para reptiles, aves, roedores y exóticos. Diagnóstico en tiempo real cuando el vet local simplemente no sabe.</span></p>
     <div class="hacts">
-      <a href="#pricing" class="btn-p">🛡️ <span data-i18n="hero.btn1">Elegir mi Plan</span> <span>→</span></a>
       <a href="#como-funciona" class="btn-s" data-i18n="hero.btn2">¿Cómo funciona?</a>
     </div>
     <div class="hstats">
@@ -1201,63 +1266,45 @@ footer p{font-size:.8rem;color:var(--text-m)}
         <div class="hw-g-sub" data-i18n="how.gsub">Si en los primeros 7 días no estás completamente satisfecho, te devolvemos el 100% del pago. Sin formularios, sin esperas, sin excusas.</div>
       </div>
     </div>
-    <a href="#pricing" class="btn-p" style="white-space:nowrap;flex-shrink:0" data-i18n="how.gcta">Ver los planes →</a>
+    <a href="#pricing" class="btn-p" style="white-space:nowrap;flex-shrink:0" data-i18n="how.gcta">Obtener acceso completo →</a>
   </div>
 
 </section>
 
 <!-- PRICING -->
-<section id="pricing" aria-label="Planes y precios" itemscope itemtype="https://schema.org/OfferCatalog">
+<section id="pricing" aria-label="Plan Premium" itemscope itemtype="https://schema.org/OfferCatalog">
   <div class="pheader rev">
-    <div class="stag" data-i18n="price.tag">// Elige tu Plan</div>
-    <h2 class="stitle"><span data-i18n="price.title">Planes premium.</span><br><em data-i18n="price.titleem">Sin compromiso de permanencia.</em></h2>
+    <div class="stag">// Un Solo Plan · Todo Incluido</div>
+    <h2 class="stitle"><span>Acceso completo.</span><br><em>Sin restricciones.</em></h2>
   </div>
-  <div class="pgrdp">
-    <div class="pcard rev">
+
+  <!-- Single plan centered -->
+  <div style="max-width:480px;margin:0 auto">
+    <div class="pcard hl rev" style="text-align:center">
+      <div class="ptag">★ Todo Incluido</div>
       <div class="pico">🦎</div>
-      <div class="pname" data-i18n="p1.name">Cuidador</div>
-      <div class="pdescr" data-i18n="p1.desc">Para el dueño comprometido con la salud de su mascota.</div>
-      <div class="pprice"><div class="pamount"><span class="cur">$</span>25</div><div class="pper" data-i18n="ppm">por mes</div></div>
-      <ul class="pfeats">
-        <li><span class="chk">✓</span><span data-i18n="p1.f1">Consultas ilimitadas</span></li>
-        <li><span class="chk">✓</span><span data-i18n="p1.f2">Diagnóstico con nivel de urgencia</span></li>
-        <li><span class="chk">✓</span><span data-i18n="p1.f3">Dieta personalizada por especie</span></li>
-        <li><span class="chk">✓</span><span data-i18n="p1.f4">Recordatorios de vitaminas</span></li>
-        <li><span class="chk">✓</span><span data-i18n="p1.f5">Historial médico completo</span></li>
+      <div class="pname">ExoVet Premium</div>
+      <div class="pdescr">Acceso completo a todas las funciones de ExoVet AI. Sin límites, sin restricciones.</div>
+      <div class="pprice" style="margin:1.5rem 0">
+        <div class="pamount"><span class="cur">$</span>75</div>
+        <div class="pper">por mes · cancela cuando quieras</div>
+      </div>
+      <ul class="pfeats" style="text-align:left;margin-bottom:2rem">
+        <li><span class="chk">✓</span><span>Consultas ilimitadas con IA veterinaria</span></li>
+        <li><span class="chk">✓</span><span>Diagnóstico de síntomas con nivel de urgencia</span></li>
+        <li><span class="chk">✓</span><span>Dieta personalizada por especie</span></li>
+        <li><span class="chk">✓</span><span>Análisis de fotos con visión artificial</span></li>
+        <li><span class="chk">✓</span><span>Mascotas ilimitadas en tu perfil</span></li>
+        <li><span class="chk">✓</span><span>Historial médico completo</span></li>
+        <li><span class="chk">✓</span><span>Recordatorios de vitaminas y tratamientos</span></li>
+        <li><span class="chk">✓</span><span>Directorio de veterinarios especializados</span></li>
+        <li><span class="chk">✓</span><span>Guía de reproducción y manejo de crías</span></li>
+        <li><span class="chk">✓</span><span>Compliance CITES y regulaciones</span></li>
+        <li><span class="chk">✓</span><span>Comunidad privada exclusiva</span></li>
+        <li><span class="chk">✓</span><span>Soporte prioritario 24/7</span></li>
       </ul>
-      <a href="#cta" class="pbtn pbo" onclick="handlePlanClick(event,'cuidador',25)" data-i18n="p1.btn">Comenzar Ahora →</a>
-    <div class="pguarantee" data-i18n="plan.guarantee">🛡️ 7 días de garantía</div>
-    </div>
-    <div class="pcard hl rev rd1">
-      <div class="ptag" data-i18n="plan.popular">★ Popular</div>
-      <div class="pico">🔬</div>
-      <div class="pname" data-i18n="p2.name">Experto</div>
-      <div class="pdescr" data-i18n="p2.desc">Para coleccionistas con múltiples mascotas.</div>
-      <div class="pprice"><div class="pamount"><span class="cur">$</span>55</div><div class="pper" data-i18n="ppm">por mes</div></div>
-      <ul class="pfeats">
-        <li><span class="chk">✓</span><span data-i18n="p2.f1">Todo Cuidador incluido</span></li>
-        <li><span class="chk">✓</span><span data-i18n="p2.f2">Hasta 5 mascotas</span></li>
-        <li><span class="chk">✓</span><span data-i18n="p2.f3">Análisis de fotos con IA</span></li>
-        <li><span class="chk">✓</span><span data-i18n="p2.f4">Directorio de vets especializados</span></li>
-        <li><span class="chk">✓</span><span data-i18n="p2.f5">Comunidad privada exclusiva</span></li>
-      </ul>
-      <a href="#cta" class="pbtn pbg" onclick="handlePlanClick(event,'experto',55)" data-i18n="p2.btn">Elegir Experto →</a>
-    <div class="pguarantee" data-i18n="plan.guarantee">🛡️ 7 días de garantía</div>
-    </div>
-    <div class="pcard rev rd2">
-      <div class="pico">🏆</div>
-      <div class="pname" data-i18n="p3.name">Criador Pro</div>
-      <div class="pdescr" data-i18n="p3.desc">Para criadores profesionales y tiendas especializadas.</div>
-      <div class="pprice"><div class="pamount"><span class="cur">$</span>95</div><div class="pper" data-i18n="ppm">por mes</div></div>
-      <ul class="pfeats">
-        <li><span class="chk">✓</span><span data-i18n="p3.f1">Todo Experto incluido</span></li>
-        <li><span class="chk">✓</span><span data-i18n="p3.f2">Mascotas ilimitadas</span></li>
-        <li><span class="chk">✓</span><span data-i18n="p3.f3">Guía completa de reproducción</span></li>
-        <li><span class="chk">✓</span><span data-i18n="p3.f4">Manejo de crías y juveniles</span></li>
-        <li><span class="chk">✓</span><span data-i18n="p3.f5">Compliance CITES y regulaciones</span></li>
-      </ul>
-      <a href="#cta" class="pbtn pbo" onclick="handlePlanClick(event,'criador',95)" data-i18n="p3.btn">Elegir Criador</a>
-    <div class="pguarantee" data-i18n="plan.guarantee">🛡️ 7 días de garantía</div>
+      <a href="#cta" class="pbtn pbg" onclick="handlePlanClick(event,'premium',75)" style="font-size:1rem;padding:1.1rem">Comenzar Ahora — $75/mes →</a>
+      <div class="pguarantee" style="margin-top:1rem">🛡️ 7 días de garantía total · Sin preguntas</div>
     </div>
   </div>
 </section>
@@ -1310,7 +1357,7 @@ footer p{font-size:.8rem;color:var(--text-m)}
     <p class="csub" data-i18n="cta.sub">Tu mascota no puede decirte cuándo algo va mal. Tú sí puedes actuar. Únete en 30 segundos y ponle nombre a cada síntoma antes de que sea tarde.</p>
     <div class="cform">
       <input type="email" class="cinp" id="ctaEmail" placeholder="tu@email.com" data-i18n-ph="cta.placeholder"/>
-      <a href="#pricing" class="btn-p" style="white-space:nowrap;font-size:.9rem" data-i18n="cta.btn">Ver los Planes →</a>
+      <a href="#pricing" class="btn-p" style="white-space:nowrap;font-size:.9rem" data-i18n="cta.btn">Acceso →</a>
     </div>
     <p class="cgu" data-i18n="cta.guarantee">🛡️ Garantía total 7 días · Sin permanencia · Cancela cuando quieras</p>
   </div>
@@ -2091,6 +2138,147 @@ document.addEventListener('keydown',e=>{
 
 </script>
 
+<!-- ═══════════ PETS PANEL ═══════════ -->
+<div class="pets-overlay" id="petsPanel">
+  <div class="pets-panel">
+    <div class="pets-head">
+      <div class="pets-head-left">
+        <span style="font-size:1.5rem">🦎</span>
+        <div class="pets-head-title">Mis Mascotas</div>
+        <span class="pets-head-count" id="petsCount">0 mascotas</span>
+      </div>
+      <button class="pets-close" onclick="closePetsPanel()">✕</button>
+    </div>
+    <div class="pets-body">
+
+      <!-- LIST VIEW -->
+      <div id="petsListView">
+        <div class="pets-grid" id="petsGrid">
+          <!-- pets loaded dynamically -->
+        </div>
+        <div id="petsEmpty" class="pets-empty" style="display:none">
+          <span class="pets-empty-icon">🐾</span>
+          <p style="font-size:.9rem;margin-bottom:1rem">Aún no tienes mascotas registradas.</p>
+          <button class="pet-btn-save" onclick="showPetForm()">+ Agregar mi primera mascota</button>
+        </div>
+      </div>
+
+      <!-- FORM VIEW -->
+      <div id="petsFormView" class="pet-form">
+        <div class="pet-form-title">
+          <span id="petFormIcon">🐾</span>
+          <span id="petFormTitle">Nueva Mascota</span>
+        </div>
+
+        <!-- Emoji selector -->
+        <div style="margin-bottom:1rem">
+          <div style="font-size:.75rem;color:var(--text-m);margin-bottom:.5rem;font-weight:500">Elige un emoji para tu mascota</div>
+          <div class="species-emoji-row" id="emojiPicker">
+            <!-- Reptiles -->
+            <button class="sp-emoji-btn sel" onclick="selectEmoji(this,'🦎')">🦎</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🐍')">🐍</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🐢')">🐢</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🦖')">🦖</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🐊')">🐊</button>
+            <!-- Anfibios -->
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🐸')">🐸</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🦊')">🦊</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🐛')">🐛</button>
+            <!-- Aves -->
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🦜')">🦜</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🐦')">🐦</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🐦‍⬛')">🐦‍⬛</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🦅')">🦅</button>
+            <!-- Roedores -->
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🐇')">🐇</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🐹')">🐹</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🐀')">🐀</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🐾')">🐾</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🦫')">🦫</button>
+            <!-- Otros mamíferos -->
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🦦')">🦦</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🦔')">🦔</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🦘')">🦘</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🐿️')">🐿️</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🦡')">🦡</button>
+            <!-- Peces -->
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🐟')">🐟</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🐡')">🐡</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🦑')">🦑</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🦐')">🦐</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🐙')">🐙</button>
+            <!-- Arácnidos e insectos -->
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🕷️')">🕷️</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🦂')">🦂</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🦋')">🦋</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🦗')">🦗</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🐜')">🐜</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🦀')">🦀</button>
+            <button class="sp-emoji-btn" onclick="selectEmoji(this,'🦞')">🦞</button>
+          </div>
+        </div>
+
+        <div class="pet-form-grid">
+          <div class="pet-field">
+            <label>Nombre de la mascota *</label>
+            <input type="text" id="petName" placeholder="Ej: Spike, Luna, Rex..."/>
+          </div>
+          <div class="pet-field">
+            <label>Especie *</label>
+            <input type="text" id="petSpecies" placeholder="Ej: Iguana verde, Ball Python..."/>
+          </div>
+          <div class="pet-field">
+            <label>Subespecie / Morph</label>
+            <input type="text" id="petSubspecies" placeholder="Ej: Albino, Classic..."/>
+          </div>
+          <div class="pet-field">
+            <label>Edad (meses)</label>
+            <input type="number" id="petAge" placeholder="Ej: 24" min="0"/>
+          </div>
+          <div class="pet-field">
+            <label>Peso (gramos)</label>
+            <input type="number" id="petWeight" placeholder="Ej: 350" min="0"/>
+          </div>
+          <div class="pet-field full">
+            <label>Notas adicionales</label>
+            <textarea id="petNotes" placeholder="Condiciones especiales, alergias, historial relevante..."></textarea>
+          </div>
+        </div>
+
+        <div class="pet-form-actions">
+          <button class="pet-btn-cancel" onclick="cancelPetForm()">Cancelar</button>
+          <button class="pet-btn-save" id="btnSavePet" onclick="savePet()">Guardar mascota →</button>
+        </div>
+        <div class="auth-msg" id="petFormMsg" style="margin-top:.8rem"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PAYWALL MODAL ═══════════ -->
+<div class="paywall-overlay" id="paywallModal">
+  <div class="paywall-box">
+    <button class="paywall-close" onclick="closePaywall()">✕</button>
+    <span class="paywall-icon">🔒</span>
+    <div class="paywall-title">Función exclusiva para miembros</div>
+    <p class="paywall-sub" id="paywallMsg">Esta función está disponible únicamente para usuarios con un plan activo. Elige el plan que mejor se adapte a ti y empieza en segundos.</p>
+    <div class="paywall-plans">
+      <div class="paywall-plan featured" onclick="handlePlanClick(event,'premium',75)">
+        <div class="pp-left">
+          <span class="pp-ico">🦎</span>
+          <div>
+            <div class="pp-name">ExoVet Premium — Todo incluido</div>
+            <div class="pp-desc">Consultas · Fotos · Mascotas ilimitadas · Vets · 24/7</div>
+          </div>
+        </div>
+        <div class="pp-price">$75<span style="font-size:.7rem;color:var(--text-m)">/mes</span></div>
+      </div>
+    </div>
+    <p class="paywall-note">🛡️ 7 días de garantía · Sin permanencia · Cancela cuando quieras</p>
+  </div>
+</div>
+
 <!-- ═══════════ AUTH MODAL ═══════════ -->
 <div class="auth-modal-overlay" id="authModal">
   <div class="auth-box">
@@ -2283,6 +2471,7 @@ _supa.auth.onAuthStateChange(async (event, session) => {
     currentUser = session.user;
     await loadUserProfile();
     updateNavUser();
+    updateDemoLock();
     closeAuth();
     if (selectedPlan) {
       setTimeout(() => {
@@ -2293,6 +2482,7 @@ _supa.auth.onAuthStateChange(async (event, session) => {
   } else if (event === 'SIGNED_OUT') {
     currentUser = null;
     updateNavUser();
+    updateDemoLock();
   }
 });
 
@@ -2302,6 +2492,7 @@ async function checkSession() {
     currentUser = session.user;
     await loadUserProfile();
     updateNavUser();
+    updateDemoLock();
   }
 }
 
@@ -2413,21 +2604,229 @@ document.addEventListener('click', (e) => {
 
 function handlePlanClick(e, planId, price) {
   e.preventDefault();
-  const names = { cuidador:'Cuidador 🦎', experto:'Experto 🔬', criador:'Criador Pro 🏆' };
-  selectedPlan = { id: planId, name: names[planId], price };
+  selectedPlan = { id: 'premium', name: 'ExoVet Premium 🦎', price: 75 };
+  closePaywall();
   if (currentUser) {
-    alert('💳 Pago NexaPay próximamente.\nPlan: ' + names[planId] + ' — $' + price + '/mes');
+    alert('💳 Pago NexaPay próximamente.\nPlan: ExoVet Premium — $75/mes\nAcceso completo a todas las funciones.');
   } else {
     openAuth('register');
     document.getElementById('authPlanInfo').style.display = 'block';
-    document.getElementById('authPlanName').textContent = names[planId];
-    document.getElementById('authPlanPrice').textContent = '$' + price;
+    document.getElementById('authPlanName').textContent = 'ExoVet Premium 🦎';
+    document.getElementById('authPlanPrice').textContent = '$75';
   }
 }
 
 function openDashboard() {
   document.getElementById('userDropdown').classList.remove('open');
   alert('🦎 Panel de usuario próximamente.\nPodrás ver tus mascotas, historial y suscripción.');
+}
+
+// ─── Pets Panel ──────────────────────────
+let selectedPetEmoji = '🦎';
+let editingPetId = null;
+
+async function openPetsPanel() {
+  document.getElementById('userDropdown').classList.remove('open');
+  if (!checkAccessOrPaywall('Mis Mascotas')) return;
+  document.getElementById('petsPanel').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  showPetsList();
+  await loadPets();
+}
+
+function closePetsPanel() {
+  document.getElementById('petsPanel').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('petsPanel').addEventListener('click', function(e) {
+  if (e.target === this) closePetsPanel();
+});
+
+async function loadPets() {
+  if (!currentUser) return;
+  const { data, error } = await _supa
+    .from('mascotas')
+    .select('*')
+    .eq('usuario_id', currentUser.id)
+    .order('created_at', { ascending: false });
+
+  const grid = document.getElementById('petsGrid');
+  const empty = document.getElementById('petsEmpty');
+  const count = document.getElementById('petsCount');
+
+  if (!data || data.length === 0) {
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+    count.textContent = '0 mascotas';
+    return;
+  }
+
+  empty.style.display = 'none';
+  count.textContent = data.length + (data.length === 1 ? ' mascota' : ' mascotas');
+
+  grid.innerHTML = data.map(pet => `
+    <div class="pet-card">
+      <button class="pet-card-del" onclick="deletePet(event,'${pet.id}')" title="Eliminar">✕</button>
+      <span class="pet-card-emoji">${pet.notas?.startsWith('emoji:') ? pet.notas.split('|')[0].replace('emoji:','') : '🦎'}</span>
+      <div class="pet-card-name">${pet.nombre}</div>
+      <div class="pet-card-species">${pet.especie}</div>
+      ${pet.edad_meses ? `<div class="pet-card-age">${pet.edad_meses} meses</div>` : ''}
+      ${pet.peso_gramos ? `<div class="pet-card-age" style="color:var(--text-m)">${pet.peso_gramos}g</div>` : ''}
+    </div>
+  `).join('') + `
+    <div class="pet-add-card" onclick="showPetForm()">
+      <span class="pet-add-icon">+</span>
+      <span class="pet-add-text">Agregar mascota</span>
+    </div>
+  `;
+}
+
+function showPetsList() {
+  document.getElementById('petsListView').style.display = 'block';
+  document.getElementById('petsFormView').classList.remove('active');
+  editingPetId = null;
+}
+
+function showPetForm() {
+  document.getElementById('petsListView').style.display = 'none';
+  document.getElementById('petsFormView').classList.add('active');
+  document.getElementById('petFormTitle').textContent = 'Nueva Mascota';
+  document.getElementById('petFormIcon').textContent = '🐾';
+  // Reset form
+  ['petName','petSpecies','petSubspecies','petAge','petWeight','petNotes'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  selectedPetEmoji = '🦎';
+  document.querySelectorAll('.sp-emoji-btn').forEach(b => b.classList.remove('sel'));
+  document.querySelector('.sp-emoji-btn').classList.add('sel');
+  document.getElementById('petFormMsg').className = 'auth-msg';
+}
+
+function cancelPetForm() {
+  showPetsList();
+  loadPets();
+}
+
+function selectEmoji(btn, emoji) {
+  document.querySelectorAll('.sp-emoji-btn').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  selectedPetEmoji = emoji;
+  document.getElementById('petFormIcon').textContent = emoji;
+}
+
+async function savePet() {
+  const nombre = document.getElementById('petName').value.trim();
+  const especie = document.getElementById('petSpecies').value.trim();
+  const subespecie = document.getElementById('petSubspecies').value.trim();
+  const edad = parseInt(document.getElementById('petAge').value) || null;
+  const peso = parseInt(document.getElementById('petWeight').value) || null;
+  const notasRaw = document.getElementById('petNotes').value.trim();
+  const msg = document.getElementById('petFormMsg');
+  const btn = document.getElementById('btnSavePet');
+
+  if (!nombre || !especie) {
+    showMsg(msg, 'El nombre y la especie son obligatorios.', 'error');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Guardando...';
+
+  // Store emoji in notas field with prefix
+  const notas = `emoji:${selectedPetEmoji}|${notasRaw}`;
+
+  const petData = {
+    usuario_id: currentUser.id,
+    nombre,
+    especie,
+    subespecie: subespecie || null,
+    edad_meses: edad,
+    peso_gramos: peso,
+    notas
+  };
+
+  const { error } = await _supa.from('mascotas').insert(petData);
+
+  if (error) {
+    showMsg(msg, 'Error al guardar. Intenta de nuevo.', 'error');
+  } else {
+    showMsg(msg, '✅ ¡Mascota guardada exitosamente!', 'success');
+    setTimeout(() => {
+      showPetsList();
+      loadPets();
+    }, 1000);
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Guardar mascota →';
+}
+
+async function deletePet(e, petId) {
+  e.stopPropagation();
+  if (!confirm('¿Eliminar esta mascota? Esta acción no se puede deshacer.')) return;
+  await _supa.from('mascotas').delete().eq('id', petId).eq('usuario_id', currentUser.id);
+  loadPets();
+}
+
+// ─── Paywall ──────────────────────────────
+function hasActivePlan() {
+  if (!currentUser) return false;
+  const plan = currentUser.profile?.plan || 'free';
+  const active = currentUser.profile?.suscripcion_activa || false;
+  return active && plan !== 'free';
+}
+
+function showPaywall(feature) {
+  const msg = document.getElementById('paywallMsg');
+  if (feature) {
+    msg.textContent = 'Para acceder a "' + feature + '" necesitas un plan activo. Elige el que mejor se adapte a tu mascota.';
+  } else {
+    msg.textContent = 'Esta función está disponible únicamente para usuarios con un plan activo. Elige el plan que mejor se adapte a ti.';
+  }
+  document.getElementById('paywallModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePaywall() {
+  document.getElementById('paywallModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('paywallModal').addEventListener('click', function(e) {
+  if (e.target === this) closePaywall();
+});
+
+function checkAccessOrPaywall(feature) {
+  if (!currentUser) {
+    openAuth('register');
+    return false;
+  }
+  if (!hasActivePlan()) {
+    showPaywall(feature);
+    return false;
+  }
+  return true;
+}
+
+function updateDemoLock() {
+  const lock = document.getElementById('demoLockOverlay');
+  if (!lock) return;
+  if (!currentUser || !hasActivePlan()) {
+    lock.style.display = 'flex';
+  } else {
+    lock.style.display = 'none';
+  }
+}
+
+function openDashboardSection(section) {
+  document.getElementById('userDropdown').classList.remove('open');
+  if (section === 'Mis Mascotas') {
+    openPetsPanel();
+  } else {
+    if (!checkAccessOrPaywall(section)) return;
+    alert('🦎 ' + section + ' — próximamente disponible.');
+  }
 }
 
 function showMsg(el, text, type) {
