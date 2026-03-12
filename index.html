@@ -3411,13 +3411,10 @@ async function sendCitesMessage() {
   const typingId = showCitesTyping();
 
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const response = await fetch(AI_ENDPOINT, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': ANTHROPIC_KEY,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
       },
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
@@ -3632,13 +3629,10 @@ async function sendReproMessage() {
   const typingId = showReproTyping();
 
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const response = await fetch(AI_ENDPOINT, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': ANTHROPIC_KEY,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
       },
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
@@ -4235,8 +4229,9 @@ async function deletePet(e, petId) {
 
 // ─── Chat Diagnóstico ─────────────────────
 
-// ⚙️ REEMPLAZA con tu API Key de Anthropic cuando la tengas
-const ANTHROPIC_KEY = 'TU_API_KEY_AQUI'; // sk-ant-...
+// ⚙️ Llamadas seguras via Supabase Edge Function (API Key guardada en el servidor)
+const ANTHROPIC_KEY = null; // No se usa — la key está segura en Supabase
+const AI_ENDPOINT = 'https://nobjfgnhavcfmlhpvnvq.supabase.co/functions/v1/exovet-ai';
 
 let chatHistory = [];
 let selectedPetForChat = null;
@@ -4466,13 +4461,10 @@ async function sendMessage() {
 
   try {
     const systemPrompt = buildSystemPrompt(hasPhoto);
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const response = await fetch(AI_ENDPOINT, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': ANTHROPIC_KEY,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
       },
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
