@@ -755,6 +755,71 @@ footer p{font-size:.8rem;color:var(--text-m)}
 }
 .pguarantee{text-align:center;font-size:.72rem;color:var(--text-m);font-family:"Space Mono",monospace;margin-top:.6rem;opacity:.7}
 </style>
+
+<!-- ═══════════════════════════════════════
+     SUPABASE CLIENT
+════════════════════════════════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // ⚙️ CONFIGURACIÓN SUPABASE — Reemplaza con tus keys reales
+  const SUPA_URL = 'https://nobjfgnhavcfmlhpvnvq.supabase.co';
+  const SUPA_KEY = 'sb_publishable_BFghI1Dkvb-bYvsM-4b86w_t-cqRPRC'; // sb_publishable_...
+
+  const _supa = supabase.createClient(SUPA_URL, SUPA_KEY);
+</script>
+
+<!-- ═══════════════════════════════════════
+     AUTH MODAL STYLES
+════════════════════════════════════════ -->
+<style>
+/* AUTH MODAL */
+.auth-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);z-index:2000;opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:center;justify-content:center;padding:1.5rem}
+.auth-modal-overlay.open{opacity:1;pointer-events:all}
+.auth-box{background:var(--surface2);border:1px solid var(--border);border-radius:28px;width:100%;max-width:440px;overflow:hidden;transform:translateY(28px) scale(.97);transition:transform .3s}
+.auth-modal-overlay.open .auth-box{transform:translateY(0) scale(1)}
+.auth-head{padding:2rem 2rem 1.2rem;text-align:center;border-bottom:1px solid var(--border)}
+.auth-logo{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:900;color:var(--g-acc);margin-bottom:.4rem}
+.auth-logo span{color:var(--amber)}
+.auth-subtitle{font-size:.82rem;color:var(--text-m)}
+.auth-tabs{display:flex;background:var(--bg);margin:1.5rem 2rem .5rem;border-radius:12px;padding:4px;gap:4px}
+.auth-tab{flex:1;padding:.6rem;border-radius:9px;border:none;background:transparent;color:var(--text-m);font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s}
+.auth-tab.active{background:var(--surface);color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.auth-body{padding:.5rem 2rem 2rem}
+.auth-field{margin-bottom:1rem}
+.auth-field label{display:block;font-size:.78rem;color:var(--text-m);margin-bottom:.4rem;font-weight:500}
+.auth-field input{width:100%;padding:.8rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:12px;color:var(--text);font-size:.9rem;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s;box-sizing:border-box}
+.auth-field input:focus{border-color:var(--g-acc)}
+.auth-submit{width:100%;padding:1rem;background:linear-gradient(135deg,var(--g-acc),#1da855);border:none;border-radius:14px;color:#000;font-weight:700;font-size:.95rem;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:.5rem;transition:all .2s}
+.auth-submit:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(46,192,106,.4)}
+.auth-submit:disabled{opacity:.6;transform:none;cursor:not-allowed}
+.auth-msg{text-align:center;font-size:.8rem;padding:.7rem 1rem;border-radius:10px;margin-top:.8rem;display:none}
+.auth-msg.success{background:rgba(46,192,106,.1);border:1px solid rgba(46,192,106,.25);color:var(--g-acc);display:block}
+.auth-msg.error{background:rgba(255,107,71,.1);border:1px solid rgba(255,107,71,.25);color:var(--coral);display:block}
+.auth-close{position:absolute;top:1rem;right:1rem;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--text-m);font-size:1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s}
+.auth-close:hover{background:rgba(255,100,71,.15);border-color:var(--coral);color:var(--coral)}
+.auth-box{position:relative}
+.auth-divider{display:flex;align-items:center;gap:.8rem;margin:1rem 0}
+.auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.auth-divider span{font-size:.72rem;color:var(--text-m)}
+/* USER BUTTON NAV */
+.nav-user-btn{display:flex;align-items:center;gap:.5rem;background:rgba(46,192,106,.1);border:1px solid rgba(46,192,106,.3);border-radius:100px;padding:.4rem .9rem;font-size:.82rem;color:var(--g-acc);cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;font-weight:600}
+.nav-user-btn:hover{background:rgba(46,192,106,.2)}
+.nav-user-dot{width:7px;height:7px;border-radius:50%;background:var(--g-acc);box-shadow:0 0 6px var(--g-acc)}
+/* PLAN BADGE */
+.plan-badge{display:inline-flex;align-items:center;gap:.35rem;font-size:.65rem;font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.08em;padding:.2rem .6rem;border-radius:100px}
+.plan-badge.free{background:rgba(255,255,255,.05);color:var(--text-m);border:1px solid var(--border)}
+.plan-badge.cuidador{background:rgba(46,192,106,.1);color:var(--g-acc);border:1px solid rgba(46,192,106,.25)}
+.plan-badge.experto{background:rgba(0,212,196,.1);color:var(--teal);border:1px solid rgba(0,212,196,.25)}
+.plan-badge.criador{background:rgba(245,166,35,.1);color:var(--amber);border:1px solid rgba(245,166,35,.25)}
+/* DASHBOARD MINI */
+.user-dropdown{position:absolute;top:calc(100% + .6rem);right:0;background:var(--surface2);border:1px solid var(--border);border-radius:16px;padding:1rem;min-width:220px;z-index:500;display:none;box-shadow:0 16px 48px rgba(0,0,0,.5)}
+.user-dropdown.open{display:block}
+.ud-email{font-size:.75rem;color:var(--text-m);margin-bottom:.6rem;padding-bottom:.6rem;border-bottom:1px solid var(--border)}
+.ud-btn{width:100%;padding:.55rem .8rem;border-radius:10px;border:none;background:transparent;color:var(--text-m);font-size:.82rem;text-align:left;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;display:flex;align-items:center;gap:.5rem}
+.ud-btn:hover{background:rgba(255,255,255,.05);color:var(--text)}
+.ud-btn.danger:hover{background:rgba(255,107,71,.08);color:var(--coral)}
+.nav-user-wrap{position:relative}
+</style>
 </head>
 <body>
 
@@ -778,6 +843,23 @@ footer p{font-size:.8rem;color:var(--text-m)}
     <li><a href="#pricing" data-i18n="nav.pricing">Precios</a></li>
     <li><a href="#testimonials" data-i18n="nav.community">Comunidad</a></li>
     <li><a href="#pricing" class="nav-cta" data-i18n="nav.cta">Ver Planes</a></li>
+    <li class="nav-user-wrap" id="navUserWrap" style="display:none">
+      <button class="nav-user-btn" onclick="toggleUserMenu()" id="navUserBtn">
+        <span class="nav-user-dot"></span>
+        <span id="navUserEmail">usuario</span>
+        <span id="navPlanBadge" class="plan-badge free">Free</span>
+      </button>
+      <div class="user-dropdown" id="userDropdown">
+        <div class="ud-email" id="udEmail">—</div>
+        <button class="ud-btn" onclick="openDashboard()">🦎 Mis Mascotas</button>
+        <button class="ud-btn" onclick="openDashboard()">📋 Mis Consultas</button>
+        <button class="ud-btn" onclick="openDashboard()">💳 Mi Suscripción</button>
+        <button class="ud-btn danger" onclick="signOut()">← Cerrar sesión</button>
+      </div>
+    </li>
+    <li id="navLoginBtn">
+      <button class="nav-user-btn" onclick="openAuth('login')" style="background:transparent;border-color:rgba(255,255,255,.15);color:var(--text)">Iniciar sesión</button>
+    </li>
   </ul>
   <div class="lang-switcher" id="langSwitcher">
     <button class="lang-btn" onclick="toggleLangMenu()" aria-label="Select language">
@@ -1143,7 +1225,7 @@ footer p{font-size:.8rem;color:var(--text-m)}
         <li><span class="chk">✓</span><span data-i18n="p1.f4">Recordatorios de vitaminas</span></li>
         <li><span class="chk">✓</span><span data-i18n="p1.f5">Historial médico completo</span></li>
       </ul>
-      <a href="#cta" class="pbtn pbo" data-i18n="p1.btn">Comenzar Ahora →</a>
+      <a href="#cta" class="pbtn pbo" onclick="handlePlanClick(event,'cuidador',25)" data-i18n="p1.btn">Comenzar Ahora →</a>
     <div class="pguarantee" data-i18n="plan.guarantee">🛡️ 7 días de garantía</div>
     </div>
     <div class="pcard hl rev rd1">
@@ -1159,7 +1241,7 @@ footer p{font-size:.8rem;color:var(--text-m)}
         <li><span class="chk">✓</span><span data-i18n="p2.f4">Directorio de vets especializados</span></li>
         <li><span class="chk">✓</span><span data-i18n="p2.f5">Comunidad privada exclusiva</span></li>
       </ul>
-      <a href="#cta" class="pbtn pbg" data-i18n="p2.btn">Elegir Experto →</a>
+      <a href="#cta" class="pbtn pbg" onclick="handlePlanClick(event,'experto',55)" data-i18n="p2.btn">Elegir Experto →</a>
     <div class="pguarantee" data-i18n="plan.guarantee">🛡️ 7 días de garantía</div>
     </div>
     <div class="pcard rev rd2">
@@ -1174,7 +1256,7 @@ footer p{font-size:.8rem;color:var(--text-m)}
         <li><span class="chk">✓</span><span data-i18n="p3.f4">Manejo de crías y juveniles</span></li>
         <li><span class="chk">✓</span><span data-i18n="p3.f5">Compliance CITES y regulaciones</span></li>
       </ul>
-      <a href="#cta" class="pbtn pbo" data-i18n="p3.btn">Elegir Criador</a>
+      <a href="#cta" class="pbtn pbo" onclick="handlePlanClick(event,'criador',95)" data-i18n="p3.btn">Elegir Criador</a>
     <div class="pguarantee" data-i18n="plan.guarantee">🛡️ 7 días de garantía</div>
     </div>
   </div>
@@ -1238,11 +1320,11 @@ footer p{font-size:.8rem;color:var(--text-m)}
   <div class="fl">Exo<span>Vet</span> AI</div>
   <p data-i18n="footer.copy">© 2026 ExoVet AI — Construido para los amantes de los exóticos.</p>
   <div class="flinks">
-    <a href="#" onclick="openModal('privacyModal')" data-i18n="footer.privacy">Privacidad</a><a href="#" onclick="openModal('termsModal')" data-i18n="footer.terms">Términos</a><a href="mailto:hola@exovetai.com" data-i18n="footer.contact">Contacto</a>
+    <a href="#" onclick="openModal('privacyModal')" data-i18n="footer.privacy">Privacidad</a><a href="#" onclick="openModal('termsModal')" data-i18n="footer.terms">Términos</a><a href="/cdn-cgi/l/email-protection#d4bcbbb8b594b1acbba2b1a0b5bdfab7bbb9" data-i18n="footer.contact">Contacto</a>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Cursor
 const cur=document.getElementById('cursor'),ring=document.getElementById('cring');
 let mx=0,my=0,rx=0,ry=0;
@@ -2009,6 +2091,57 @@ document.addEventListener('keydown',e=>{
 
 </script>
 
+<!-- ═══════════ AUTH MODAL ═══════════ -->
+<div class="auth-modal-overlay" id="authModal">
+  <div class="auth-box">
+    <button class="auth-close" onclick="closeAuth()">✕</button>
+    <div class="auth-head">
+      <div class="auth-logo">Exo<span>Vet</span> AI</div>
+      <div class="auth-subtitle" id="authSubtitle">Tu veterinario IA para mascotas exóticas 🦎</div>
+    </div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tabLogin" onclick="switchTab('login')">Iniciar sesión</button>
+      <button class="auth-tab" id="tabRegister" onclick="switchTab('register')">Crear cuenta</button>
+    </div>
+    <div class="auth-body">
+      <!-- LOGIN FORM -->
+      <div id="formLogin">
+        <div class="auth-field">
+          <label>Correo electrónico</label>
+          <input type="email" id="loginEmail" placeholder="tu@email.com"/>
+        </div>
+        <div class="auth-field">
+          <label>Contraseña</label>
+          <input type="password" id="loginPass" placeholder="••••••••"/>
+        </div>
+        <button class="auth-submit" onclick="doLogin()" id="btnLogin">Entrar →</button>
+        <div class="auth-msg" id="loginMsg"></div>
+      </div>
+      <!-- REGISTER FORM -->
+      <div id="formRegister" style="display:none">
+        <div class="auth-field">
+          <label>Tu nombre</label>
+          <input type="text" id="regName" placeholder="Juan García"/>
+        </div>
+        <div class="auth-field">
+          <label>Correo electrónico</label>
+          <input type="email" id="regEmail" placeholder="tu@email.com"/>
+        </div>
+        <div class="auth-field">
+          <label>Contraseña</label>
+          <input type="password" id="regPass" placeholder="Mínimo 8 caracteres"/>
+        </div>
+        <button class="auth-submit" onclick="doRegister()" id="btnRegister">Crear mi cuenta →</button>
+        <div class="auth-msg" id="registerMsg"></div>
+      </div>
+      <!-- PLAN SELECTED INFO -->
+      <div id="authPlanInfo" style="display:none;margin-top:1rem;padding:.8rem 1rem;background:rgba(46,192,106,.06);border:1px solid rgba(46,192,106,.2);border-radius:12px;font-size:.78rem;color:var(--text-m);text-align:center">
+        🛒 Plan seleccionado: <strong id="authPlanName" style="color:var(--g-acc)"></strong> · <strong id="authPlanPrice" style="color:var(--text)"></strong>/mes
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ═══════════ PRIVACY MODAL ═══════════ -->
 <div class="modal-overlay" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle" onclick="closeModalOnBg(event,'privacyModal')">
   <div class="modal-box">
@@ -2058,7 +2191,7 @@ document.addEventListener('keydown',e=>{
       <p>Conservamos tu información mientras tu cuenta esté activa. Al cancelar tu suscripción, tus datos se eliminan definitivamente en un plazo máximo de 30 días, salvo obligación legal de conservación.</p>
 
       <h3>8. Tus derechos</h3>
-      <p>Dependiendo de tu jurisdicción, tienes derecho a acceder, corregir, exportar o eliminar tus datos personales. Para ejercer estos derechos contacta a <strong style="color:var(--g-acc)">privacy@exovetai.com</strong>. Responderemos en un plazo máximo de 30 días.</p>
+      <p>Dependiendo de tu jurisdicción, tienes derecho a acceder, corregir, exportar o eliminar tus datos personales. Para ejercer estos derechos contacta a <strong style="color:var(--g-acc)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="70000219061113093015081f06150411195e131f1d">[email&#160;protected]</a></strong>. Responderemos en un plazo máximo de 30 días.</p>
 
       <h3>9. Menores de edad</h3>
       <p>El servicio no está dirigido a menores de 16 años. No recopilamos conscientemente datos de menores. Si detectamos que un menor ha proporcionado información, la eliminaremos de inmediato.</p>
@@ -2067,7 +2200,7 @@ document.addEventListener('keydown',e=>{
       <p>Podemos actualizar esta política ocasionalmente. Te notificaremos por email ante cambios significativos. El uso continuado del servicio tras la notificación implica aceptación.</p>
 
       <div class="modal-divider"></div>
-      <p style="font-size:.78rem;color:var(--text-m);text-align:center">¿Preguntas sobre privacidad? Escríbenos a <strong style="color:var(--g-acc)">privacy@exovetai.com</strong></p>
+      <p style="font-size:.78rem;color:var(--text-m);text-align:center">¿Preguntas sobre privacidad? Escríbenos a <strong style="color:var(--g-acc)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c0b0b2a9b6a1a3b980a5b8afb6a5b4a1a9eea3afad">[email&#160;protected]</a></strong></p>
     </div>
   </div>
 </div>
@@ -2128,15 +2261,179 @@ document.addEventListener('keydown',e=>{
       <p>Nos reservamos el derecho de modificar, suspender o descontinuar cualquier parte del servicio con 30 días de preaviso. En caso de discontinuación total, reembolsaremos los períodos abonados no disfrutados.</p>
 
       <h3>9. Ley aplicable y jurisdicción</h3>
-      <p>Estos términos se rigen por las leyes del Estado de Delaware, Estados Unidos. Cualquier disputa se resolverá mediante arbitraje vinculante bajo las reglas de la American Arbitration Association (AAA), renunciando ambas partes a juicio con jurado.</p>
-
-      <h3>10. Contacto</h3>
-      <p>Para cualquier consulta sobre estos términos: <strong style="color:var(--g-acc)">legal@exovetai.com</strong></p>
-
-      <div class="modal-divider"></div>
-      <p style="font-size:.78rem;color:var(--text-m);text-align:center">ExoVet AI Inc. · Delaware, United States · legal@exovetai.com</p>
-    </div>
-  </div>
+      <p>Estos términos se rigen por las leyes del Estado de Delaware, Estados Unidos. Cualquier disputa se resolverá mediante arbitraje vinculante bajo las reglas de la American Arbitration Association (AAA), renunciando ambas partes a juici
+</div></div></div>
 </div>
+
+<!-- ═══════════════════════════════════════
+     SUPABASE AUTH & USER LOGIC
+════════════════════════════════════════ -->
+<script>
+// ─── Estado global ───────────────────────
+let currentUser = null;
+let selectedPlan = null;
+
+// ─── Inicialización ──────────────────────
+document.addEventListener('DOMContentLoaded', async () => {
+  await checkSession();
+});
+
+_supa.auth.onAuthStateChange(async (event, session) => {
+  if (event === 'SIGNED_IN' && session) {
+    currentUser = session.user;
+    await loadUserProfile();
+    updateNavUser();
+    closeAuth();
+    if (selectedPlan) {
+      setTimeout(() => {
+        alert('✅ Cuenta creada. Próximamente podrás completar tu pago del Plan ' + selectedPlan.name + ' via NexaPay.');
+        selectedPlan = null;
+      }, 400);
+    }
+  } else if (event === 'SIGNED_OUT') {
+    currentUser = null;
+    updateNavUser();
+  }
+});
+
+async function checkSession() {
+  const { data: { session } } = await _supa.auth.getSession();
+  if (session) {
+    currentUser = session.user;
+    await loadUserProfile();
+    updateNavUser();
+  }
+}
+
+async function loadUserProfile() {
+  if (!currentUser) return;
+  const { data } = await _supa.from('perfiles').select('*').eq('id', currentUser.id).single();
+  if (data) {
+    currentUser.profile = data;
+  } else {
+    await _supa.from('perfiles').insert({
+      id: currentUser.id,
+      email: currentUser.email,
+      nombre: currentUser.user_metadata?.nombre || '',
+      plan: 'free',
+      suscripcion_activa: false
+    });
+  }
+}
+
+function updateNavUser() {
+  const wrap = document.getElementById('navUserWrap');
+  const loginBtn = document.getElementById('navLoginBtn');
+  const emailSpan = document.getElementById('navUserEmail');
+  const udEmail = document.getElementById('udEmail');
+  const planBadge = document.getElementById('navPlanBadge');
+  if (currentUser) {
+    wrap.style.display = 'flex';
+    loginBtn.style.display = 'none';
+    const email = currentUser.email;
+    emailSpan.textContent = email.length > 18 ? email.substring(0,15)+'...' : email;
+    udEmail.textContent = email;
+    const plan = currentUser.profile?.plan || 'free';
+    planBadge.textContent = plan.charAt(0).toUpperCase() + plan.slice(1);
+    planBadge.className = 'plan-badge ' + plan;
+  } else {
+    wrap.style.display = 'none';
+    loginBtn.style.display = 'flex';
+  }
+}
+
+function openAuth(tab) {
+  switchTab(tab || 'login');
+  document.getElementById('authModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeAuth() {
+  document.getElementById('authModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('authModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAuth();
+});
+
+function switchTab(tab) {
+  const isLogin = tab === 'login';
+  document.getElementById('tabLogin').classList.toggle('active', isLogin);
+  document.getElementById('tabRegister').classList.toggle('active', !isLogin);
+  document.getElementById('formLogin').style.display = isLogin ? 'block' : 'none';
+  document.getElementById('formRegister').style.display = isLogin ? 'none' : 'block';
+}
+
+async function doLogin() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass = document.getElementById('loginPass').value;
+  const btn = document.getElementById('btnLogin');
+  const msg = document.getElementById('loginMsg');
+  if (!email || !pass) { showMsg(msg,'Por favor completa todos los campos.','error'); return; }
+  btn.disabled = true; btn.textContent = 'Entrando...';
+  const { error } = await _supa.auth.signInWithPassword({ email, password: pass });
+  if (error) {
+    showMsg(msg,'Correo o contraseña incorrectos.','error');
+    btn.disabled = false; btn.textContent = 'Entrar →';
+  }
+}
+
+async function doRegister() {
+  const nombre = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const pass = document.getElementById('regPass').value;
+  const btn = document.getElementById('btnRegister');
+  const msg = document.getElementById('registerMsg');
+  if (!nombre || !email || !pass) { showMsg(msg,'Por favor completa todos los campos.','error'); return; }
+  if (pass.length < 8) { showMsg(msg,'La contraseña debe tener al menos 8 caracteres.','error'); return; }
+  btn.disabled = true; btn.textContent = 'Creando cuenta...';
+  const { error } = await _supa.auth.signUp({ email, password: pass, options: { data: { nombre } } });
+  if (error) {
+    showMsg(msg, error.message.includes('already') ? 'Este correo ya tiene una cuenta.' : 'Error al crear cuenta.','error');
+  } else {
+    showMsg(msg,'✅ ¡Cuenta creada! Revisa tu email para confirmar.','success');
+  }
+  btn.disabled = false; btn.textContent = 'Crear mi cuenta →';
+}
+
+async function signOut() {
+  await _supa.auth.signOut();
+  document.getElementById('userDropdown').classList.remove('open');
+}
+
+function toggleUserMenu() {
+  document.getElementById('userDropdown').classList.toggle('open');
+}
+
+document.addEventListener('click', (e) => {
+  const wrap = document.getElementById('navUserWrap');
+  if (wrap && !wrap.contains(e.target)) document.getElementById('userDropdown').classList.remove('open');
+});
+
+function handlePlanClick(e, planId, price) {
+  e.preventDefault();
+  const names = { cuidador:'Cuidador 🦎', experto:'Experto 🔬', criador:'Criador Pro 🏆' };
+  selectedPlan = { id: planId, name: names[planId], price };
+  if (currentUser) {
+    alert('💳 Pago NexaPay próximamente.\nPlan: ' + names[planId] + ' — $' + price + '/mes');
+  } else {
+    openAuth('register');
+    document.getElementById('authPlanInfo').style.display = 'block';
+    document.getElementById('authPlanName').textContent = names[planId];
+    document.getElementById('authPlanPrice').textContent = '$' + price;
+  }
+}
+
+function openDashboard() {
+  document.getElementById('userDropdown').classList.remove('open');
+  alert('🦎 Panel de usuario próximamente.\nPodrás ver tus mascotas, historial y suscripción.');
+}
+
+function showMsg(el, text, type) {
+  el.textContent = text;
+  el.className = 'auth-msg ' + type;
+}
+</script>
 </body>
 </html>
