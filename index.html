@@ -1368,7 +1368,7 @@ footer p{font-size:.8rem;color:var(--text-m)}
         <li><span class="chk">✓</span><span>Diagnóstico de síntomas con nivel de urgencia</span></li>
         <li><span class="chk">✓</span><span>Dieta personalizada por especie</span></li>
         <li><span class="chk">✓</span><span>Análisis de fotos con visión artificial</span></li>
-        <li><span class="chk">✓</span><span>Mascotas ilimitadas en tu perfil</span></li>
+        <li><span class="chk">✓</span><span>Hasta 5 mascotas en tu perfil</span></li>
         <li><span class="chk">✓</span><span>Historial médico completo</span></li>
         <li><span class="chk">✓</span><span>Recordatorios de vitaminas y tratamientos</span></li>
         <li><span class="chk">✓</span><span>Directorio de veterinarios especializados</span></li>
@@ -2279,7 +2279,7 @@ document.addEventListener('keydown',e=>{
         </div>
         <div id="petsEmpty" class="pets-empty" style="display:none">
           <span class="pets-empty-icon">🐾</span>
-          <p style="font-size:.9rem;margin-bottom:1rem">Aún no tienes mascotas registradas.</p>
+          <p style="font-size:.9rem;margin-bottom:1rem">Aún no tienes mascotas registradas. Puedes agregar hasta 5.</p>
           <button class="pet-btn-save" onclick="showPetForm()">+ Agregar mi primera mascota</button>
         </div>
       </div>
@@ -2390,7 +2390,7 @@ document.addEventListener('keydown',e=>{
           <span class="pp-ico">🦎</span>
           <div>
             <div class="pp-name">ExoVet Premium — Todo incluido</div>
-            <div class="pp-desc">Consultas · Fotos · Mascotas ilimitadas · Vets · 24/7</div>
+            <div class="pp-desc">Consultas · Fotos · Hasta 5 mascotas · Vets · 24/7</div>
           </div>
         </div>
         <div class="pp-price">$75<span style="font-size:.7rem;color:var(--text-m)">/mes</span></div>
@@ -2784,7 +2784,9 @@ async function loadPets() {
   }
 
   empty.style.display = 'none';
-  count.textContent = data.length + (data.length === 1 ? ' mascota' : ' mascotas');
+  count.textContent = data.length + (data.length === 1 ? ' mascota' : ' mascotas') + ' / 5';
+
+  const atLimit = data.length >= 5;
 
   grid.innerHTML = data.map(pet => `
     <div class="pet-card">
@@ -2795,12 +2797,16 @@ async function loadPets() {
       ${pet.edad_meses ? `<div class="pet-card-age">${pet.edad_meses} meses</div>` : ''}
       ${pet.peso_gramos ? `<div class="pet-card-age" style="color:var(--text-m)">${pet.peso_gramos}g</div>` : ''}
     </div>
-  `).join('') + `
+  `).join('') + (atLimit ? `
+    <div class="pet-add-card" style="cursor:not-allowed;opacity:.5;border-color:rgba(255,107,71,.3)" title="Límite alcanzado">
+      <span class="pet-add-icon" style="color:var(--coral)">🔒</span>
+      <span class="pet-add-text">Límite de 5 mascotas</span>
+    </div>` : `
     <div class="pet-add-card" onclick="showPetForm()">
       <span class="pet-add-icon">+</span>
       <span class="pet-add-text">Agregar mascota</span>
-    </div>
-  `;
+    </div>`
+  );
 }
 
 function showPetsList() {
@@ -2837,6 +2843,17 @@ function selectEmoji(btn, emoji) {
 }
 
 async function savePet() {
+  // Check limit first
+  const { count } = await _supa
+    .from('mascotas')
+    .select('*', { count: 'exact', head: true })
+    .eq('usuario_id', currentUser.id);
+
+  if (count >= 5) {
+    showMsg(document.getElementById('petFormMsg'), '🔒 Has alcanzado el límite de 5 mascotas por cuenta.', 'error');
+    return;
+  }
+
   const nombre = document.getElementById('petName').value.trim();
   const especie = document.getElementById('petSpecies').value.trim();
   const subespecie = document.getElementById('petSubspecies').value.trim();
