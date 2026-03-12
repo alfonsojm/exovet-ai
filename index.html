@@ -747,6 +747,68 @@ footer p{font-size:.8rem;color:var(--text-m)}
 .chat-sug{padding:.65rem 1rem;background:var(--surface2);border:1px solid var(--border);border-radius:12px;font-size:.8rem;color:var(--text-m);cursor:pointer;text-align:left;transition:all .2s;font-family:'DM Sans',sans-serif}
 .chat-sug:hover{border-color:rgba(46,192,106,.3);color:var(--text);background:rgba(46,192,106,.05)}
 
+/* ── RECORDATORIOS ───────────────────────── */
+.rem-overlay{position:fixed;inset:0;background:rgba(0,0,0,.9);backdrop-filter:blur(12px);z-index:2550;opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:center;justify-content:center;padding:1.5rem}
+.rem-overlay.open{opacity:1;pointer-events:all}
+.rem-panel{background:var(--surface2);border:1px solid var(--border);border-radius:28px;width:100%;max-width:680px;max-height:90vh;display:flex;flex-direction:column;transform:translateY(24px);transition:transform .3s;overflow:hidden}
+.rem-overlay.open .rem-panel{transform:translateY(0)}
+.rem-head{padding:1.4rem 1.8rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.rem-head-left{display:flex;align-items:center;gap:.8rem}
+.rem-head-title{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--cream)}
+.rem-head-count{font-size:.7rem;font-family:'Space Mono',monospace;color:var(--text-m);background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:100px;padding:.2rem .6rem}
+.rem-close{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--text-m);font-size:.9rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s}
+.rem-close:hover{background:rgba(255,100,71,.15);border-color:var(--coral);color:var(--coral)}
+.rem-body{overflow-y:auto;padding:1.4rem 1.8rem;flex:1;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.rem-list{display:flex;flex-direction:column;gap:.8rem;margin-bottom:1.2rem}
+.rem-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:1rem 1.2rem;display:flex;align-items:center;gap:1rem;transition:border-color .2s}
+.rem-card:hover{border-color:rgba(46,192,106,.2)}
+.rem-card.vencido{border-color:rgba(255,107,71,.25);background:rgba(255,107,71,.03)}
+.rem-card.hoy{border-color:rgba(245,166,35,.3);background:rgba(245,166,35,.04)}
+.rem-card.activo{border-color:rgba(46,192,106,.2);background:rgba(46,192,106,.02)}
+.rem-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.rem-icon.vitamina{background:rgba(46,192,106,.1);border:1px solid rgba(46,192,106,.2)}
+.rem-icon.medicamento{background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.2)}
+.rem-icon.visita{background:rgba(100,160,255,.1);border:1px solid rgba(100,160,255,.2)}
+.rem-icon.otro{background:rgba(255,255,255,.05);border:1px solid var(--border)}
+.rem-info{flex:1;min-width:0}
+.rem-title{font-weight:700;font-size:.88rem;color:var(--cream);margin-bottom:.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rem-meta{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.rem-pet{font-size:.7rem;color:var(--text-m)}
+.rem-date{font-size:.68rem;font-family:'Space Mono',monospace;padding:.15rem .5rem;border-radius:100px}
+.rem-date.vencido{background:rgba(255,107,71,.12);color:var(--coral);border:1px solid rgba(255,107,71,.2)}
+.rem-date.hoy{background:rgba(245,166,35,.12);color:var(--amber);border:1px solid rgba(245,166,35,.2)}
+.rem-date.futuro{background:rgba(46,192,106,.08);color:var(--g-acc);border:1px solid rgba(46,192,106,.15)}
+.rem-freq{font-size:.67rem;color:var(--text-m);font-family:'Space Mono',monospace}
+.rem-actions{display:flex;gap:.4rem;flex-shrink:0}
+.rem-btn-done{width:30px;height:30px;border-radius:8px;background:rgba(46,192,106,.1);border:1px solid rgba(46,192,106,.2);color:var(--g-acc);font-size:.8rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.rem-btn-done:hover{background:rgba(46,192,106,.2)}
+.rem-btn-del{width:30px;height:30px;border-radius:8px;background:rgba(255,107,71,.08);border:1px solid rgba(255,107,71,.15);color:var(--coral);font-size:.75rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.rem-btn-del:hover{background:rgba(255,107,71,.18)}
+.rem-add-btn{width:100%;padding:.85rem;background:transparent;border:1px dashed rgba(46,192,106,.3);border-radius:14px;color:var(--g-acc);font-size:.85rem;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:.5rem;margin-bottom:1rem}
+.rem-add-btn:hover{background:rgba(46,192,106,.05);border-color:var(--g-acc)}
+.rem-form{display:none;background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:1.4rem;margin-bottom:1rem}
+.rem-form.active{display:block}
+.rem-form-title{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:var(--cream);margin-bottom:1.1rem}
+.rem-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:.9rem}
+.rem-field{display:flex;flex-direction:column;gap:.35rem}
+.rem-field.full{grid-column:span 2}
+.rem-field label{font-size:.73rem;color:var(--text-m);font-weight:500}
+.rem-field input,.rem-field select{padding:.7rem .9rem;background:var(--surface2);border:1px solid var(--border);border-radius:11px;color:var(--text);font-size:.85rem;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s}
+.rem-field input:focus,.rem-field select:focus{border-color:var(--g-acc)}
+.rem-field select option{background:var(--surface2)}
+.rem-type-pills{display:flex;gap:.5rem;flex-wrap:wrap}
+.rem-type-pill{padding:.4rem .9rem;border-radius:100px;border:1px solid var(--border);background:var(--surface2);font-size:.75rem;color:var(--text-m);cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif}
+.rem-type-pill:hover{border-color:rgba(46,192,106,.3)}
+.rem-type-pill.sel{border-color:var(--g-acc);background:rgba(46,192,106,.1);color:var(--g-acc);font-weight:600}
+.rem-form-actions{display:flex;gap:.7rem;justify-content:flex-end;margin-top:1rem}
+.rem-btn-cancel{padding:.65rem 1.3rem;background:transparent;border:1px solid var(--border);border-radius:11px;color:var(--text-m);font-family:'DM Sans',sans-serif;font-size:.85rem;cursor:pointer;transition:all .2s}
+.rem-btn-cancel:hover{border-color:var(--coral);color:var(--coral)}
+.rem-btn-save{padding:.65rem 1.5rem;background:linear-gradient(135deg,var(--g-acc),#1da855);border:none;border-radius:11px;color:#000;font-weight:700;font-size:.85rem;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s}
+.rem-btn-save:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(46,192,60,.35)}
+.rem-btn-save:disabled{opacity:.6;transform:none;cursor:not-allowed}
+.rem-empty{text-align:center;padding:2.5rem 1rem;color:var(--text-m)}
+.rem-empty-icon{font-size:2.8rem;display:block;margin-bottom:.8rem}
+
 .pets-overlay{position:fixed;inset:0;background:rgba(0,0,0,.9);backdrop-filter:blur(12px);z-index:2500;opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:center;justify-content:center;padding:1.5rem}
 .pets-overlay.open{opacity:1;pointer-events:all}
 .pets-panel{background:var(--surface2);border:1px solid var(--border);border-radius:28px;width:100%;max-width:700px;max-height:90vh;display:flex;flex-direction:column;transform:translateY(24px);transition:transform .3s;overflow:hidden}
@@ -1003,6 +1065,7 @@ footer p{font-size:.8rem;color:var(--text-m)}
         <div class="ud-email" id="udEmail">—</div>
         <button class="ud-btn" onclick="openDashboardSection('Diagnóstico')">🧬 Diagnóstico IA</button>
         <button class="ud-btn" onclick="openDashboardSection('Mis Mascotas')">🦎 Mis Mascotas</button>
+        <button class="ud-btn" onclick="openDashboardSection('Recordatorios')">⏰ Recordatorios</button>
         <button class="ud-btn" onclick="openDashboardSection('Mis Consultas')">📋 Mis Consultas</button>
         <button class="ud-btn" onclick="openDashboardSection('Mi Suscripción')">💳 Mi Suscripción</button>
         <button class="ud-btn danger" onclick="signOut()">← Cerrar sesión</button>
@@ -2223,6 +2286,86 @@ document.addEventListener('keydown',e=>{
 
 </script>
 
+<!-- ═══════════ RECORDATORIOS ═══════════ -->
+<div class="rem-overlay" id="remPanel">
+  <div class="rem-panel">
+    <div class="rem-head">
+      <div class="rem-head-left">
+        <span style="font-size:1.4rem">⏰</span>
+        <div class="rem-head-title">Recordatorios</div>
+        <span class="rem-head-count" id="remCount">0 activos</span>
+      </div>
+      <button class="rem-close" onclick="closeRemPanel()">✕</button>
+    </div>
+    <div class="rem-body">
+
+      <!-- Add form -->
+      <div class="rem-form" id="remForm">
+        <div class="rem-form-title">➕ Nuevo recordatorio</div>
+        <div class="rem-form-grid">
+          <div class="rem-field full">
+            <label>Tipo de recordatorio</label>
+            <div class="rem-type-pills">
+              <button class="rem-type-pill sel" onclick="selectRemType(this,'vitamina')">💊 Vitamina</button>
+              <button class="rem-type-pill" onclick="selectRemType(this,'medicamento')">🩺 Medicamento</button>
+              <button class="rem-type-pill" onclick="selectRemType(this,'visita')">🏥 Visita vet</button>
+              <button class="rem-type-pill" onclick="selectRemType(this,'otro')">📌 Otro</button>
+            </div>
+          </div>
+          <div class="rem-field full">
+            <label>Título *</label>
+            <input type="text" id="remTitle" placeholder="Ej: Vitamina D3, Desparasitación, Revisión anual..."/>
+          </div>
+          <div class="rem-field">
+            <label>Mascota</label>
+            <select id="remPetSelect">
+              <option value="">Todas las mascotas</option>
+            </select>
+          </div>
+          <div class="rem-field">
+            <label>Frecuencia</label>
+            <select id="remFreq">
+              <option value="unica">Una sola vez</option>
+              <option value="diaria">Diaria</option>
+              <option value="semanal" selected>Semanal</option>
+              <option value="mensual">Mensual</option>
+              <option value="trimestral">Trimestral</option>
+              <option value="anual">Anual</option>
+            </select>
+          </div>
+          <div class="rem-field full">
+            <label>Próxima fecha *</label>
+            <input type="date" id="remDate"/>
+          </div>
+          <div class="rem-field full">
+            <label>Notas (opcional)</label>
+            <input type="text" id="remNotes" placeholder="Ej: Dosis 0.5ml, con comida..."/>
+          </div>
+        </div>
+        <div class="rem-form-actions">
+          <button class="rem-btn-cancel" onclick="closeRemForm()">Cancelar</button>
+          <button class="rem-btn-save" id="btnSaveRem" onclick="saveReminder()">Guardar ⏰</button>
+        </div>
+        <div class="auth-msg" id="remFormMsg" style="margin-top:.6rem"></div>
+      </div>
+
+      <!-- Add button -->
+      <button class="rem-add-btn" id="remAddBtn" onclick="openRemForm()">
+        <span>+</span> Agregar recordatorio
+      </button>
+
+      <!-- List -->
+      <div class="rem-list" id="remList"></div>
+      <div class="rem-empty" id="remEmpty" style="display:none">
+        <span class="rem-empty-icon">⏰</span>
+        <p style="font-size:.88rem;margin-bottom:.4rem">No tienes recordatorios activos.</p>
+        <p style="font-size:.78rem;opacity:.6">Crea recordatorios para vitaminas, medicamentos y visitas al veterinario.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <!-- ═══════════ CHAT DIAGNÓSTICO ═══════════ -->
 <div class="chat-overlay" id="chatPanel">
   <div class="chat-panel">
@@ -2760,6 +2903,181 @@ function handlePlanClick(e, planId, price) {
 function openDashboard() {
   document.getElementById('userDropdown').classList.remove('open');
   alert('🦎 Panel de usuario próximamente.\nPodrás ver tus mascotas, historial y suscripción.');
+}
+
+// ─── Recordatorios ────────────────────────
+let selectedRemType = 'vitamina';
+
+async function openRemPanel() {
+  document.getElementById('userDropdown').classList.remove('open');
+  if (!checkAccessOrPaywall('Recordatorios')) return;
+  document.getElementById('remPanel').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  closeRemForm();
+  await loadReminders();
+  await populateRemPetSelect();
+  // Set today as default date
+  document.getElementById('remDate').value = new Date().toISOString().split('T')[0];
+}
+
+function closeRemPanel() {
+  document.getElementById('remPanel').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('remPanel').addEventListener('click', function(e) {
+  if (e.target === this) closeRemPanel();
+});
+
+async function populateRemPetSelect() {
+  if (!currentUser) return;
+  const { data } = await _supa.from('mascotas').select('id,nombre,notas').eq('usuario_id', currentUser.id);
+  const sel = document.getElementById('remPetSelect');
+  sel.innerHTML = '<option value="">Todas las mascotas</option>';
+  (data || []).forEach(p => {
+    const emoji = p.notas?.startsWith('emoji:') ? p.notas.split('|')[0].replace('emoji:','') : '🦎';
+    sel.innerHTML += `<option value="${p.id}">${emoji} ${p.nombre}</option>`;
+  });
+}
+
+function selectRemType(btn, type) {
+  document.querySelectorAll('.rem-type-pill').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  selectedRemType = type;
+}
+
+function openRemForm() {
+  document.getElementById('remForm').classList.add('active');
+  document.getElementById('remAddBtn').style.display = 'none';
+  document.getElementById('remTitle').focus();
+}
+
+function closeRemForm() {
+  document.getElementById('remForm').classList.remove('active');
+  document.getElementById('remAddBtn').style.display = 'flex';
+  ['remTitle','remNotes'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('remFreq').value = 'semanal';
+  document.getElementById('remDate').value = new Date().toISOString().split('T')[0];
+  document.getElementById('remFormMsg').className = 'auth-msg';
+  selectedRemType = 'vitamina';
+  document.querySelectorAll('.rem-type-pill').forEach((b,i) => b.classList.toggle('sel', i===0));
+}
+
+async function saveReminder() {
+  const titulo = document.getElementById('remTitle').value.trim();
+  const fecha = document.getElementById('remDate').value;
+  const msg = document.getElementById('remFormMsg');
+  const btn = document.getElementById('btnSaveRem');
+
+  if (!titulo || !fecha) { showMsg(msg, 'El título y la fecha son obligatorios.', 'error'); return; }
+
+  btn.disabled = true; btn.textContent = 'Guardando...';
+
+  const petId = document.getElementById('remPetSelect').value || null;
+  const { error } = await _supa.from('recordatorios').insert({
+    usuario_id: currentUser.id,
+    mascota_id: petId,
+    titulo,
+    tipo: selectedRemType,
+    frecuencia: document.getElementById('remFreq').value,
+    fecha_proxima: fecha,
+    notas: document.getElementById('remNotes').value.trim() || null,
+    activo: true
+  });
+
+  if (error) {
+    showMsg(msg, 'Error al guardar. Intenta de nuevo.', 'error');
+  } else {
+    showMsg(msg, '✅ Recordatorio guardado.', 'success');
+    setTimeout(() => { closeRemForm(); loadReminders(); }, 800);
+  }
+  btn.disabled = false; btn.textContent = 'Guardar ⏰';
+}
+
+async function loadReminders() {
+  if (!currentUser) return;
+  const { data } = await _supa
+    .from('recordatorios')
+    .select('*, mascotas(nombre, notas)')
+    .eq('usuario_id', currentUser.id)
+    .eq('activo', true)
+    .order('fecha_proxima', { ascending: true });
+
+  const list = document.getElementById('remList');
+  const empty = document.getElementById('remEmpty');
+  const count = document.getElementById('remCount');
+
+  if (!data || data.length === 0) {
+    list.innerHTML = '';
+    empty.style.display = 'block';
+    count.textContent = '0 activos';
+    return;
+  }
+
+  empty.style.display = 'none';
+  const activos = data.filter(r => r.activo).length;
+  count.textContent = activos + (activos === 1 ? ' activo' : ' activos');
+
+  const today = new Date().toISOString().split('T')[0];
+  const typeIcons = { vitamina:'💊', medicamento:'🩺', visita:'🏥', otro:'📌' };
+  const freqLabels = { unica:'Una vez', diaria:'Diaria', semanal:'Semanal', mensual:'Mensual', trimestral:'Trimestral', anual:'Anual' };
+
+  list.innerHTML = data.map(r => {
+    const isVencido = r.fecha_proxima < today;
+    const isHoy = r.fecha_proxima === today;
+    const cardClass = isVencido ? 'vencido' : isHoy ? 'hoy' : 'activo';
+    const dateClass = isVencido ? 'vencido' : isHoy ? 'hoy' : 'futuro';
+    const dateLabel = isVencido ? '⚠️ Vencido' : isHoy ? '🔔 Hoy' : '📅 ' + formatDate(r.fecha_proxima);
+    const petEmoji = r.mascotas?.notas?.startsWith('emoji:') ? r.mascotas.notas.split('|')[0].replace('emoji:','') : '';
+    const petName = r.mascotas ? `${petEmoji} ${r.mascotas.nombre}` : '';
+
+    return `<div class="rem-card ${cardClass}">
+      <div class="rem-icon ${r.tipo}">${typeIcons[r.tipo] || '📌'}</div>
+      <div class="rem-info">
+        <div class="rem-title">${r.titulo}</div>
+        <div class="rem-meta">
+          ${petName ? `<span class="rem-pet">${petName}</span>` : ''}
+          <span class="rem-date ${dateClass}">${dateLabel}</span>
+          <span class="rem-freq">${freqLabels[r.frecuencia] || r.frecuencia}</span>
+        </div>
+        ${r.notas ? `<div style="font-size:.72rem;color:var(--text-m);margin-top:.3rem">${r.notas}</div>` : ''}
+      </div>
+      <div class="rem-actions">
+        <button class="rem-btn-done" onclick="markRemDone('${r.id}','${r.frecuencia}','${r.fecha_proxima}')" title="Marcar como hecho">✓</button>
+        <button class="rem-btn-del" onclick="deleteRem('${r.id}')" title="Eliminar">✕</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function formatDate(dateStr) {
+  const [y, m, d] = dateStr.split('-');
+  const months = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  return `${parseInt(d)} ${months[parseInt(m)-1]}`;
+}
+
+async function markRemDone(id, frecuencia, fechaActual) {
+  // Calculate next date based on frequency
+  const date = new Date(fechaActual + 'T12:00:00');
+  const freqDays = { unica: null, diaria: 1, semanal: 7, mensual: 30, trimestral: 90, anual: 365 };
+  const days = freqDays[frecuencia];
+
+  if (!days) {
+    // One-time: mark as inactive
+    await _supa.from('recordatorios').update({ activo: false }).eq('id', id);
+  } else {
+    // Recurring: advance to next date
+    date.setDate(date.getDate() + days);
+    const nextDate = date.toISOString().split('T')[0];
+    await _supa.from('recordatorios').update({ fecha_proxima: nextDate }).eq('id', id);
+  }
+  loadReminders();
+}
+
+async function deleteRem(id) {
+  if (!confirm('¿Eliminar este recordatorio?')) return;
+  await _supa.from('recordatorios').delete().eq('id', id).eq('usuario_id', currentUser.id);
+  loadReminders();
 }
 
 // ─── Pets Panel ──────────────────────────
@@ -3367,6 +3685,8 @@ function openDashboardSection(section) {
     openPetsPanel();
   } else if (section === 'Diagnóstico') {
     openChatPanel();
+  } else if (section === 'Recordatorios') {
+    openRemPanel();
   } else {
     if (!checkAccessOrPaywall(section)) return;
     alert('🦎 ' + section + ' — próximamente disponible.');
