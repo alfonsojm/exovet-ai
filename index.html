@@ -727,7 +727,18 @@ footer p{font-size:.8rem;color:var(--text-m)}
 .chat-send:disabled{opacity:.5;transform:none;cursor:not-allowed}
 .chat-disclaimer{font-size:.68rem;color:var(--text-m);text-align:center;margin-top:.6rem;opacity:.6}
 
-/* Welcome state */
+/* Photo upload */
+.chat-photo-btn{width:44px;height:44px;border-radius:14px;background:var(--surface2);border:1px solid var(--border);color:var(--text-m);font-size:1.1rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chat-photo-btn:hover{border-color:var(--g-acc);color:var(--g-acc);background:rgba(46,192,106,.08)}
+.chat-photo-btn.has-photo{border-color:var(--g-acc);background:rgba(46,192,106,.1);color:var(--g-acc)}
+.chat-photo-preview{display:none;align-items:center;gap:.6rem;padding:.5rem .8rem;background:rgba(46,192,106,.06);border:1px solid rgba(46,192,106,.2);border-radius:10px;margin-bottom:.6rem}
+.chat-photo-preview.visible{display:flex}
+.chat-photo-thumb{width:40px;height:40px;border-radius:8px;object-fit:cover;border:1px solid rgba(46,192,106,.3)}
+.chat-photo-name{font-size:.75rem;color:var(--g-acc);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chat-photo-remove{width:20px;height:20px;border-radius:50%;background:rgba(255,107,71,.15);border:1px solid rgba(255,107,71,.3);color:var(--coral);font-size:.65rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+/* Photo in chat bubble */
+.chat-photo-msg{width:100%;max-width:260px;border-radius:12px;object-fit:cover;margin-bottom:.6rem;border:1px solid rgba(46,192,106,.2)}
+
 .chat-welcome{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;text-align:center;padding:2rem;gap:1rem;color:var(--text-m)}
 .chat-welcome-icon{font-size:3rem}
 .chat-welcome-title{font-family:'Fraunces',serif;font-size:1.2rem;color:var(--cream);font-weight:700}
@@ -2249,8 +2260,17 @@ document.addEventListener('keydown',e=>{
 
     <!-- Input area -->
     <div class="chat-input-area">
+      <!-- Photo preview -->
+      <div class="chat-photo-preview" id="chatPhotoPreview">
+        <img id="chatPhotoThumb" class="chat-photo-thumb" src="" alt="foto"/>
+        <span class="chat-photo-name" id="chatPhotoName">foto.jpg</span>
+        <button class="chat-photo-remove" onclick="removePhoto()" title="Quitar foto">✕</button>
+      </div>
       <div class="chat-input-wrap">
-        <textarea class="chat-input" id="chatInput" placeholder="Describe los síntomas de tu mascota..." rows="1" onkeydown="handleChatKey(event)" oninput="autoResize(this)"></textarea>
+        <!-- Hidden file input -->
+        <input type="file" id="chatPhotoInput" accept="image/*" style="display:none" onchange="handlePhotoSelect(event)"/>
+        <button class="chat-photo-btn" id="chatPhotoBtn" onclick="document.getElementById('chatPhotoInput').click()" title="Adjuntar foto de tu mascota">📷</button>
+        <textarea class="chat-input" id="chatInput" placeholder="Describe los síntomas o adjunta una foto..." rows="1" onkeydown="handleChatKey(event)" oninput="autoResize(this)"></textarea>
         <button class="chat-send" id="chatSendBtn" onclick="sendMessage()" disabled>➤</button>
       </div>
       <div class="chat-disclaimer">⚕️ ExoVet AI es orientación informativa. No reemplaza al veterinario. En emergencias, acude a un especialista.</div>
@@ -2916,6 +2936,8 @@ let chatHistory = [];
 let selectedPetForChat = null;
 let userPetsForChat = [];
 let chatActive = false;
+let selectedPhotoBase64 = null;
+let selectedPhotoType = null;
 
 async function openChatPanel() {
   document.getElementById('userDropdown').classList.remove('open');
@@ -3029,8 +3051,52 @@ function resetChatUI() {
       </div>
     </div>`;
   document.getElementById('chatInput').value = '';
+  document.getElementById('chatInput').placeholder = 'Describe los síntomas o adjunta una foto...';
   document.getElementById('chatSendBtn').disabled = true;
+  removePhoto();
   chatHistory = [];
+}
+
+function handlePhotoSelect(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  // Max 4MB
+  if (file.size > 4 * 1024 * 1024) {
+    alert('La foto es muy grande. Máximo 4MB.');
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const result = e.target.result;
+    selectedPhotoBase64 = result.split(',')[1];
+    selectedPhotoType = file.type;
+
+    // Show preview
+    document.getElementById('chatPhotoThumb').src = result;
+    document.getElementById('chatPhotoName').textContent = file.name;
+    document.getElementById('chatPhotoPreview').classList.add('visible');
+    document.getElementById('chatPhotoBtn').classList.add('has-photo');
+
+    // Enable send
+    document.getElementById('chatSendBtn').disabled = !chatActive;
+
+    // Update placeholder
+    document.getElementById('chatInput').placeholder = 'Describe qué observas en la foto (opcional)...';
+  };
+  reader.readAsDataURL(file);
+  // Reset input so same file can be selected again
+  event.target.value = '';
+}
+
+function removePhoto() {
+  selectedPhotoBase64 = null;
+  selectedPhotoType = null;
+  document.getElementById('chatPhotoPreview').classList.remove('visible');
+  document.getElementById('chatPhotoBtn').classList.remove('has-photo');
+  document.getElementById('chatPhotoThumb').src = '';
+  document.getElementById('chatInput').placeholder = 'Describe los síntomas o adjunta una foto...';
 }
 
 function handleChatKey(e) {
@@ -3048,7 +3114,10 @@ function autoResize(el) {
 async function sendMessage() {
   const input = document.getElementById('chatInput');
   const text = input.value.trim();
-  if (!text || !chatActive) return;
+  const hasPhoto = !!selectedPhotoBase64;
+
+  if (!text && !hasPhoto) return;
+  if (!chatActive) return;
 
   const btn = document.getElementById('chatSendBtn');
   btn.disabled = true;
@@ -3059,15 +3128,38 @@ async function sendMessage() {
   const welcome = document.getElementById('chatWelcome');
   if (welcome) welcome.remove();
 
-  // Add user message
-  appendMessage('user', text);
-  chatHistory.push({ role: 'user', content: text });
+  // Build user message content
+  let userContent;
+  let displayText = text || '📷 Foto adjunta para análisis';
 
-  // Show typing indicator
+  if (hasPhoto && text) {
+    userContent = [
+      { type: 'image', source: { type: 'base64', media_type: selectedPhotoType, data: selectedPhotoBase64 } },
+      { type: 'text', text: text }
+    ];
+    displayText = text;
+  } else if (hasPhoto) {
+    userContent = [
+      { type: 'image', source: { type: 'base64', media_type: selectedPhotoType, data: selectedPhotoBase64 } },
+      { type: 'text', text: 'Analiza esta foto de mi mascota y dime qué observas.' }
+    ];
+  } else {
+    userContent = text;
+  }
+
+  // Show user message with optional photo
+  appendUserMessage(displayText, hasPhoto ? document.getElementById('chatPhotoThumb').src : null);
+  chatHistory.push({ role: 'user', content: userContent });
+
+  // Clear photo
+  const photoDataForSave = hasPhoto ? document.getElementById('chatPhotoThumb').src : null;
+  removePhoto();
+
+  // Show typing
   const typingId = showTyping();
 
   try {
-    const systemPrompt = buildSystemPrompt();
+    const systemPrompt = buildSystemPrompt(hasPhoto);
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
@@ -3089,11 +3181,10 @@ async function sendMessage() {
 
     if (data.content && data.content[0]) {
       const aiText = data.content[0].text;
+      // Store simplified version in history (no base64)
       chatHistory.push({ role: 'assistant', content: aiText });
       appendAIMessage(aiText);
-
-      // Save to Supabase
-      await saveConsulta(text, aiText);
+      await saveConsulta(displayText, aiText);
     } else {
       appendMessage('ai', '⚠️ Error al conectar con la IA. Verifica tu API Key.');
     }
@@ -3106,7 +3197,7 @@ async function sendMessage() {
   scrollToBottom();
 }
 
-function buildSystemPrompt() {
+function buildSystemPrompt(hasPhoto = false) {
   const pet = selectedPetForChat;
   const notasRaw = pet.notas?.includes('|') ? pet.notas.split('|')[1] : (pet.notas || '');
   return `Eres ExoVet AI, un veterinario especializado exclusivamente en mascotas exóticas con 20 años de experiencia. 
@@ -3119,18 +3210,39 @@ MASCOTA ACTUAL:
 - Peso: ${pet.peso_gramos ? pet.peso_gramos + 'g' : 'no especificado'}
 - Notas médicas: ${notasRaw || 'ninguna'}
 
+${hasPhoto ? `ANÁLISIS DE FOTO: El usuario ha enviado una imagen de su mascota. Analiza visualmente:
+- Estado de piel, escamas, plumas o pelaje
+- Postura corporal y signos de dolor o malestar
+- Ojos: claridad, hinchazón, secreciones
+- Coloración anormal o lesiones visibles
+- Signos de deshidratación, parásitos externos o heridas
+Describe específicamente lo que observas en la imagen antes de dar tu diagnóstico.` : ''}
+
 FORMATO DE RESPUESTA:
 Siempre incluye al inicio una línea con el nivel de urgencia exactamente así:
 [URGENCIA: INFORMATIVO] o [URGENCIA: MODERADO] o [URGENCIA: URGENTE] o [URGENCIA: EMERGENCIA]
 
 Luego responde de forma clara con:
-1. Análisis de los síntomas para esta especie específica
+1. ${hasPhoto ? 'Lo que observas en la imagen' : 'Análisis de los síntomas para esta especie'}
 2. Causas más probables (diagnóstico diferencial)
 3. Acciones concretas que puede hacer el dueño ahora
 4. Cuándo debe ir al veterinario
 
-Sé específico para la especie. Un conejo con GI stasis es una emergencia. Una serpiente sin comer 3 semanas puede ser normal. Conoces estas diferencias.
-Máximo 250 palabras por respuesta. Usa emojis con moderación.`;
+Sé específico para la especie. Máximo 280 palabras. Usa emojis con moderación.`;
+}
+
+function appendUserMessage(text, photoSrc = null) {
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg user';
+  div.innerHTML = `
+    <div class="chat-msg-avatar">👤</div>
+    <div class="chat-bubble">
+      ${photoSrc ? `<img src="${photoSrc}" class="chat-photo-msg" alt="foto mascota"/>` : ''}
+      ${text ? `<div>${text}</div>` : ''}
+    </div>`;
+  msgs.appendChild(div);
+  scrollToBottom();
 }
 
 function appendMessage(role, text) {
