@@ -144,7 +144,7 @@
     {
       "@type": "Offer",
       "name": "ExoVet Premium",
-      "price": "75.00",
+      "price": "59.00",
       "priceCurrency": "USD",
       "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" }
     }
@@ -1617,30 +1617,30 @@ footer p{font-size:.8rem;color:var(--text-m)}
   <!-- Single plan centered -->
   <div style="max-width:480px;margin:0 auto">
     <div class="pcard hl rev" style="text-align:center">
-      <div class="ptag">★ Todo Incluido</div>
+      <div class="ptag" data-i18n="price.tag">★ Todo Incluido</div>
       <div class="pico">🦎</div>
-      <div class="pname">ExoVet Premium</div>
-      <div class="pdescr">Acceso completo a todas las funciones de ExoVet IO. Sin límites, sin restricciones.</div>
+      <div class="pname" data-i18n="price.name">ExoVet Premium</div>
+      <div class="pdescr" data-i18n="price.desc">Acceso completo a todas las funciones de ExoVet IO. Sin límites, sin restricciones.</div>
       <div class="pprice" style="margin:1.5rem 0">
-        <div class="pamount"><span class="cur">$</span>75</div>
-        <div class="pper">por mes · cancela cuando quieras</div>
+        <div class="pamount"><span class="cur">$</span>59</div>
+        <div class="pper" data-i18n="price.per">por mes · cancela cuando quieras</div>
       </div>
       <ul class="pfeats" style="text-align:left;margin-bottom:2rem">
-        <li><span class="chk">✓</span><span>Consultas ilimitadas con IA veterinaria</span></li>
-        <li><span class="chk">✓</span><span>Diagnóstico de síntomas con nivel de urgencia</span></li>
-        <li><span class="chk">✓</span><span>Dieta personalizada por especie</span></li>
-        <li><span class="chk">✓</span><span>Análisis de fotos con visión artificial</span></li>
-        <li><span class="chk">✓</span><span>Hasta 5 mascotas en tu perfil</span></li>
-        <li><span class="chk">✓</span><span>Historial médico completo</span></li>
-        <li><span class="chk">✓</span><span>Recordatorios de vitaminas y tratamientos</span></li>
-        <li><span class="chk">✓</span><span>Directorio de veterinarios especializados</span></li>
-        <li><span class="chk">✓</span><span>Guía de reproducción y manejo de crías</span></li>
-        <li><span class="chk">✓</span><span>Compliance CITES y regulaciones</span></li>
-        <li><span class="chk">✓</span><span>Comunidad privada exclusiva</span></li>
-        <li><span class="chk">✓</span><span>Soporte prioritario 24/7</span></li>
+        <li><span class="chk">✓</span><span data-i18n="price.f1">Consultas ilimitadas con IA veterinaria</span></li>
+        <li><span class="chk">✓</span><span data-i18n="price.f2">Diagnóstico de síntomas con nivel de urgencia</span></li>
+        <li><span class="chk">✓</span><span data-i18n="price.f3">Dieta personalizada por especie</span></li>
+        <li><span class="chk">✓</span><span data-i18n="price.f4">Análisis de fotos con visión artificial</span></li>
+        <li><span class="chk">✓</span><span data-i18n="price.f5">Hasta 5 mascotas en tu perfil</span></li>
+        <li><span class="chk">✓</span><span data-i18n="price.f6">Historial médico completo</span></li>
+        <li><span class="chk">✓</span><span data-i18n="price.f7">Recordatorios de vitaminas y tratamientos</span></li>
+        <li><span class="chk">✓</span><span data-i18n="price.f8">Directorio de veterinarios especializados</span></li>
+        <li><span class="chk">✓</span><span data-i18n="price.f9">Guía de reproducción y manejo de crías</span></li>
+        <li><span class="chk">✓</span><span data-i18n="price.f10">Compliance CITES y regulaciones</span></li>
+        <li><span class="chk">✓</span><span data-i18n="price.f11">Comunidad privada exclusiva</span></li>
+        <li><span class="chk">✓</span><span data-i18n="price.f12">Soporte prioritario 24/7</span></li>
       </ul>
-      <a href="#cta" class="pbtn pbg" onclick="handlePlanClick(event,'premium',75)" style="font-size:1rem;padding:1.1rem">Comenzar Ahora — $75/mes →</a>
-      <div class="pguarantee" style="margin-top:1rem">🛡️ 7 días de garantía total · Sin preguntas</div>
+      <a href="#cta" class="pbtn pbg" onclick="handlePlanClick(event,'premium',59)" style="font-size:1rem;padding:1.1rem" data-i18n="price.btn">Comenzar Ahora — $59/mes →</a>
+      <div class="pguarantee" style="margin-top:1rem" data-i18n="price.guarantee">🛡️ 7 días de garantía total · Sin preguntas</div>
     </div>
   </div>
 </section>
@@ -2045,6 +2045,16 @@ const LANGS = {
     'cta.sub':'Tu mascota no puede decirte cuándo algo va mal. Tú sí puedes actuar. Únete en 30 segundos y ponle nombre a cada síntoma antes de que sea tarde.',
     'cta.guarantee':'🛡️ Garantía total 7 días · Sin permanencia · Cancela cuando quieras',
     'cta.placeholder':'tu@email.com','cta.btn':'Acceso →',
+    'price.tag':'★ Todo Incluido','price.name':'ExoVet Premium',
+    'price.desc':'Acceso completo a todas las funciones de ExoVet IO. Sin límites, sin restricciones.',
+    'price.per':'por mes · cancela cuando quieras',
+    'price.f1':'Consultas ilimitadas con IA veterinaria','price.f2':'Diagnóstico de síntomas con nivel de urgencia',
+    'price.f3':'Dieta personalizada por especie','price.f4':'Análisis de fotos con visión artificial',
+    'price.f5':'Hasta 5 mascotas en tu perfil','price.f6':'Historial médico completo',
+    'price.f7':'Recordatorios de vitaminas y tratamientos','price.f8':'Directorio de veterinarios especializados',
+    'price.f9':'Guía de reproducción y manejo de crías','price.f10':'Compliance CITES y regulaciones',
+    'price.f11':'Comunidad privada exclusiva','price.f12':'Soporte prioritario 24/7',
+    'price.btn':'Comenzar Ahora — $59/mes →','price.guarantee':'🛡️ 7 días de garantía total · Sin preguntas',
     // FOOTER
     'footer.copy':'© 2026 ExoVet IO — Construido para los amantes de los exóticos.',
     'footer.privacy':'Privacidad','footer.terms':'Términos','footer.contact':'Contacto',
@@ -2124,6 +2134,16 @@ const LANGS = {
     'cta.sub':'Your pet can\'t tell you when something\'s wrong. You can. Join in 30 seconds and put a name to every symptom before it\'s too late.',
     'cta.guarantee':'🛡️ Full 7-day guarantee · No commitment · Cancel anytime',
     'cta.placeholder':'your@email.com','cta.btn':'See the Plans →',
+    'price.tag':'★ All Included','price.name':'ExoVet Premium',
+    'price.desc':'Full access to all ExoVet IO features. No limits, no restrictions.',
+    'price.per':'per month · cancel anytime',
+    'price.f1':'Unlimited AI veterinary consultations','price.f2':'Symptom diagnosis with urgency level',
+    'price.f3':'Personalized diet by species','price.f4':'Photo analysis with artificial vision',
+    'price.f5':'Up to 5 pets in your profile','price.f6':'Complete medical history',
+    'price.f7':'Vitamin and treatment reminders','price.f8':'Specialized vet directory',
+    'price.f9':'Breeding guide and offspring care','price.f10':'CITES compliance and regulations',
+    'price.f11':'Exclusive private community','price.f12':'Priority support 24/7',
+    'price.btn':'Start Now — $59/mo →','price.guarantee':'🛡️ 7-day total guarantee · No questions asked',
     'footer.copy':'© 2026 ExoVet IO — Built for exotic pet lovers.',
     'footer.privacy':'Privacy','footer.terms':'Terms','footer.contact':'Contact',
     spCards:[
@@ -2201,6 +2221,16 @@ const LANGS = {
     'cta.sub':'Seu animal não consegue te dizer quando algo está errado. Você pode agir. Entre em 30 segundos e dê nome a cada sintoma antes que seja tarde demais.',
     'cta.guarantee':'🛡️ Garantia total 7 dias · Sem fidelidade · Cancele quando quiser',
     'cta.placeholder':'seu@email.com','cta.btn':'Ver os Planos →',
+    'price.tag':'★ Tudo Incluído','price.name':'ExoVet Premium',
+    'price.desc':'Acesso completo a todas as funções do ExoVet IO. Sem limites, sem restrições.',
+    'price.per':'por mês · cancele quando quiser',
+    'price.f1':'Consultas ilimitadas com IA veterinária','price.f2':'Diagnóstico de sintomas com nível de urgência',
+    'price.f3':'Dieta personalizada por espécie','price.f4':'Análise de fotos com visão artificial',
+    'price.f5':'Até 5 animais no seu perfil','price.f6':'Histórico médico completo',
+    'price.f7':'Lembretes de vitaminas e tratamentos','price.f8':'Diretório de veterinários especializados',
+    'price.f9':'Guia de reprodução e manejo de filhotes','price.f10':'Conformidade CITES e regulamentos',
+    'price.f11':'Comunidade privada exclusiva','price.f12':'Suporte prioritário 24/7',
+    'price.btn':'Começar Agora — $59/mês →','price.guarantee':'🛡️ Garantia total 7 dias · Sem perguntas',
     'footer.copy':'© 2026 ExoVet IO — Criado para os amantes de animais exóticos.',
     'footer.privacy':'Privacidade','footer.terms':'Termos','footer.contact':'Contato',
     spCards:[
@@ -2278,6 +2308,16 @@ const LANGS = {
     'cta.sub':'Votre animal ne peut pas vous dire quand quelque chose ne va pas. Vous pouvez agir. Rejoignez-nous en 30 secondes et donnez un nom à chaque symptôme avant qu\'il soit trop tard.',
     'cta.guarantee':'🛡️ Garantie totale 7 jours · Sans engagement · Annulez à tout moment',
     'cta.placeholder':'votre@email.com','cta.btn':'Voir les Plans →',
+    'price.tag':'★ Tout Inclus','price.name':'ExoVet Premium',
+    'price.desc':'Accès complet à toutes les fonctions d\'ExoVet IO. Sans limites, sans restrictions.',
+    'price.per':'par mois · annulez quand vous voulez',
+    'price.f1':'Consultations IA vétérinaires illimitées','price.f2':'Diagnostic de symptômes avec niveau d\'urgence',
+    'price.f3':'Régime personnalisé par espèce','price.f4':'Analyse de photos par vision artificielle',
+    'price.f5':'Jusqu\'à 5 animaux dans votre profil','price.f6':'Historique médical complet',
+    'price.f7':'Rappels de vitamines et traitements','price.f8':'Annuaire de vétérinaires spécialisés',
+    'price.f9':'Guide de reproduction et soins des jeunes','price.f10':'Conformité CITES et réglementations',
+    'price.f11':'Communauté privée exclusive','price.f12':'Support prioritaire 24/7',
+    'price.btn':'Commencer — 59$/mois →','price.guarantee':'🛡️ Garantie totale 7 jours · Sans questions',
     'footer.copy':'© 2026 ExoVet IO — Créé pour les amoureux des animaux exotiques.',
     'footer.privacy':'Confidentialité','footer.terms':'Conditions','footer.contact':'Contact',
     spCards:[
@@ -2355,6 +2395,16 @@ const LANGS = {
     'cta.sub':'Ihr Tier kann Ihnen nicht sagen, wenn etwas nicht stimmt. Sie schon. Treten Sie in 30 Sekunden bei und benennen Sie jeden Symptom, bevor es zu spät ist.',
     'cta.guarantee':'🛡️ Volle 7-Tage-Garantie · Keine Mindestlaufzeit · Jederzeit kündigen',
     'cta.placeholder':'ihre@email.com','cta.btn':'Pläne ansehen →',
+    'price.tag':'★ Alles Inklusive','price.name':'ExoVet Premium',
+    'price.desc':'Vollständiger Zugang zu allen ExoVet IO-Funktionen. Keine Limits, keine Einschränkungen.',
+    'price.per':'pro Monat · jederzeit kündigen',
+    'price.f1':'Unbegrenzte KI-Tierkonsultationen','price.f2':'Symptomdiagnose mit Dringlichkeitsstufe',
+    'price.f3':'Personalisierte Diät nach Tierart','price.f4':'Fotoanalyse mit künstlicher Vision',
+    'price.f5':'Bis zu 5 Haustiere im Profil','price.f6':'Vollständige Krankengeschichte',
+    'price.f7':'Vitamin- und Behandlungserinnerungen','price.f8':'Verzeichnis spezialisierter Tierärzte',
+    'price.f9':'Zucht- und Jungtierführer','price.f10':'CITES-Konformität und Vorschriften',
+    'price.f11':'Exklusive private Gemeinschaft','price.f12':'Prioritätssupport 24/7',
+    'price.btn':'Jetzt starten — 59$/Monat →','price.guarantee':'🛡️ 7-Tage-Gesamtgarantie · Keine Fragen',
     'footer.copy':'© 2026 ExoVet IO — Entwickelt für Liebhaber exotischer Tiere.',
     'footer.privacy':'Datenschutz','footer.terms':'Nutzungsbedingungen','footer.contact':'Kontakt',
     spCards:[
@@ -2927,7 +2977,7 @@ document.addEventListener('keydown',e=>{
     <div class="paywall-title">Función exclusiva para miembros</div>
     <p class="paywall-sub" id="paywallMsg">Esta función está disponible únicamente para usuarios con un plan activo. Elige el plan que mejor se adapte a ti y empieza en segundos.</p>
     <div class="paywall-plans">
-      <div class="paywall-plan featured" onclick="handlePlanClick(event,'premium',75)">
+      <div class="paywall-plan featured" onclick="handlePlanClick(event,'premium',59)">
         <div class="pp-left">
           <span class="pp-ico">🦎</span>
           <div>
@@ -2935,7 +2985,7 @@ document.addEventListener('keydown',e=>{
             <div class="pp-desc">Consultas · Fotos · Hasta 5 mascotas · Vets · 24/7</div>
           </div>
         </div>
-        <div class="pp-price">$75<span style="font-size:.7rem;color:var(--text-m)">/mes</span></div>
+        <div class="pp-price">$59<span style="font-size:.7rem;color:var(--text-m)">/mes</span></div>
       </div>
     </div>
     <p class="paywall-note">🛡️ 7 días de garantía · Sin permanencia · Cancela cuando quieras</p>
@@ -3270,12 +3320,12 @@ function handlePlanClick(e, planId, price) {
   selectedPlan = { id: 'premium', name: 'ExoVet Premium 🦎', price: 75 };
   closePaywall();
   if (currentUser) {
-    alert('💳 Pago NexaPay próximamente.\nPlan: ExoVet Premium — $75/mes\nAcceso completo a todas las funciones.');
+    alert('💳 Pago NexaPay próximamente.\nPlan: ExoVet Premium — $59/mes\nAcceso completo a todas las funciones.');
   } else {
     openAuth('register');
     document.getElementById('authPlanInfo').style.display = 'block';
     document.getElementById('authPlanName').textContent = 'ExoVet Premium 🦎';
-    document.getElementById('authPlanPrice').textContent = '$75';
+    document.getElementById('authPlanPrice').textContent = '$59';
   }
 }
 
