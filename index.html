@@ -2465,6 +2465,8 @@ function setLang(lang){
   });
   // Update html lang attr
   document.documentElement.lang = lang;
+  // Translate modal content
+  renderModalContent(lang);
   // Close menu
   document.getElementById('langSwitcher').classList.remove('open');
   // Translate species demo buttons
@@ -2502,6 +2504,303 @@ function updateSymptomLabels(lang){
 }
 
 // ── LEGAL MODALS ──────────────────────────────────────────
+// ─── Modal Translations ───────────────────
+const MODAL_CONTENT = {
+  es: {
+    'modal.privacy.title': '🔒 Política de Privacidad',
+    'modal.terms.title': '📋 Términos y Condiciones',
+    privacy: `
+      <div class="modal-tag">Última actualización: Marzo 2026</div>
+      <h3>1. Quiénes somos</h3>
+      <p>ExoVet IO (en adelante "la Plataforma") es un servicio de orientación veterinaria basado en inteligencia artificial, operado por ExoVet IO Inc. Esta política describe cómo recopilamos, usamos y protegemos tu información personal.</p>
+      <h3>2. Información que recopilamos</h3>
+      <ul>
+        <li>Dirección de correo electrónico al registrarte o suscribirte</li>
+        <li>Información sobre tu mascota (especie, edad, síntomas) introducida en el sistema de diagnóstico</li>
+        <li>Datos de pago procesados de forma segura (no almacenamos datos de tarjetas)</li>
+        <li>Datos de uso y navegación: páginas visitadas, tiempo en sesión, tipo de dispositivo</li>
+        <li>Dirección IP y datos de geolocalización aproximada</li>
+      </ul>
+      <h3>3. Cómo usamos tu información</h3>
+      <ul>
+        <li>Proporcionar el servicio de diagnóstico de síntomas y orientación veterinaria</li>
+        <li>Personalizar recomendaciones de dieta, cuidados y tratamientos según la especie</li>
+        <li>Enviarte alertas y recordatorios de vitaminas o tratamientos que hayas configurado</li>
+        <li>Mejorar los modelos de IA mediante datos anonimizados y agregados</li>
+        <li>Comunicaciones relacionadas con tu suscripción y soporte técnico</li>
+        <li>Cumplir obligaciones legales y fiscales aplicables</li>
+      </ul>
+      <h3>4. Compartición de datos</h3>
+      <p>No vendemos ni compartimos tu información personal con terceros para fines publicitarios. Podemos compartir datos con:</p>
+      <ul>
+        <li><strong style="color:var(--text)">Proveedores de servicio</strong>: procesadores de pago, servicios de email, hosting</li>
+        <li><strong style="color:var(--text)">Autoridades competentes</strong>: únicamente cuando sea legalmente requerido</li>
+        <li><strong style="color:var(--text)">Veterinarios del directorio</strong>: solo si tú inicias una consulta con ellos</li>
+      </ul>
+      <h3>5. Seguridad de los datos</h3>
+      <p>Implementamos cifrado TLS en todas las comunicaciones y almacenamiento cifrado de datos sensibles. Sin embargo, ningún sistema es 100% infalible.</p>
+      <h3>6. Retención de datos</h3>
+      <p>Conservamos tu información mientras tu cuenta esté activa. Al cancelar, tus datos se eliminan en un plazo máximo de 30 días, salvo obligación legal.</p>
+      <h3>7. Tus derechos</h3>
+      <p>Tienes derecho a acceder, corregir, exportar o eliminar tus datos personales. Contáctanos en <strong style="color:var(--g-acc)">privacy@exovet.io</strong>. Responderemos en un máximo de 30 días.</p>
+      <h3>8. Menores de edad</h3>
+      <p>El servicio no está dirigido a menores de 16 años. No recopilamos conscientemente datos de menores.</p>
+      <h3>9. Cambios a esta política</h3>
+      <p>Te notificaremos por email ante cambios significativos. El uso continuado implica aceptación.</p>
+      <div class="modal-divider"></div>
+      <p style="font-size:.78rem;color:var(--text-m);text-align:center">¿Preguntas? Escríbenos a <strong style="color:var(--g-acc)">privacy@exovet.io</strong></p>`,
+    terms: `
+      <div class="modal-tag">Última actualización: Marzo 2026</div>
+      <h3>1. Aceptación de los términos</h3>
+      <p>Al acceder o usar ExoVet IO aceptas estos Términos y Condiciones en su totalidad. El uso continuado implica aceptación de cualquier actualización publicada.</p>
+      <h3>2. Descripción del servicio</h3>
+      <p>ExoVet IO es una plataforma de <strong style="color:var(--text)">orientación veterinaria basada en inteligencia artificial</strong> para propietarios de mascotas exóticas. El servicio incluye:</p>
+      <ul>
+        <li>Análisis de síntomas y orientación sobre posibles causas mediante IA</li>
+        <li>Indicación de nivel de urgencia (informativo, no diagnóstico definitivo)</li>
+        <li>Análisis de imágenes para detectar anomalías visibles</li>
+        <li>Directorio de veterinarios especializados en animales exóticos</li>
+        <li>Alertas y recordatorios de cuidados preventivos</li>
+      </ul>
+      <h3>3. Limitación de responsabilidad médica</h3>
+      <p><strong style="color:var(--amber)">⚠️ IMPORTANTE:</strong> ExoVet IO NO sustituye la consulta con un veterinario colegiado. Los diagnósticos son preliminares y orientativos. ExoVet IO Inc. no se responsabiliza de decisiones tomadas basándose exclusivamente en las respuestas de la plataforma.</p>
+      <h3>4. Suscripciones y pagos</h3>
+      <ul>
+        <li>Los planes se facturan mensualmente</li>
+        <li>Puedes cancelar en cualquier momento sin penalización</li>
+        <li>Al cancelar, conservas el acceso hasta el final del período abonado</li>
+        <li>Los precios pueden cambiar con 30 días de preaviso por email</li>
+      </ul>
+      <h3>5. Uso aceptable</h3>
+      <p>Está expresamente prohibido usar la plataforma para actividades ilegales, extraer los modelos de IA, compartir credenciales o usar acceso automatizado no autorizado.</p>
+      <h3>6. Propiedad intelectual</h3>
+      <p>Todo el contenido de ExoVet IO es propiedad exclusiva de ExoVet IO Inc. y está protegido por derechos de autor internacionales.</p>
+      <h3>7. Disponibilidad del servicio</h3>
+      <p>Nos comprometemos a mantener una disponibilidad del 99% mensual. No nos responsabilizamos de interrupciones causadas por terceros.</p>
+      <h3>8. Ley aplicable</h3>
+      <p>Estos términos se rigen por las leyes internacionales aplicables. Cualquier disputa se resolverá mediante arbitraje vinculante.</p>
+      <div class="modal-divider"></div>
+      <p style="font-size:.78rem;color:var(--text-m);text-align:center">¿Preguntas? Escríbenos a <strong style="color:var(--g-acc)">legal@exovet.io</strong></p>`
+  },
+  en: {
+    'modal.privacy.title': '🔒 Privacy Policy',
+    'modal.terms.title': '📋 Terms and Conditions',
+    privacy: `
+      <div class="modal-tag">Last updated: March 2026</div>
+      <h3>1. Who we are</h3>
+      <p>ExoVet IO is an AI-based veterinary guidance service operated by ExoVet IO Inc. This policy describes how we collect, use and protect your personal information.</p>
+      <h3>2. Information we collect</h3>
+      <ul>
+        <li>Email address when you register or subscribe</li>
+        <li>Pet information (species, age, symptoms) entered in the diagnostic system</li>
+        <li>Payment data processed securely (we do not store card data)</li>
+        <li>Usage and browsing data: pages visited, session time, device type</li>
+        <li>IP address and approximate geolocation data</li>
+      </ul>
+      <h3>3. How we use your information</h3>
+      <ul>
+        <li>Provide symptom diagnosis and veterinary guidance services</li>
+        <li>Personalize diet, care and treatment recommendations by species</li>
+        <li>Send you configured vitamin or treatment alerts and reminders</li>
+        <li>Improve AI models using anonymized and aggregated data</li>
+        <li>Subscription communications and technical support</li>
+      </ul>
+      <h3>4. Data sharing</h3>
+      <p>We do not sell or share your personal information with third parties for advertising. We may share data with service providers, competent authorities when legally required, and directory vets only if you initiate a consultation.</p>
+      <h3>5. Data security</h3>
+      <p>We implement TLS encryption on all communications and encrypted storage of sensitive data.</p>
+      <h3>6. Data retention</h3>
+      <p>We retain your information while your account is active. Upon cancellation, data is deleted within 30 days.</p>
+      <h3>7. Your rights</h3>
+      <p>You have the right to access, correct, export or delete your personal data. Contact us at <strong style="color:var(--g-acc)">privacy@exovet.io</strong>.</p>
+      <h3>8. Minors</h3>
+      <p>The service is not directed to persons under 16 years of age.</p>
+      <div class="modal-divider"></div>
+      <p style="font-size:.78rem;color:var(--text-m);text-align:center">Questions? Contact us at <strong style="color:var(--g-acc)">privacy@exovet.io</strong></p>`,
+    terms: `
+      <div class="modal-tag">Last updated: March 2026</div>
+      <h3>1. Acceptance of terms</h3>
+      <p>By accessing or using ExoVet IO you accept these Terms and Conditions in full. Continued use implies acceptance of any published updates.</p>
+      <h3>2. Service description</h3>
+      <p>ExoVet IO is an <strong style="color:var(--text)">AI-based veterinary guidance platform</strong> for exotic pet owners. The service includes:</p>
+      <ul>
+        <li>Symptom analysis and guidance on possible causes via AI</li>
+        <li>Urgency level indication (informational, not definitive diagnosis)</li>
+        <li>Image analysis to detect visible anomalies</li>
+        <li>Directory of veterinarians specialized in exotic animals</li>
+        <li>Preventive care alerts and reminders</li>
+      </ul>
+      <h3>3. Medical liability disclaimer</h3>
+      <p><strong style="color:var(--amber)">⚠️ IMPORTANT:</strong> ExoVet IO does NOT replace consultation with a licensed veterinarian. AI-generated diagnoses are preliminary and informational. ExoVet IO Inc. is not responsible for decisions made based solely on platform responses.</p>
+      <h3>4. Subscriptions and payments</h3>
+      <ul>
+        <li>Plans are billed monthly</li>
+        <li>You may cancel at any time without penalty</li>
+        <li>Upon cancellation, you retain access until the end of the paid period</li>
+        <li>Prices may change with 30 days email notice</li>
+      </ul>
+      <h3>5. Acceptable use</h3>
+      <p>It is expressly prohibited to use the platform for illegal activities, extract AI models, share credentials or use unauthorized automated access.</p>
+      <h3>6. Intellectual property</h3>
+      <p>All ExoVet IO content is the exclusive property of ExoVet IO Inc. and is protected by international copyright laws.</p>
+      <h3>7. Service availability</h3>
+      <p>We commit to maintaining 99% monthly availability. We are not responsible for interruptions caused by third parties.</p>
+      <div class="modal-divider"></div>
+      <p style="font-size:.78rem;color:var(--text-m);text-align:center">Questions? Contact us at <strong style="color:var(--g-acc)">legal@exovet.io</strong></p>`
+  },
+  pt: {
+    'modal.privacy.title': '🔒 Política de Privacidade',
+    'modal.terms.title': '📋 Termos e Condições',
+    privacy: `
+      <div class="modal-tag">Última atualização: Março 2026</div>
+      <h3>1. Quem somos</h3>
+      <p>ExoVet IO é um serviço de orientação veterinária baseado em IA, operado pela ExoVet IO Inc. Esta política descreve como coletamos, usamos e protegemos suas informações pessoais.</p>
+      <h3>2. Informações que coletamos</h3>
+      <ul>
+        <li>Endereço de e-mail ao se registrar ou assinar</li>
+        <li>Informações sobre seu animal (espécie, idade, sintomas)</li>
+        <li>Dados de pagamento processados de forma segura</li>
+        <li>Dados de uso e navegação: páginas visitadas, tempo de sessão, tipo de dispositivo</li>
+      </ul>
+      <h3>3. Como usamos suas informações</h3>
+      <ul>
+        <li>Fornecer serviço de diagnóstico de sintomas e orientação veterinária</li>
+        <li>Personalizar recomendações de dieta e cuidados por espécie</li>
+        <li>Enviar alertas e lembretes configurados</li>
+        <li>Melhorar modelos de IA com dados anonimizados</li>
+      </ul>
+      <h3>4. Compartilhamento de dados</h3>
+      <p>Não vendemos suas informações pessoais. Podemos compartilhar com provedores de serviço, autoridades competentes quando legalmente exigido, e veterinários do diretório apenas se você iniciar uma consulta.</p>
+      <h3>5. Segurança</h3>
+      <p>Implementamos criptografia TLS em todas as comunicações e armazenamento criptografado de dados sensíveis.</p>
+      <h3>6. Seus direitos</h3>
+      <p>Você tem o direito de acessar, corrigir ou excluir seus dados. Contate-nos em <strong style="color:var(--g-acc)">privacy@exovet.io</strong>.</p>
+      <div class="modal-divider"></div>
+      <p style="font-size:.78rem;color:var(--text-m);text-align:center">Dúvidas? Escreva para <strong style="color:var(--g-acc)">privacy@exovet.io</strong></p>`,
+    terms: `
+      <div class="modal-tag">Última atualização: Março 2026</div>
+      <h3>1. Aceitação dos termos</h3>
+      <p>Ao acessar ou usar o ExoVet IO, você aceita estes Termos e Condições na íntegra. O uso continuado implica aceitação de quaisquer atualizações publicadas.</p>
+      <h3>2. Descrição do serviço</h3>
+      <p>ExoVet IO é uma <strong style="color:var(--text)">plataforma de orientação veterinária baseada em IA</strong> para proprietários de animais exóticos. O serviço inclui análise de sintomas, indicação de urgência, análise de imagens e diretório de veterinários especializados.</p>
+      <h3>3. Limitação de responsabilidade médica</h3>
+      <p><strong style="color:var(--amber)">⚠️ IMPORTANTE:</strong> ExoVet IO NÃO substitui a consulta com um médico veterinário. Os diagnósticos gerados pela IA são preliminares e orientativos.</p>
+      <h3>4. Assinaturas e pagamentos</h3>
+      <ul>
+        <li>Os planos são cobrados mensalmente</li>
+        <li>Você pode cancelar a qualquer momento sem penalidade</li>
+        <li>Ao cancelar, mantém o acesso até o final do período pago</li>
+      </ul>
+      <h3>5. Propriedade intelectual</h3>
+      <p>Todo o conteúdo do ExoVet IO é propriedade exclusiva da ExoVet IO Inc. e está protegido por direitos autorais internacionais.</p>
+      <div class="modal-divider"></div>
+      <p style="font-size:.78rem;color:var(--text-m);text-align:center">Dúvidas? Escreva para <strong style="color:var(--g-acc)">legal@exovet.io</strong></p>`
+  },
+  fr: {
+    'modal.privacy.title': '🔒 Politique de Confidentialité',
+    'modal.terms.title': '📋 Conditions Générales',
+    privacy: `
+      <div class="modal-tag">Dernière mise à jour : Mars 2026</div>
+      <h3>1. Qui sommes-nous</h3>
+      <p>ExoVet IO est un service d'orientation vétérinaire basé sur l'IA, opéré par ExoVet IO Inc. Cette politique décrit comment nous collectons, utilisons et protégeons vos informations personnelles.</p>
+      <h3>2. Informations collectées</h3>
+      <ul>
+        <li>Adresse e-mail lors de l'inscription ou de l'abonnement</li>
+        <li>Informations sur votre animal (espèce, âge, symptômes)</li>
+        <li>Données de paiement traitées de manière sécurisée</li>
+        <li>Données d'utilisation et de navigation</li>
+      </ul>
+      <h3>3. Utilisation de vos informations</h3>
+      <ul>
+        <li>Fournir le service de diagnostic et d'orientation vétérinaire</li>
+        <li>Personnaliser les recommandations selon l'espèce</li>
+        <li>Envoyer des alertes et rappels configurés</li>
+        <li>Améliorer les modèles d'IA avec des données anonymisées</li>
+      </ul>
+      <h3>4. Partage des données</h3>
+      <p>Nous ne vendons pas vos données personnelles. Nous pouvons les partager avec des prestataires de services ou des autorités compétentes lorsque légalement requis.</p>
+      <h3>5. Vos droits</h3>
+      <p>Vous avez le droit d'accéder, corriger ou supprimer vos données. Contactez-nous à <strong style="color:var(--g-acc)">privacy@exovet.io</strong>.</p>
+      <div class="modal-divider"></div>
+      <p style="font-size:.78rem;color:var(--text-m);text-align:center">Questions ? Écrivez-nous à <strong style="color:var(--g-acc)">privacy@exovet.io</strong></p>`,
+    terms: `
+      <div class="modal-tag">Dernière mise à jour : Mars 2026</div>
+      <h3>1. Acceptation des conditions</h3>
+      <p>En accédant ou en utilisant ExoVet IO, vous acceptez ces Conditions Générales dans leur intégralité. L'utilisation continue implique l'acceptation de toute mise à jour publiée.</p>
+      <h3>2. Description du service</h3>
+      <p>ExoVet IO est une <strong style="color:var(--text)">plateforme d'orientation vétérinaire basée sur l'IA</strong> pour les propriétaires d'animaux exotiques. Le service comprend l'analyse des symptômes, l'indication du niveau d'urgence, l'analyse d'images et un annuaire de vétérinaires spécialisés.</p>
+      <h3>3. Limitation de responsabilité médicale</h3>
+      <p><strong style="color:var(--amber)">⚠️ IMPORTANT :</strong> ExoVet IO ne remplace PAS la consultation d'un vétérinaire diplômé. Les diagnostics générés par l'IA sont préliminaires et indicatifs.</p>
+      <h3>4. Abonnements et paiements</h3>
+      <ul>
+        <li>Les plans sont facturés mensuellement</li>
+        <li>Vous pouvez annuler à tout moment sans pénalité</li>
+        <li>Les prix peuvent changer avec un préavis de 30 jours par e-mail</li>
+      </ul>
+      <h3>5. Propriété intellectuelle</h3>
+      <p>Tout le contenu d'ExoVet IO est la propriété exclusive d'ExoVet IO Inc. et est protégé par les lois internationales sur le droit d'auteur.</p>
+      <div class="modal-divider"></div>
+      <p style="font-size:.78rem;color:var(--text-m);text-align:center">Questions ? Écrivez-nous à <strong style="color:var(--g-acc)">legal@exovet.io</strong></p>`
+  },
+  de: {
+    'modal.privacy.title': '🔒 Datenschutzrichtlinie',
+    'modal.terms.title': '📋 Allgemeine Geschäftsbedingungen',
+    privacy: `
+      <div class="modal-tag">Letzte Aktualisierung: März 2026</div>
+      <h3>1. Wer wir sind</h3>
+      <p>ExoVet IO ist ein KI-basierter Veterinärberatungsdienst von ExoVet IO Inc. Diese Richtlinie beschreibt, wie wir Ihre persönlichen Daten erheben, verwenden und schützen.</p>
+      <h3>2. Erhobene Informationen</h3>
+      <ul>
+        <li>E-Mail-Adresse bei Registrierung oder Abonnement</li>
+        <li>Tierinformationen (Art, Alter, Symptome)</li>
+        <li>Sicher verarbeitete Zahlungsdaten</li>
+        <li>Nutzungs- und Navigationsdaten</li>
+      </ul>
+      <h3>3. Verwendung Ihrer Daten</h3>
+      <ul>
+        <li>Bereitstellung des Diagnose- und Beratungsdienstes</li>
+        <li>Personalisierung von Empfehlungen nach Tierart</li>
+        <li>Senden konfigurierter Erinnerungen und Warnungen</li>
+        <li>Verbesserung der KI-Modelle mit anonymisierten Daten</li>
+      </ul>
+      <h3>4. Ihre Rechte</h3>
+      <p>Sie haben das Recht auf Zugang, Berichtigung oder Löschung Ihrer Daten. Kontaktieren Sie uns unter <strong style="color:var(--g-acc)">privacy@exovet.io</strong>.</p>
+      <div class="modal-divider"></div>
+      <p style="font-size:.78rem;color:var(--text-m);text-align:center">Fragen? Schreiben Sie uns an <strong style="color:var(--g-acc)">privacy@exovet.io</strong></p>`,
+    terms: `
+      <div class="modal-tag">Letzte Aktualisierung: März 2026</div>
+      <h3>1. Annahme der Bedingungen</h3>
+      <p>Durch den Zugriff auf oder die Nutzung von ExoVet IO akzeptieren Sie diese AGB vollständig. Die fortgesetzte Nutzung impliziert die Annahme aller veröffentlichten Aktualisierungen.</p>
+      <h3>2. Dienstbeschreibung</h3>
+      <p>ExoVet IO ist eine <strong style="color:var(--text)">KI-basierte Veterinärberatungsplattform</strong> für Besitzer exotischer Tiere mit Symptomanalyse, Dringlichkeitsbewertung, Bildanalyse und Tierarztverzeichnis.</p>
+      <h3>3. Haftungsausschluss für medizinische Angelegenheiten</h3>
+      <p><strong style="color:var(--amber)">⚠️ WICHTIG:</strong> ExoVet IO ersetzt NICHT den Besuch eines approbierten Tierarztes. KI-generierte Diagnosen sind vorläufig und informativ.</p>
+      <h3>4. Abonnements und Zahlungen</h3>
+      <ul>
+        <li>Pläne werden monatlich abgerechnet</li>
+        <li>Kündigung jederzeit ohne Strafe möglich</li>
+        <li>Preisänderungen mit 30 Tagen E-Mail-Vorankündigung</li>
+      </ul>
+      <h3>5. Geistiges Eigentum</h3>
+      <p>Alle Inhalte von ExoVet IO sind ausschließliches Eigentum von ExoVet IO Inc. und durch internationales Urheberrecht geschützt.</p>
+      <div class="modal-divider"></div>
+      <p style="font-size:.78rem;color:var(--text-m);text-align:center">Fragen? Schreiben Sie uns an <strong style="color:var(--g-acc)">legal@exovet.io</strong></p>`
+  }
+};
+
+function renderModalContent(lang) {
+  const content = MODAL_CONTENT[lang] || MODAL_CONTENT['es'];
+  const privacyEl = document.getElementById('privacyModalBody');
+  const termsEl = document.getElementById('termsModalBody');
+  if (privacyEl) privacyEl.innerHTML = content.privacy;
+  if (termsEl) termsEl.innerHTML = content.terms;
+  // Update modal titles
+  const privTitle = document.getElementById('privacyTitle');
+  const termsTitle = document.getElementById('termsTitle');
+  if (privTitle) privTitle.innerHTML = content['modal.privacy.title'];
+  if (termsTitle) termsTitle.innerHTML = content['modal.terms.title'];
+}
+
 function openModal(id){
   document.getElementById(id).classList.add('open');
   document.body.style.overflow='hidden';
@@ -3047,61 +3346,10 @@ document.addEventListener('keydown',e=>{
 <div class="modal-overlay" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle" onclick="closeModalOnBg(event,'privacyModal')">
   <div class="modal-box">
     <div class="modal-head">
-      <h2 id="privacyTitle">🔒 Política de Privacidad</h2>
+      <h2 id="privacyTitle" data-i18n="modal.privacy.title">🔒 Política de Privacidad</h2>
       <button class="modal-close" onclick="closeModal('privacyModal')" aria-label="Cerrar">✕</button>
     </div>
-    <div class="modal-body">
-      <div class="modal-tag">Última actualización: Marzo 2026</div>
-      <h3>1. Quiénes somos</h3>
-      <p>ExoVet IO (en adelante "la Plataforma") es un servicio de orientación veterinaria basado en inteligencia artificial, operado por ExoVet IO Inc. Esta política describe cómo recopilamos, usamos y protegemos tu información personal.</p>
-
-      <h3>2. Información que recopilamos</h3>
-      <ul>
-        <li>Dirección de correo electrónico al registrarte o suscribirte</li>
-        <li>Información sobre tu mascota (especie, edad, síntomas) introducida en el sistema de diagnóstico</li>
-        <li>Datos de pago procesados de forma segura a través de Stripe (no almacenamos datos de tarjetas)</li>
-        <li>Datos de uso y navegación: páginas visitadas, tiempo en sesión, tipo de dispositivo</li>
-        <li>Dirección IP y datos de geolocalización aproximada</li>
-      </ul>
-
-      <h3>3. Cómo usamos tu información</h3>
-      <ul>
-        <li>Proporcionar el servicio de diagnóstico de síntomas y orientación veterinaria</li>
-        <li>Personalizar recomendaciones de dieta, cuidados y tratamientos según la especie</li>
-        <li>Enviarte alertas y recordatorios de vitaminas o tratamientos que hayas configurado</li>
-        <li>Mejorar los modelos de IA mediante datos anonimizados y agregados</li>
-        <li>Comunicaciones relacionadas con tu suscripción y soporte técnico</li>
-        <li>Cumplir obligaciones legales y fiscales aplicables</li>
-      </ul>
-
-      <h3>4. Compartición de datos</h3>
-      <p>No vendemos, alquilamos ni compartimos tu información personal con terceros para fines publicitarios. Podemos compartir datos con:</p>
-      <ul>
-        <li><strong style="color:var(--text)">Proveedores de servicio</strong>: Stripe (pagos), servicios de email, hosting</li>
-        <li><strong style="color:var(--text)">Autoridades competentes</strong>: únicamente cuando sea legalmente requerido</li>
-        <li><strong style="color:var(--text)">Veterinarios del directorio</strong>: solo si tú inicias una consulta con ellos</li>
-      </ul>
-
-      <h3>5. Cookies y tecnologías similares</h3>
-      <p>Utilizamos cookies esenciales para el funcionamiento de la plataforma y cookies analíticas (anonimizadas) para mejorar el servicio. Puedes desactivar las cookies no esenciales desde la configuración de tu navegador sin afectar la funcionalidad principal.</p>
-
-      <h3>6. Seguridad de los datos</h3>
-      <p>Implementamos cifrado TLS en todas las comunicaciones, almacenamiento cifrado de datos sensibles y acceso restringido al personal autorizado. Sin embargo, ningún sistema es 100% infalible y no podemos garantizar seguridad absoluta.</p>
-
-      <h3>7. Retención de datos</h3>
-      <p>Conservamos tu información mientras tu cuenta esté activa. Al cancelar tu suscripción, tus datos se eliminan definitivamente en un plazo máximo de 30 días, salvo obligación legal de conservación.</p>
-
-      <h3>8. Tus derechos</h3>
-      <p>Dependiendo de tu jurisdicción, tienes derecho a acceder, corregir, exportar o eliminar tus datos personales. Para ejercer estos derechos contacta a <strong style="color:var(--g-acc)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="70000219061113093015081f06150411195e131f1d">[email&#160;protected]</a></strong>. Responderemos en un plazo máximo de 30 días.</p>
-
-      <h3>9. Menores de edad</h3>
-      <p>El servicio no está dirigido a menores de 16 años. No recopilamos conscientemente datos de menores. Si detectamos que un menor ha proporcionado información, la eliminaremos de inmediato.</p>
-
-      <h3>10. Cambios a esta política</h3>
-      <p>Podemos actualizar esta política ocasionalmente. Te notificaremos por email ante cambios significativos. El uso continuado del servicio tras la notificación implica aceptación.</p>
-
-      <div class="modal-divider"></div>
-      <p style="font-size:.78rem;color:var(--text-m);text-align:center">¿Preguntas sobre privacidad? Escríbenos a <strong style="color:var(--g-acc)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c0b0b2a9b6a1a3b980a5b8afb6a5b4a1a9eea3afad">[email&#160;protected]</a></strong></p>
+    <div class="modal-body" id="privacyModalBody">
     </div>
   </div>
 </div>
@@ -3110,61 +3358,11 @@ document.addEventListener('keydown',e=>{
 <div class="modal-overlay" id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsTitle" onclick="closeModalOnBg(event,'termsModal')">
   <div class="modal-box">
     <div class="modal-head">
-      <h2 id="termsTitle">📋 Términos y Condiciones</h2>
+      <h2 id="termsTitle" data-i18n="modal.terms.title">📋 Términos y Condiciones</h2>
       <button class="modal-close" onclick="closeModal('termsModal')" aria-label="Cerrar">✕</button>
     </div>
-    <div class="modal-body">
-      <div class="modal-tag">Última actualización: Marzo 2026</div>
-      <h3>1. Aceptación de los términos</h3>
-      <p>Al acceder o usar ExoVet IO aceptas estos Términos y Condiciones en su totalidad. Si no estás de acuerdo con alguna parte, no debes usar el servicio. El uso continuado implica aceptación de cualquier actualización publicada.</p>
-
-      <h3>2. Descripción del servicio</h3>
-      <p>ExoVet IO es una plataforma de <strong style="color:var(--text)">orientación veterinaria basada en inteligencia artificial</strong>, diseñada para propietarios de mascotas exóticas. El servicio incluye:</p>
-      <ul>
-        <li>Análisis de síntomas y orientación sobre posibles causas mediante IA</li>
-        <li>Indicación de nivel de urgencia (informativo, no diagnóstico definitivo)</li>
-        <li>Planes de nutrición y cuidados personalizados por especie</li>
-        <li>Análisis de imágenes para detectar anomalías visibles</li>
-        <li>Directorio de veterinarios especializados en animales exóticos</li>
-        <li>Alertas y recordatorios de cuidados preventivos</li>
-      </ul>
-
-      <h3>3. Limitación de responsabilidad médica</h3>
-      <p><strong style="color:var(--amber)">⚠️ IMPORTANTE:</strong> ExoVet IO es una herramienta de orientación informativa y NO sustituye la consulta con un veterinario colegiado. Los diagnósticos generados por la IA son preliminares y orientativos. ExoVet IO Inc. no se responsabiliza de decisiones tomadas basándose exclusivamente en las respuestas de la plataforma sin consultar a un profesional veterinario.</p>
-      <p>Ante cualquier síntoma de emergencia o situación que ponga en riesgo la vida de tu mascota, acude inmediatamente a un veterinario.</p>
-
-      <h3>4. Suscripciones y pagos</h3>
-      <ul>
-        <li>Los planes se facturan mensualmente mediante Stripe</li>
-        <li>Puedes cancelar en cualquier momento desde tu perfil; no hay penalización por cancelación</li>
-        <li>Al cancelar, conservas el acceso hasta el final del período ya abonado</li>
-        <li>No ofrecemos reembolsos por períodos parciales salvo error técnico demostrable por nuestra parte</li>
-        <li>Los precios pueden cambiar con 30 días de preaviso por email</li>
-      </ul>
-
-      <h3>5. Uso aceptable</h3>
-      <p>Te comprometes a usar el servicio de forma legal y ética. Está expresamente prohibido:</p>
-      <ul>
-        <li>Usar la plataforma para actividades ilegales relacionadas con animales</li>
-        <li>Intentar extraer, copiar o reproducir los modelos de IA o la base de datos de especies</li>
-        <li>Compartir credenciales de acceso con terceros</li>
-        <li>Usar bots, scrapers o acceso automatizado no autorizado</li>
-        <li>Introducir información falsa que pueda comprometer la integridad del sistema</li>
-      </ul>
-
-      <h3>6. Propiedad intelectual</h3>
-      <p>Todo el contenido de ExoVet IO — incluyendo los modelos de IA, base de datos de especies, textos, diseño y código fuente — es propiedad exclusiva de ExoVet IO Inc. y está protegido por derechos de autor internacionales. No se otorga ninguna licencia de uso más allá del acceso personal al servicio.</p>
-
-      <h3>7. Disponibilidad del servicio</h3>
-      <p>Nos comprometemos a mantener una disponibilidad del 99% mensual. Podemos realizar mantenimientos programados con preaviso. No nos responsabilizamos de interrupciones causadas por terceros (proveedores de internet, fuerza mayor, etc.).</p>
-
-      <h3>8. Modificación y cancelación del servicio</h3>
-      <p>Nos reservamos el derecho de modificar, suspender o descontinuar cualquier parte del servicio con 30 días de preaviso. En caso de discontinuación total, reembolsaremos los períodos abonados no disfrutados.</p>
-
-      <h3>9. Ley aplicable y jurisdicción</h3>
-      <p>Estos términos se rigen por las leyes del Estado de Delaware, Estados Unidos. Cualquier disputa se resolverá mediante arbitraje vinculante bajo las reglas de la American Arbitration Association (AAA), renunciando ambas partes a juici
-</div></div></div>
-</div>
+    <div class="modal-body" id="termsModalBody">
+    </div>
 
 <!-- ═══════════════════════════════════════
      SUPABASE AUTH & USER LOGIC
@@ -3176,6 +3374,7 @@ let selectedPlan = null;
 
 // ─── Inicialización ──────────────────────
 document.addEventListener('DOMContentLoaded', async () => {
+  renderModalContent('es');
   await checkSession();
 });
 
