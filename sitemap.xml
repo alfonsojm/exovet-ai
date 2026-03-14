@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://exovet.io/</loc>
+    <lastmod>2026-03-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://exovet.io/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://exovet.io/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://exovet.io/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://exovet.io/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://exovet.io/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://exovet.io/"/>
+  </url>
+</urlset>
+```
+
+Commit → luego espera 1-2 minutos a que GitHub Pages lo publique.
+
+---
+
+## Paso 2 — Verifica que esté accesible
+
+Abre en tu navegador:
+```
+https://exovet.io/sitemap.xml
