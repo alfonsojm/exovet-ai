@@ -14,14 +14,3 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://exovet.io/"/>
   </url>
 </urlset>
-```
-
-Commit → luego espera 1-2 minutos a que GitHub Pages lo publique.
-
----
-
-## Paso 2 — Verifica que esté accesible
-
-Abre en tu navegador:
-```
-https://exovet.io/sitemap.xml
