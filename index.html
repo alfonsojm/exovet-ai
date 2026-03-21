@@ -272,4 +272,124 @@ const _0x1ffc97=_0x2143;(function(_0x5246ca,_0x19a248){const _0x3962e3=_0x2143,_
   function run(){patch();apply(typeof currentLang!=='undefined'?currentLang:'en');hook();}
   [0,300,800,2000].forEach(function(d){setTimeout(run,d);});
 })();
+</script><script>
+/* === ExoVet IO Free Tier Implementation === */
+(function(){
+  // FREE PLAN LIMITS
+  var FREE_MAX_PETS = 1;
+  var FREE_MAX_CONSULTAS = 2;
+
+  // Helper: is user on free plan?
+  function isFreePlan(){
+    if(!currentUser) return true;
+    var plan = currentUser.profile && currentUser.profile.plan || 'free';
+    var active = currentUser.profile && currentUser.profile.suscripcion_activa || false;
+    return plan === 'free' || !active;
+  }
+
+  // Override checkAccessOrPaywall to allow free users into Diagnóstico and Mis Mascotas
+  var _origCheckAccess = window.checkAccessOrPaywall;
+  window.checkAccessOrPaywall = function(section){
+    if(!currentUser){ openAuth('register'); return false; }
+    // Premium users pass through
+    if(hasActivePlan()) return true;
+    // Free users can access these sections with limits
+    var freeAllowed = ['Diagnóstico IA', 'Diagnóstico', 'Mis Mascotas'];
+    for(var i=0;i<freeAllowed.length;i++){
+      if(section === freeAllowed[i]) return true;
+    }
+    // Everything else requires premium
+    showPaywall(section);
+    return false;
+  };
+
+  // Override savePet to limit free users to 1 pet
+  var _origSavePet = window.savePet;
+  window.savePet = async function(){
+    if(!currentUser) return;
+    if(isFreePlan()){
+      var resp = await _supa.from('mascotas').select('*',{count:'exact',head:true}).eq('usuario_id',currentUser.id);
+      var count = resp.count || 0;
+      if(count >= FREE_MAX_PETS){
+        showMsg(document.getElementById('petFormMsg'),
+          '🔒 El plan gratuito permite máximo ' + FREE_MAX_PETS + ' mascota. Actualiza a Premium para mascotas ilimitadas.','error');
+        return;
+      }
+    }
+    return _origSavePet.apply(this, arguments);
+  };
+
+  // Override sendMessage to limit free users to 2 AI consultations
+  var _origSendMessage = window.sendMessage;
+  window.sendMessage = async function(){
+    if(!currentUser) return;
+    if(isFreePlan()){
+      // Count existing consultas from DB
+      var resp = await _supa.from('consultas').select('*',{count:'exact',head:true})
+        .eq('usuario_id',currentUser.id)
+        .not('sintomas','like','[SUGERENCIA VET]%');
+      var count = resp.count || 0;
+      if(count >= FREE_MAX_CONSULTAS){
+        // Show paywall
+        appendMessage('ai',
+          '🔒 <strong>Has alcanzado el límite de ' + FREE_MAX_CONSULTAS + ' consultas gratuitas.</strong><br><br>' +
+          'Tu plan gratuito incluye ' + FREE_MAX_CONSULTAS + ' consultas con IA veterinaria. ' +
+          'Para consultas ilimitadas, análisis de fotos y más, actualiza a <strong>ExoVet Premium</strong>.<br><br>' +
+          '<button onclick="closeChatPanel();showPaywall(\'Consultas ilimitadas\')" style="background:var(--g-acc);color:#000;border:none;padding:.7rem 1.4rem;border-radius:100px;font-weight:700;font-size:.85rem;cursor:pointer;font-family:\'DM Sans\',sans-serif">🚀 Obtener Premium — $9.9/mes</button>'
+        );
+        return;
+      }
+    }
+    return _origSendMessage.apply(this, arguments);
+  };
+
+  // Override loadPets to show free limit in pet count
+  var _origLoadPets = window.loadPets;
+  window.loadPets = async function(){
+    await _origLoadPets.apply(this, arguments);
+    // After loading, adjust the limit display and add card for free users
+    if(!currentUser) return;
+    if(isFreePlan()){
+      var countEl = document.getElementById('petsCount');
+      if(countEl){
+        var currentText = countEl.textContent;
+        countEl.textContent = currentText.replace(/\/\s*5/,' / ' + FREE_MAX_PETS + ' (Free)');
+      }
+      // Check if we need to replace the add card with a locked one
+      var resp = await _supa.from('mascotas').select('*',{count:'exact',head:true}).eq('usuario_id',currentUser.id);
+      var petCount = resp.count || 0;
+      if(petCount >= FREE_MAX_PETS){
+        var addCards = document.querySelectorAll('.pet-add-card');
+        addCards.forEach(function(card){
+          card.outerHTML = '<div class="pet-add-card" style="cursor:pointer;border-color:rgba(245,166,35,.3)" onclick="closePetsPanel();showPaywall(\'Mascotas ilimitadas\')"><span class="pet-add-icon" style="color:var(--amber)">🔒</span><span class="pet-add-text" style="color:var(--amber)">Premium: mascotas ilimitadas</span></div>';
+        });
+      }
+    }
+  };
+
+  // Also disable photo analysis for free users
+  var _origHandlePhotoSelect = window.handlePhotoSelect;
+  window.handlePhotoSelect = function(e){
+    if(isFreePlan()){
+      e.target.value = '';
+      alert('📸 El análisis de fotos con IA está disponible en ExoVet Premium.\n\nDescribe los síntomas por texto para usar tu consulta gratuita.');
+      return;
+    }
+    return _origHandlePhotoSelect.apply(this, arguments);
+  };
+
+  // Update demo lock for free users - show it unlocked if logged in
+  var _origUpdateDemoLock = window.updateDemoLock;
+  window.updateDemoLock = function(){
+    var overlay = document.getElementById('demoLockOverlay');
+    if(overlay){
+      if(currentUser){
+        overlay.style.display = 'none';
+      } else {
+        overlay.style.display = 'flex';
+      }
+    }
+  };
+
+})();
 </script>
