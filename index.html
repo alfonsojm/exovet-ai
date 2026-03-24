@@ -393,3 +393,28 @@ const _0x1ffc97=_0x2143;(function(_0x5246ca,_0x19a248){const _0x3962e3=_0x2143,_
 
 })();
 </script>
+<script>
+/* === ExoVet IO Security Patch — Auth Token === */
+(function(){
+  'use strict';
+  var _originalFetch = window.fetch;
+  window.fetch = async function(url, options) {
+    if (typeof url === 'string' && url.includes('/functions/v1/exovet-ai')) {
+      var sessionData = await _supa.auth.getSession();
+      var token = sessionData && sessionData.data && sessionData.data.session && sessionData.data.session.access_token;
+      if (token) {
+        options = options || {};
+        options.headers = options.headers || {};
+        options.headers['Authorization'] = 'Bearer ' + token;
+      } else {
+        console.warn('[ExoVet] No hay sesión activa');
+        return new Response(JSON.stringify({
+          error: true,
+          content: [{ type: 'text', text: '⚠️ Tu sesión ha expirado. Por favor, inicia sesión de nuevo.' }]
+        }), { status: 401, headers: { 'Content-Type': 'application/json' } });
+      }
+    }
+    return _originalFetch.apply(this, [url, options]);
+  };
+})();
+</script>
