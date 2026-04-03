@@ -1,4 +1,51 @@
-<!doctype html><html lang="es" prefix="og: https://ogp.me/ns#"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/png" href="/favicon.png"><link rel="shortcut icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/favicon.png"><title>ExoVet IO — Veterinario IA para Reptiles, Aves, Roedores y Mascotas Exóticas | Diagnóstico 24/7</title><meta name="title" content="ExoVet IO — Veterinario IA para Reptiles, Aves, Roedores y Mascotas Exóticas | Diagnóstico 24/7"><meta name="description" content="La primera IA veterinaria del mundo para mascotas exóticas: reptiles, aves, roedores y más de 400 especies. Diagnóstico de síntomas 24/7, dietas personalizadas y directorio de veterinarios especializados."><meta name="keywords" content="
+<!doctype html><html lang="es" prefix="og: https://ogp.me/ns#"><head><meta charset="UTF-8"><script>
+/* === ExoVet IO — URL Normalization & SEO Fix v2026.04.02 === */
+(function(){
+  var loc = window.location;
+  var needsRedirect = false;
+  var newUrl = loc.href;
+
+  // 1. Force HTTPS (fix "Página con redirección" errors)
+  if(loc.protocol === 'http:'){
+    newUrl = newUrl.replace('http:','https:');
+    needsRedirect = true;
+  }
+
+  // 2. Remove www (canonical is without www)
+  if(loc.hostname === 'www.exovet.io'){
+    newUrl = newUrl.replace('www.exovet.io','exovet.io');
+    needsRedirect = true;
+  }
+
+  // 3. Remove trailing slash (avoid duplicates like /iguana-verde/ vs /iguana-verde)
+  if(loc.pathname !== '/' && loc.pathname.endsWith('/')){
+    newUrl = newUrl.replace(loc.pathname, loc.pathname.slice(0,-1));
+    needsRedirect = true;
+  }
+
+  // 4. Redirect language subpaths to root with lang param (fix 404 errors for /en/, /pt/, /fr/, /de/)
+  var langMatch = loc.pathname.match(/^\/(en|pt|fr|de)(\/.*)?$/);
+  if(langMatch){
+    var lang = langMatch[1];
+    newUrl = 'https://exovet.io/?lang=' + lang;
+    needsRedirect = true;
+  }
+
+  // 5. Handle /en/species-name paths (fix 404 for /en/hermit-crab, /en/green-iguana, etc.)
+  // These are already caught by rule 4 above
+
+  if(needsRedirect){
+    window.location.replace(newUrl);
+  }
+
+  // 6. Auto-set language from URL param
+  var params = new URLSearchParams(loc.search);
+  var langParam = params.get('lang');
+  if(langParam && ['en','pt','fr','de','es'].indexOf(langParam) !== -1){
+    window._autoLang = langParam;
+  }
+})();
+</script><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/png" href="/favicon.png"><link rel="shortcut icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/favicon.png"><title>ExoVet IO — Veterinario IA para Reptiles, Aves, Roedores y Mascotas Exóticas | Diagnóstico 24/7</title><meta name="title" content="ExoVet IO — Veterinario IA para Reptiles, Aves, Roedores y Mascotas Exóticas | Diagnóstico 24/7"><meta name="description" content="La primera IA veterinaria del mundo para mascotas exóticas: reptiles, aves, roedores y más de 400 especies. Diagnóstico de síntomas 24/7, dietas personalizadas y directorio de veterinarios especializados."><meta name="keywords" content="
   veterinario IA mascotas exóticas, inteligencia artificial veterinaria, IA diagnóstico animales exóticos,
   veterinario reptiles online, veterinario iguanas, veterinario serpientes, veterinario tortugas,
   veterinario loros, veterinario conejos, veterinario hurones, veterinario tarántulas,
@@ -21,7 +68,7 @@
   mascota exótica enferma qué hacer, síntomas reptil urgente,
   app veterinaria reptiles, consulta online veterinario exóticos,
   cuidado mascotas exóticas, mascotas inusuales enfermedades,
-  animales exóticos salud, bienestar mascotas exóticas"><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"><meta name="author" content="ExoVet IO"><meta name="copyright" content="ExoVet IO 2026"><meta name="language" content="Spanish"><meta name="revisit-after" content="7 days"><meta name="rating" content="general"><meta name="category" content="Veterinary, Pet Health, Artificial Intelligence, Exotic Animals"><meta name="classification" content="Veterinary AI / Exotic Pet Health"><meta name="coverage" content="Worldwide"><meta name="distribution" content="Global"><meta name="target" content="exotic pet owners, reptile keepers, bird owners, rabbit owners, ferret owners"><link rel="canonical" href="https://exovet.io/"><link rel="sitemap" type="application/xml" href="https://exovet.io/sitemap.xml"><link rel="alternate" hreflang="es" href="https://exovet.io/"><link rel="alternate" hreflang="en" href="https://exovet.io/en/"><link rel="alternate" hreflang="pt" href="https://exovet.io/pt/"><link rel="alternate" hreflang="fr" href="https://exovet.io/fr/"><link rel="alternate" hreflang="de" href="https://exovet.io/de/"><link rel="alternate" hreflang="x-default" href="https://exovet.io/"><meta property="og:type" content="website"><meta property="og:site_name" content="ExoVet IO"><meta property="og:url" content="https://exovet.io/"><meta property="og:title" content="ExoVet IO — El Veterinario Inteligente para Mascotas Exóticas"><meta property="og:description" content="La primera IA del mundo diseñada exclusivamente para reptiles, aves, roedores y exóticos. Diagnóstico de síntomas en tiempo real para más de 400 especies. Tu mascota no puede decirte cuándo algo va mal — ExoVet IO sí puede."><meta property="og:image" content="https://exovet.io/og-image.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="ExoVet IO — Inteligencia Artificial Veterinaria para Mascotas Exóticas"><meta property="og:locale" content="es_ES"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="pt_BR"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="de_DE"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@ExoVetAI"><meta name="twitter:creator" content="@ExoVetAI"><meta name="twitter:title" content="ExoVet IO — Veterinario IA para Mascotas Exóticas"><meta name="twitter:description" content="La primera IA veterinaria exclusiva para reptiles, aves, roedores y exóticos. Diagnóstico en tiempo real para +400 especies. Disponible 24/7."><meta name="twitter:image" content="https://exovet.io/og-image.jpg"><meta name="twitter:image:alt" content="ExoVet IO — Diagnóstico IA para mascotas exóticas"><script type="application/ld+json">{
+  animales exóticos salud, bienestar mascotas exóticas"><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"><meta name="author" content="ExoVet IO"><meta name="copyright" content="ExoVet IO 2026"><meta name="language" content="Spanish"><meta name="revisit-after" content="7 days"><meta name="rating" content="general"><meta name="category" content="Veterinary, Pet Health, Artificial Intelligence, Exotic Animals"><meta name="classification" content="Veterinary AI / Exotic Pet Health"><meta name="coverage" content="Worldwide"><meta name="distribution" content="Global"><meta name="target" content="exotic pet owners, reptile keepers, bird owners, rabbit owners, ferret owners"><link rel="canonical" href="https://exovet.io/"><link rel="sitemap" type="application/xml" href="https://exovet.io/sitemap.xml"><link rel="alternate" hreflang="es" href="https://exovet.io/"><link rel="alternate" hreflang="en" href="https://exovet.io/"><link rel="alternate" hreflang="pt" href="https://exovet.io/"><link rel="alternate" hreflang="fr" href="https://exovet.io/"><link rel="alternate" hreflang="de" href="https://exovet.io/"><link rel="alternate" hreflang="x-default" href="https://exovet.io/"><meta property="og:type" content="website"><meta property="og:site_name" content="ExoVet IO"><meta property="og:url" content="https://exovet.io/"><meta property="og:title" content="ExoVet IO — El Veterinario Inteligente para Mascotas Exóticas"><meta property="og:description" content="La primera IA del mundo diseñada exclusivamente para reptiles, aves, roedores y exóticos. Diagnóstico de síntomas en tiempo real para más de 400 especies. Tu mascota no puede decirte cuándo algo va mal — ExoVet IO sí puede."><meta property="og:image" content="https://exovet.io/og-image.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="ExoVet IO — Inteligencia Artificial Veterinaria para Mascotas Exóticas"><meta property="og:locale" content="es_ES"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="pt_BR"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="de_DE"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@ExoVetAI"><meta name="twitter:creator" content="@ExoVetAI"><meta name="twitter:title" content="ExoVet IO — Veterinario IA para Mascotas Exóticas"><meta name="twitter:description" content="La primera IA veterinaria exclusiva para reptiles, aves, roedores y exóticos. Diagnóstico en tiempo real para +400 especies. Disponible 24/7."><meta name="twitter:image" content="https://exovet.io/og-image.jpg"><meta name="twitter:image:alt" content="ExoVet IO — Diagnóstico IA para mascotas exóticas"><script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "ExoVet IO",
@@ -536,6 +583,15 @@ const _0x1ffc97=_0x2143;(function(_0x5246ca,_0x19a248){const _0x3962e3=_0x2143,_
     document.addEventListener('DOMContentLoaded', init);
   } else {
     init();
+  }
+})();
+</script>
+<script>
+/* === ExoVet IO — Auto Language from URL Param v2026.04.02 === */
+(function(){
+  if(window._autoLang && typeof setLang === 'function'){
+    setTimeout(function(){ setLang(window._autoLang); }, 800);
+    setTimeout(function(){ setLang(window._autoLang); }, 2000);
   }
 })();
 </script>
